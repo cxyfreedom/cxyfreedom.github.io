@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://reishin.me/kubernetes-helm-installation/</loc>
+    
+    <lastmod>2018-09-13T13:16:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://reishin.me/blog-seo-optimization/</loc>
     
     <lastmod>2018-09-10T15:01:27.000Z</lastmod>
