@@ -23,7 +23,8 @@ before_script:
   - sed -i "s/VALINE_APPKEY/${VALINE_APPKEY}/g" ./source/_data/next.yml
 
 script:
-  - hexo generate && gulp
+  - hexo generate
+  - gulp
 
 after_script:
   - git config user.name "cxyfreedom"
