@@ -1,0 +1,29 @@
+language: node_js
+
+node_js: stable
+
+branches:
+  only:
+    - hexo
+
+before_install:
+  - npm install -g hexo-cli
+  - npm install -g gulp
+
+install:
+  - npm install
+
+before_script:
+  - hexo clean
+  - sed -i "s/BAIDU_TOEKN/${BAIDU_TOEKN}/g" ./_config.yml
+  - sed -i "s/GH_TOKEN/${GH_TOKEN}/g" ./_config.yml
+  - sed -i "s/VALINE_APPID/${VALINE_APPID}/g" ./source/_data/next.yml
+  - sed -i "s/VALINE_APPKEY/${VALINE_APPKEY}/g" ./source/_data/next.yml
+
+script:
+  - hexo generate & gulp
+
+after_script:
+  - git config user.name "cxyfreedom"
+  - git config user.email "cxydfreedom@gmail.com"
+  - hexo deploy

@@ -1,0 +1,277 @@
+# 字体
+font:
+  enable: true
+
+  # Uri of fonts host. E.g. //fonts.googleapis.com (Default).
+  host: https://fonts.cat.net
+
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: xx`. Use `px` as unit.
+
+  # Global font settings used for all elements in <body>.
+  global:
+    external: true
+    family: Monda
+    size:
+
+  # Font settings for Headlines (H1, H2, H3, H4, H5, H6).
+  # Fallback to `global` font settings.
+  headings:
+    external: true
+    family:
+    size:
+
+  # Font settings for posts.
+  # Fallback to `global` font settings.
+  posts:
+    external: true
+    family:
+
+  # Font settings for Logo.
+  # Fallback to `global` font settings.
+  logo:
+    external: true
+    family: Comic Sans MS
+    size: 24
+
+  # Font settings for <code> and code blocks.
+  codes:
+    external: true
+    family: PT Mono
+    size:
+
+# 网站图标
+favicon:
+  small: favicon.ico
+  medium: favicon.ico
+  apple_touch_icon: favicon.ico
+  safari_pinned_tab: /images/logo.svg
+
+# RSS
+rss: /atom.xml
+
+# 页脚
+footer:
+  # Specify the date when the site was setup.
+  # If not defined, current year will be used.
+  since: 2015
+
+  # Icon between year and copyright info.
+  icon:
+    # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons
+    # `heart` is recommended with animation in red (#ff0000).
+    name: user
+    # If you want to animate the icon, set it to true.
+    animated: false
+    # Change the color of icon, using Hex Code.
+    color: "#808080"
+
+  # If not defined, will be used `author` from Hexo main config.
+  copyright:
+  # -------------------------------------------------------------
+  # Hexo link (Powered by Hexo).
+  powered: false
+
+  theme:
+    # Theme & scheme info link (Theme - NexT.scheme).
+    enable: true
+    # Version info of NexT after scheme info (vX.X.X).
+    version: true
+  # -------------------------------------------------------------
+  # Any custom text can be defined here.
+  #custom_text: Hosted by <a target="_blank" rel="external nofollow" href="https://pages.coding.me"><b>Coding Pages</b></a>
+
+# 菜单栏
+menu:
+  home: / || home
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+  about: /about/ || user
+
+# 主题选择
+scheme: Muse
+#scheme: Gemini
+
+# 社交
+social:
+    Github: https://github.com/cxyfreedom || github
+    微博: http://weibo.com/207071991 || weibo
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: true
+  exturl: false
+
+# 字数统计
+symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 2
+  wpm: 300
+
+# 背景动画
+canvas_nest: true
+
+# 页面进度条加载样式
+pace: true
+pace_theme: pace-theme-minimal
+
+# 文章末尾添加“本文结束”标记
+passage_end_tag:
+  enabled: true
+
+# 来比力评论
+#livere_uid: LIVERE_UID
+
+# disqus
+disqus:
+  enable: false
+  shortname: cxyfreedom
+  count: true
+  lazyload: true
+
+# valine
+valine:
+  enable: true
+  appid:  VALINE_APPID # your leancloud application appid
+  appkey: VALINE_APPKEY # your leancloud application appkey
+  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+  verify: false # Verification code
+  placeholder: Just go go # comment box placeholder
+  avatar: retro # gravatar style
+  guest_info: nick,mail,link # custom comment header
+  pageSize: 10 # pagination size
+
+# 内容分享
+needmoreshare2:
+  enable: true
+  postbottom:
+    enable: false
+    options:
+      iconStyle: box
+      boxForm: horizontal
+      position: bottomCenter
+      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+  float:
+    enable: true
+    options:
+      iconStyle: box
+      boxForm: horizontal
+      position: middleRight
+      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+
+# 不蒜子统计
+busuanzi_count:
+  enable: true
+  total_visitors: true
+  total_visitors_icon: user
+  total_views: true
+  total_views_icon: eye
+  post_views: true
+  post_views_icon: eye
+
+# 版权信息
+creative_commons: by-nc-sa
+post_copyright:
+  enable: true
+  license: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a>
+
+# 本地搜索
+local_search:
+  enable: true
+  # if auto, trigger search by changing input
+  # if manual, trigger search by pressing enter key or search button
+  trigger: auto
+  # show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+  # unescape html strings to the readable one
+  unescape: false
+
+fancybox: true
+
+# 侧边栏
+sidebar:
+  # Sidebar Position, available value: left | right (only for Pisces | Gemini).
+  position: left
+  #position: right
+
+  # Sidebar Display, available value (only for Muse | Mist):
+  #  - post    expand on posts automatically. Default.
+  #  - always  expand for all pages automatically
+  #  - hide    expand only when click on the sidebar toggle icon.
+  #  - remove  Totally remove sidebar including sidebar toggle.
+  display: post
+  #display: always
+  #display: hide
+  #display: remove
+
+  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
+  offset: 12
+
+  # Back to top in sidebar (only for Pisces | Gemini).
+  b2t: false
+
+  # Scroll percent label in b2t button. 文章进度百分比
+  scrollpercent: true
+
+  # Enable sidebar on narrow view (only for Muse | Mist).
+  onmobile: true
+
+# note
+note:
+  # Note tag style values:
+  #  - simple    bs-callout old alert style. Default.
+  #  - modern    bs-callout new (v2-v3) alert style.
+  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
+  #  - disabled  disable all CSS styles import of note tag.
+  style: flat
+  icons: true
+  border_radius: 3
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+
+# 选项卡
+tabs:
+  enable: true
+  transition:
+    tabs: false
+    labels: true
+  border_radius: 0
+
+# SEO优化
+keywords: cxyfreedom,hexo,博客,blog,reishin,field of hope,python
+
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+# 代码块
+codeblock:
+  copy_button:
+      enable: true
+      show_result: true
+
+# 侧边栏头像（Next集成）
+avatar:
+  # in theme directory(source/images): /images/avatar.gif
+  # in site  directory(source/uploads): /uploads/avatar.gif
+  # You can also use other linking images.
+  url: /uploads/lacus.jpg
+  # If true, the avatar would be displayed in circle.
+  rounded: true
+  # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
+  opacity: 1
+  # If true, the avatar would be rotated with the cursor.
+  rotated: true
+
+# 友情链接
+links_title: 友情链接
+links:
+  TOKEI: https://blog.nekohand.moe

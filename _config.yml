@@ -1,0 +1,139 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Field of Hope  # 站点标题
+subtitle: 无论是光凭信念,还是光凭力量都是不行的 # 站点副标题
+description: Life is short, you need Python # 站点描述
+author: CxyFreedom  # 作者姓名
+language: zh-CN # 站点语言
+timezone:
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: https://reishin.me
+root: /
+permalink: :title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render: README.md
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace:
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+# RSS
+plugins: hexo-generate-feed
+
+## Themes: http://hexo.io/themes/
+# theme: landscape
+theme: next
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+# 部署
+deploy:
+- type: git
+  repo: https://GH_TOKEN@github.com/cxyfreedom/cxyfreedom.github.io.git
+  branch: master
+- type: baidu_url_submitter
+
+# 设置头像
+avatar: /uploads/lacus.jpg
+
+# 备份
+backup:
+    type: git
+    theme: next
+    repository:
+        bitbucket: git@bitbucket.org:cxyfreedom/hexo-blog.git,master
+
+# title, chinese available
+links_title: 
+# links
+links:
+
+# 字数统计
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+
+# 搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+# 音乐播放器
+aplayer:
+  meting: true
+
+# 萌宠
+live2d:
+  enable: true
+  scriptFrom: jsdelivr
+  model:
+    use: https://cdn.jsdelivr.net/npm/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json
+  display:
+    position: left
+    width: 75
+    height: 150
+  mobile:
+    show: true
+  react:
+    opacityDefault: 1
+    opacityOnHover: 0.2
+#live2d:
+#  model: koharu
+#  position: left
+#  opacityDefault: 1
+
+# 百度主动推送
+baidu_url_submit:
+  count: 10
+  host: https://reishin.me
+  token: BAIDU_TOKEN
+  path: baidu_urls.txt
