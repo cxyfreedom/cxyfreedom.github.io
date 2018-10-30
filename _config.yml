@@ -133,7 +133,7 @@ live2d:
 
 # 百度主动推送
 baidu_url_submit:
-  count: 10
+  count: 5
   host: https://reishin.me
   token: BAIDU_TOKEN
   path: baidu_urls.txt
