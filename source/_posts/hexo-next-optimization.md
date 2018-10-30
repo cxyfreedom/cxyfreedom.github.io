@@ -321,11 +321,11 @@ p#div-border-top-purple {
 </a>
 ```
 
-主题自带效果：{% btn https://reishin.me, 点击访问博客, home fa-fw %}
+<!-- 主题自带效果：{% btn https://reishin.me, 点击访问博客, home fa-fw %} -->
 
-```[] 源码
-{% btn https://reishin.me, 点击访问博客, home fa-fw %}
-```
+<!-- ```[] 源码 -->
+<!-- {% btn https://reishin.me, 点击访问博客, home fa-fw %} -->
+<!-- ``` -->
 
 <p id="div-border-left-green">更多使用方法参考[该页面](https://almostover.ru/2016-01/hexo-theme-next-test/#Button-tag-test)。</p>
 
