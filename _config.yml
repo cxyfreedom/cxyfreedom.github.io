@@ -113,7 +113,7 @@ aplayer:
 
 # 萌宠
 live2d:
-  enable: true
+  enable: false
   scriptFrom: jsdelivr
   model:
     use: https://cdn.jsdelivr.net/npm/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json

@@ -115,7 +115,14 @@ symbols_count_time:
   wpm: 300
 
 # 背景动画
-canvas_nest: true
+canvas_nest:
+  enable: true
+  onmobile: true # display on mobile or not
+  color: '0,0,255' # RGB values, use ',' to separate
+  opacity: 0.5 # the opacity of line: 0~1
+  zIndex: -1 # z-index property of the background
+  count: 99 # the number of lines
+
 
 # 页面进度条加载样式
 pace: true
