@@ -6,7 +6,7 @@ tags:
 - Kubernetes
 - Helm
 categories:
-images: http://p64urweu3.bkt.clouddn.com/helm-banner.png
+images: "https://i.loli.net/2018/11/11/5be7c6f923a6a.png"
 ---
 Helm 是 Kubernetes 的一个包管理器，用来简化 Kubernetes 应用的部署和管理。类似于 CentOS 的 yum 工具 或者是 Ubuntu 的 apt-get 工具。
 <!-- more -->

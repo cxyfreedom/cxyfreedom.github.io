@@ -4,7 +4,7 @@ tags:
   - GitHub
 categories:
 date: 2016-08-25 03:14:00
-images: "http://p64urweu3.bkt.clouddn.com/ssl.png"
+images: "https://i.loli.net/2018/11/11/5be7c6f8a87f4.png"
 ---
 通过本文，可以让 GitHub Pages 从 http 转变为 https，从而让数据更加安全。
 

@@ -3,7 +3,7 @@ title: NexT 主题优化
 date: 2018-03-26 10:21:27
 tags:
 categories:
-images: "http://p64urweu3.bkt.clouddn.com/post/banner/logo.png"
+images: "https://i.loli.net/2018/11/11/5be7c6f99c82a.png"
 ---
 为了能够让博客变得更加有特色，本文会教你如何对 Next 主题进行个性化的定制。
 

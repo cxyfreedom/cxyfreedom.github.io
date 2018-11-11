@@ -4,7 +4,7 @@ date: 2018-09-10 20:31:51
 permalink:
 tags:
 categories:
-images: http://p64urweu3.bkt.clouddn.com/SEO.jpg
+images: "https://i.loli.net/2018/11/11/5be7c6f993111.jpg"
 ---
 为了能让我们的博客被搜索引擎更好的收录，我们需要对 SEO 进行优化。
 

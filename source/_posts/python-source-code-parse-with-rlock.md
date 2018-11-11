@@ -5,7 +5,7 @@ tags:
  - Python
  - 源码
 categories:
-images: "http://p64urweu3.bkt.clouddn.com/python_logo.jpeg"
+images: "https://i.loli.net/2018/11/11/5be7c6f78b9c4.jpeg"
 ---
 本文主要针对 Python 中的可重入锁 RLock 的源码剖析。
 
