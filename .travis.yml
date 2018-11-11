@@ -30,4 +30,4 @@ script:
 after_script:
   - git config user.name "cxyfreedom"
   - git config user.email "cxydfreedom@gmail.com"
-  - hexo deploy
+  - bash deploy.sh

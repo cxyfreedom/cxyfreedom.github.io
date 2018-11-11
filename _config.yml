@@ -75,11 +75,7 @@ theme: next
 deploy:
 - type: git
   repo: https://GH_TOKEN@github.com/cxyfreedom/cxyfreedom.github.io.git
-  skip_cleanup: true
-  provider: script
-  script: sh deploy.sh
-  on:
-    branch: master
+  branch: master
 - type: baidu_url_submitter
 
 # 设置头像
