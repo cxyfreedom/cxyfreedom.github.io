@@ -166,10 +166,10 @@
     
     <item>
       <title>kubernetes</title>
-      <link></link>
+      <link>https://reishin.me/tags/kubernetes/</link>
       <pubDate>Thu, 22 Nov 2018 17:26:21 +0800</pubDate>
       
-      <guid></guid>
+      <guid>https://reishin.me/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -184,10 +184,10 @@
     
     <item>
       <title>Kubernetes</title>
-      <link>https://reishin.me/tags/Kubernetes/</link>
+      <link></link>
       <pubDate>Thu, 13 Sep 2018 21:30:37 +0800</pubDate>
       
-      <guid>https://reishin.me/tags/Kubernetes/</guid>
+      <guid></guid>
       <description></description>
     </item>
     
@@ -215,78 +215,6 @@
       <pubDate>Mon, 20 Aug 2018 20:07:47 +0000</pubDate>
       
       <guid>https://reishin.me/tags/%E6%BA%90%E7%A0%81/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>preview</title>
-      <link>https://reishin.me/tags/preview/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/preview/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag-3</title>
-      <link>https://reishin.me/tags/tag-3/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/tag-3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Theme preview</title>
-      <link>https://reishin.me/tags/Theme-preview/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/Theme-preview/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>English</title>
-      <link>https://reishin.me/tags/English/</link>
-      <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/English/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag-2</title>
-      <link>https://reishin.me/tags/tag-2/</link>
-      <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/tag-2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag-1</title>
-      <link>https://reishin.me/tags/tag-1/</link>
-      <pubDate>Wed, 30 Aug 2017 01:37:56 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/tag-1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>中文</title>
-      <link>https://reishin.me/tags/%E4%B8%AD%E6%96%87/</link>
-      <pubDate>Wed, 30 Aug 2017 01:37:56 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/%E4%B8%AD%E6%96%87/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shortcodes</title>
-      <link>https://reishin.me/tags/shortcodes/</link>
-      <pubDate>Tue, 30 Aug 2016 16:01:23 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/shortcodes/</guid>
       <description></description>
     </item>
     
@@ -323,24 +251,6 @@
       <pubDate>Fri, 06 Nov 2015 15:35:56 +0800</pubDate>
       
       <guid>https://reishin.me/tags/hexo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Syntax Highlighting</title>
-      <link>https://reishin.me/tags/Syntax-Highlighting/</link>
-      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/Syntax-Highlighting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tag-5</title>
-      <link>https://reishin.me/tags/tag-5/</link>
-      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/tag-5/</guid>
       <description></description>
     </item>
     
