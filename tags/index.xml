@@ -6,9 +6,343 @@
     <description>Recent content in Tags on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Mon, 29 Apr 2019 14:43:31 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python</title>
+      <link>https://reishin.me/tags/Python/</link>
+      <pubDate>Mon, 29 Apr 2019 14:43:31 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>一致性哈希</title>
+      <link>https://reishin.me/tags/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C/</link>
+      <pubDate>Mon, 29 Apr 2019 14:43:31 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>目录</title>
+      <link>https://reishin.me/tags/%E7%9B%AE%E5%BD%95/</link>
+      <pubDate>Mon, 29 Apr 2019 14:32:15 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E7%9B%AE%E5%BD%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redis</title>
+      <link>https://reishin.me/tags/redis/</link>
+      <pubDate>Thu, 25 Apr 2019 18:33:45 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>原理</title>
+      <link>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Thu, 25 Apr 2019 18:33:45 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>连接池</title>
+      <link>https://reishin.me/tags/%E8%BF%9E%E6%8E%A5%E6%B1%A0/</link>
+      <pubDate>Thu, 25 Apr 2019 18:33:45 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E8%BF%9E%E6%8E%A5%E6%B1%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metaclass</title>
+      <link>https://reishin.me/tags/metaclass/</link>
+      <pubDate>Wed, 24 Apr 2019 17:03:19 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/metaclass/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>元类</title>
+      <link>https://reishin.me/tags/%E5%85%83%E7%B1%BB/</link>
+      <pubDate>Wed, 24 Apr 2019 17:03:19 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E5%85%83%E7%B1%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>https://reishin.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 21 Apr 2019 20:58:10 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tmux</title>
+      <link>https://reishin.me/tags/tmux/</link>
+      <pubDate>Wed, 17 Apr 2019 18:24:21 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/tmux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>剑指Offer</title>
+      <link>https://reishin.me/tags/%E5%89%91%E6%8C%87Offer/</link>
+      <pubDate>Thu, 28 Mar 2019 20:40:22 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E5%89%91%E6%8C%87Offer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://reishin.me/tags/Docker/</link>
+      <pubDate>Wed, 16 Jan 2019 18:10:40 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tricks</title>
+      <link>https://reishin.me/tags/Tricks/</link>
+      <pubDate>Thu, 10 Jan 2019 18:08:40 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Tricks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fcntl</title>
+      <link>https://reishin.me/tags/fcntl/</link>
+      <pubDate>Tue, 08 Jan 2019 15:02:07 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/fcntl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>logging</title>
+      <link>https://reishin.me/tags/logging/</link>
+      <pubDate>Wed, 26 Dec 2018 15:35:13 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/logging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pika</title>
+      <link>https://reishin.me/tags/pika/</link>
+      <pubDate>Wed, 26 Dec 2018 15:35:13 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/pika/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubeadm</title>
+      <link>https://reishin.me/tags/kubeadm/</link>
+      <pubDate>Thu, 22 Nov 2018 17:26:21 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/kubeadm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link></link>
+      <pubDate>Thu, 22 Nov 2018 17:26:21 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Helm</title>
+      <link>https://reishin.me/tags/Helm/</link>
+      <pubDate>Thu, 13 Sep 2018 21:30:37 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Helm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://reishin.me/tags/Kubernetes/</link>
+      <pubDate>Thu, 13 Sep 2018 21:30:37 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hexo</title>
+      <link></link>
+      <pubDate>Mon, 10 Sep 2018 20:31:51 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SEO</title>
+      <link>https://reishin.me/tags/SEO/</link>
+      <pubDate>Mon, 10 Sep 2018 20:31:51 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/SEO/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>源码</title>
+      <link>https://reishin.me/tags/%E6%BA%90%E7%A0%81/</link>
+      <pubDate>Mon, 20 Aug 2018 20:07:47 +0000</pubDate>
+      
+      <guid>https://reishin.me/tags/%E6%BA%90%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>preview</title>
+      <link>https://reishin.me/tags/preview/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/preview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag-3</title>
+      <link>https://reishin.me/tags/tag-3/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/tag-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Theme preview</title>
+      <link>https://reishin.me/tags/Theme-preview/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Theme-preview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>English</title>
+      <link>https://reishin.me/tags/English/</link>
+      <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/English/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag-2</title>
+      <link>https://reishin.me/tags/tag-2/</link>
+      <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/tag-2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag-1</title>
+      <link>https://reishin.me/tags/tag-1/</link>
+      <pubDate>Wed, 30 Aug 2017 01:37:56 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/tag-1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>中文</title>
+      <link>https://reishin.me/tags/%E4%B8%AD%E6%96%87/</link>
+      <pubDate>Wed, 30 Aug 2017 01:37:56 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E4%B8%AD%E6%96%87/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shortcodes</title>
+      <link>https://reishin.me/tags/shortcodes/</link>
+      <pubDate>Tue, 30 Aug 2016 16:01:23 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/shortcodes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://reishin.me/tags/Github/</link>
+      <pubDate>Thu, 25 Aug 2016 03:14:00 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSL</title>
+      <link>https://reishin.me/tags/SSL/</link>
+      <pubDate>Thu, 25 Aug 2016 03:14:00 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/SSL/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>https://reishin.me/tags/Blog/</link>
+      <pubDate>Fri, 06 Nov 2015 15:35:56 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hexo</title>
+      <link>https://reishin.me/tags/hexo/</link>
+      <pubDate>Fri, 06 Nov 2015 15:35:56 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/hexo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Syntax Highlighting</title>
+      <link>https://reishin.me/tags/Syntax-Highlighting/</link>
+      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Syntax-Highlighting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag-5</title>
+      <link>https://reishin.me/tags/tag-5/</link>
+      <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/tag-5/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
