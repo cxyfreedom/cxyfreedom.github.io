@@ -12,21 +12,21 @@
     
     
     <item>
-      <title>使用 HashRing 实现 Python 下的一致性哈希算法</title>
-      <link>https://reishin.me/python-consistent-hash/</link>
-      <pubDate>Mon, 29 Apr 2019 14:43:31 +0800</pubDate>
-      
-      <guid>https://reishin.me/python-consistent-hash/</guid>
-      <description>&lt;p&gt;当我们需要实现服务器负载均衡的时候，能够实现负载均衡的算法有很多种，包括：轮询算法（Round Robin）、哈希算法（Hash）、最少连接算法（Least Connection）、响应速度算法（Response Time）、加权法（Weighted）等等。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>博客文章目录</title>
       <link>https://reishin.me/roadmap/</link>
       <pubDate>Mon, 29 Apr 2019 14:32:15 +0800</pubDate>
       
       <guid>https://reishin.me/roadmap/</guid>
       <description>&lt;p&gt;本文是为了便于查找博客中相关内容或者知识点，作为索引使用。持续更新！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 HashRing 实现 Python 下的一致性哈希算法</title>
+      <link>https://reishin.me/python-consistent-hash/</link>
+      <pubDate>Mon, 29 Apr 2019 14:43:31 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-consistent-hash/</guid>
+      <description>&lt;p&gt;当我们需要实现服务器负载均衡的时候，能够实现负载均衡的算法有很多种，包括：轮询算法（Round Robin）、哈希算法（Hash）、最少连接算法（Least Connection）、响应速度算法（Response Time）、加权法（Weighted）等等。&lt;/p&gt;</description>
     </item>
     
     <item>
