@@ -9,29 +9,64 @@
   </url>
   
   <url>
+    <loc>https://reishin.me/tags/Blog/</loc>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/categories/Blog/</loc>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://reishin.me/categories/</loc>
-    <lastmod>2019-04-29T14:43:31+08:00</lastmod>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://reishin.me/</loc>
-    <lastmod>2019-04-29T14:43:31+08:00</lastmod>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/Github/</loc>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/Hugo/</loc>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://reishin.me/post/</loc>
-    <lastmod>2019-04-29T14:43:31+08:00</lastmod>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Python/</loc>
-    <lastmod>2019-04-29T14:43:31+08:00</lastmod>
+    <loc>https://reishin.me/tags/</loc>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/build-blog-with-hugo/</loc>
+    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -44,7 +79,7 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/</loc>
+    <loc>https://reishin.me/tags/Python/</loc>
     <lastmod>2019-04-29T14:43:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -310,13 +345,6 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Github/</loc>
-    <lastmod>2016-08-25T03:14:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://reishin.me/Hexo-with-SSL-hosted-on-GitHub-Pages/</loc>
     <lastmod>2016-08-25T03:14:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -326,13 +354,6 @@
   <url>
     <loc>https://reishin.me/tags/SSL/</loc>
     <lastmod>2016-08-25T03:14:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/Blog/</loc>
-    <lastmod>2015-11-06T15:35:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

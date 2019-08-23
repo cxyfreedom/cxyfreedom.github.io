@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Apr 2019 14:43:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 22:14:05 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blog</title>
+      <link>https://reishin.me/categories/Blog/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/categories/Blog/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Python</title>

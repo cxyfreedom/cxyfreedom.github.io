@@ -6,7 +6,7 @@
     <description>Recent content on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Apr 2019 14:43:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 22:14:05 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,15 @@
       
       <guid>https://reishin.me/roadmap/</guid>
       <description>&lt;p&gt;本文是为了便于查找博客中相关内容或者知识点，作为索引使用。持续更新！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Hugo 搭建 Blog</title>
+      <link>https://reishin.me/build-blog-with-hugo/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/build-blog-with-hugo/</guid>
+      <description>&lt;p&gt;相比于 Hexo，Hugo 更加的轻量，从零部署也是十分简单。本文主要记录从 Hexo 迁移到 Hugo 的过程。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Field of Hope</title>
-    <link>https://reishin.me/tags/Blog/</link>
+    <link>https://reishin.me/categories/Blog/</link>
     <description>Recent content in Blog on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 23 Aug 2019 22:14:05 +0800</lastBuildDate>
     
-	<atom:link href="https://reishin.me/tags/Blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://reishin.me/categories/Blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

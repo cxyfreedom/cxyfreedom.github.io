@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Apr 2019 14:43:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 22:14:05 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blog</title>
+      <link>https://reishin.me/tags/Blog/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://reishin.me/tags/Github/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://reishin.me/tags/Hugo/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Hugo/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Python</title>
@@ -219,29 +246,11 @@
     </item>
     
     <item>
-      <title>Github</title>
-      <link>https://reishin.me/tags/Github/</link>
-      <pubDate>Thu, 25 Aug 2016 03:14:00 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/Github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>SSL</title>
       <link>https://reishin.me/tags/SSL/</link>
       <pubDate>Thu, 25 Aug 2016 03:14:00 +0800</pubDate>
       
       <guid>https://reishin.me/tags/SSL/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Blog</title>
-      <link>https://reishin.me/tags/Blog/</link>
-      <pubDate>Fri, 06 Nov 2015 15:35:56 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/Blog/</guid>
       <description></description>
     </item>
     
