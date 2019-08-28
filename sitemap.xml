@@ -72,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Python/</loc>
+    <loc>https://reishin.me/categories/Python/</loc>
     <lastmod>2019-04-29T14:43:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/Python/</loc>
+    <loc>https://reishin.me/tags/Python/</loc>
     <lastmod>2019-04-29T14:43:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -289,7 +289,7 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Kubernetes/</loc>
+    <loc>https://reishin.me/tags/kubernetes/</loc>
     <lastmod>2018-11-22T17:26:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
