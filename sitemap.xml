@@ -9,8 +9,57 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Blog/</loc>
-    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
+    <loc>https://reishin.me/categories/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/feature/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/post/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/Python/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/categories/Python/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/lesser-known-features-in-python/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/</loc>
+    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -23,14 +72,7 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/</loc>
-    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/</loc>
+    <loc>https://reishin.me/tags/Blog/</loc>
     <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -51,36 +93,8 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/post/</loc>
-    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/</loc>
-    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://reishin.me/build-blog-with-hugo/</loc>
     <lastmod>2019-08-23T22:14:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/categories/Python/</loc>
-    <lastmod>2019-04-29T14:43:31+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/Python/</loc>
-    <lastmod>2019-04-29T14:43:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

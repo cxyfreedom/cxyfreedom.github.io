@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Aug 2019 22:14:05 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 18:38:05 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>feature</title>
+      <link>https://reishin.me/tags/feature/</link>
+      <pubDate>Fri, 30 Aug 2019 18:38:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/feature/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://reishin.me/tags/Python/</link>
+      <pubDate>Fri, 30 Aug 2019 18:38:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Blog</title>
@@ -35,15 +53,6 @@
       <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
       
       <guid>https://reishin.me/tags/Hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://reishin.me/tags/Python/</link>
-      <pubDate>Mon, 29 Apr 2019 14:43:31 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/Python/</guid>
       <description></description>
     </item>
     
