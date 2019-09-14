@@ -46,7 +46,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://reishin.me/" />
 
-<meta property="og:updated_time" content="2019-08-30T18:38:05+08:00" />
+<meta property="og:updated_time" content="2019-09-14T16:53:37+08:00" />
 <meta itemprop="name" content="Field of Hope">
 <meta itemprop="description" content="Life is short, you need Python">
 
@@ -113,6 +113,29 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/python-redis-pool/">Python 中 Redis 连接池原理</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-04-25 18:33 </span>
+      <div class="post-category">
+          <a href="/categories/Python/"> Python </a>
+          </div>
+        <span class="more-meta"> 约 764 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>通常情况下，我们进行 <code>redis</code> 操作时，会创建一个连接，并基于这个连接进行操作。操作完成后，释放该连接。但是当并发较高时，频繁的创建和释放会对性能造成影响。连接池的原理是通过预先创建多个连接。进行获取已经创建好的连接进行操作，操作完成之后，不会进行释放，可以用于后续其他redis的操作。</p>
+    </div>
+    <div class="read-more">
+      <a href="/python-redis-pool/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/python-metaclass/">深入理解 Python 中的元类（metaclass）</a></h1>
@@ -203,29 +226,6 @@
     </div>
     <div class="read-more">
       <a href="/target-offer-python/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/docker-base/">Docker 容器技术基础总结</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-16 18:10 </span>
-      <div class="post-category">
-          <a href="/categories/DevOps/"> DevOps </a>
-          </div>
-        <span class="more-meta"> 约 5248 字 </span>
-        <span class="more-meta"> 预计阅读 11 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。</p>
-    </div>
-    <div class="read-more">
-      <a href="/docker-base/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
