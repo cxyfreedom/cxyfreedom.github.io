@@ -107,14 +107,14 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/%E8%8B%B1%E8%AF%AD/</loc>
+    <loc>https://reishin.me/tags/%E8%8B%B1%E8%AF%AD/</loc>
     <lastmod>2019-09-14T16:53:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/%E8%8B%B1%E8%AF%AD/</loc>
+    <loc>https://reishin.me/categories/%E8%8B%B1%E8%AF%AD/</loc>
     <lastmod>2019-09-14T16:53:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -128,14 +128,14 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/Python/</loc>
+    <loc>https://reishin.me/tags/Python/</loc>
     <lastmod>2019-08-30T18:38:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Python/</loc>
+    <loc>https://reishin.me/categories/Python/</loc>
     <lastmod>2019-08-30T18:38:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -149,14 +149,14 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Blog/</loc>
+    <loc>https://reishin.me/categories/Blog/</loc>
     <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/Blog/</loc>
+    <loc>https://reishin.me/tags/Blog/</loc>
     <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
