@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.57.2 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.57.2 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/" />
@@ -46,7 +46,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://reishin.me/" />
 
-<meta property="og:updated_time" content="2019-12-25T15:49:51+08:00" />
+<meta property="og:updated_time" content="2020-01-05T17:18:38+08:00" />
 <meta itemprop="name" content="Field of Hope">
 <meta itemprop="description" content="Life is short, you need Python">
 
@@ -113,6 +113,29 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/python-custom-logger/">解析自定义 Logger 后会打印第三方库中 Logger 日志的原因</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-12-26 15:35 </span>
+      <div class="post-category">
+          <a href="/categories/Python/"> Python </a>
+          </div>
+        <span class="more-meta"> 约 537 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>在使用第三方库 pika 连接 RabbitMQ 的代码中，自定义了 Logger，并将相关配置写在了配置文件中。但是执行程序发现，pika 库中本身的 Logger 日志也写入到了文件，但我们只希望记录我们自己所写的日志。</p>
+    </div>
+    <div class="read-more">
+      <a href="/python-custom-logger/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/deploy-kubernetes-using-kubeadm/">使用 kubeadm 安装 Kubernetes 1.12</a></h1>
@@ -203,27 +226,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/Hexo-with-SSL-hosted-on-GitHub-Pages/">GitHub Pages 启用 SSL/TLS</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2016-08-25 03:14 </span>
-      
-        <span class="more-meta"> 约 399 字 </span>
-        <span class="more-meta"> 预计阅读 1 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>通过本文，可以让 GitHub Pages 从 http 转变为 https，从而让数据更加安全。</p>
-    </div>
-    <div class="read-more">
-      <a href="/Hexo-with-SSL-hosted-on-GitHub-Pages/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -268,7 +270,8 @@
 
   <span class="copyright-year">
     &copy; 
-    2019
+    2019 - 
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

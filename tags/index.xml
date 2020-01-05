@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 25 Dec 2019 15:49:51 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jan 2020 17:18:38 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,36 @@
     <item>
       <title>2019</title>
       <link>https://reishin.me/tags/2019/</link>
-      <pubDate>Wed, 25 Dec 2019 15:49:51 +0800</pubDate>
+      <pubDate>Sun, 05 Jan 2020 17:18:38 +0800</pubDate>
       
       <guid>https://reishin.me/tags/2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>回顾</title>
+      <link>https://reishin.me/tags/%E5%9B%9E%E9%A1%BE/</link>
+      <pubDate>Sun, 05 Jan 2020 17:18:38 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E5%9B%9E%E9%A1%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>话剧</title>
+      <link>https://reishin.me/tags/%E8%AF%9D%E5%89%A7/</link>
+      <pubDate>Sun, 05 Jan 2020 17:18:38 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E8%AF%9D%E5%89%A7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>音乐剧</title>
+      <link>https://reishin.me/tags/%E9%9F%B3%E4%B9%90%E5%89%A7/</link>
+      <pubDate>Sun, 05 Jan 2020 17:18:38 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E9%9F%B3%E4%B9%90%E5%89%A7/</guid>
       <description></description>
     </item>
     
