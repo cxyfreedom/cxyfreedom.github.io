@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Field of Hope</title>
+  <title>技术文档编写规范 - Field of Hope</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CxyFreedom" /><meta name="description" content="Life is short, you need Python" /><meta name="keywords" content="Hugo, theme, even, cxyfreedom, 博客, blog, reishin, python, BackEnd" />
+<meta name="author" content="CxyFreedom" /><meta name="description" content="本文只是简单记录编写技术文档的主要结构，以供参考。
+" /><meta name="keywords" content="文档, 规范" />
 
 
 
@@ -26,9 +27,7 @@
 <meta name="generator" content="Hugo 0.57.2 with theme even" />
 
 
-<link rel="canonical" href="https://reishin.me/" />
-  <link href="https://reishin.me/index.xml" rel="alternate" type="application/rss+xml" title="Field of Hope" />
-  <link href="https://reishin.me/index.xml" rel="feed" type="application/rss+xml" title="Field of Hope" />
+<link rel="canonical" href="https://reishin.me/technical-document-specification/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,18 +40,26 @@
 <link rel="stylesheet" href="/css/custom.css">
 
 
-<meta property="og:title" content="Field of Hope" />
-<meta property="og:description" content="Life is short, you need Python" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://reishin.me/" />
+<meta property="og:title" content="技术文档编写规范" />
+<meta property="og:description" content="本文只是简单记录编写技术文档的主要结构，以供参考。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://reishin.me/technical-document-specification/" />
+<meta property="article:published_time" content="2020-01-07T17:20:07+08:00" />
+<meta property="article:modified_time" content="2020-01-07T17:20:07+08:00" />
+<meta itemprop="name" content="技术文档编写规范">
+<meta itemprop="description" content="本文只是简单记录编写技术文档的主要结构，以供参考。">
 
-<meta property="og:updated_time" content="2020-01-07T17:20:07+08:00" />
-<meta itemprop="name" content="Field of Hope">
-<meta itemprop="description" content="Life is short, you need Python">
 
+<meta itemprop="datePublished" content="2020-01-07T17:20:07&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-07T17:20:07&#43;08:00" />
+<meta itemprop="wordCount" content="217">
+
+
+
+<meta itemprop="keywords" content="文档,规范," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Field of Hope"/>
-<meta name="twitter:description" content="Life is short, you need Python"/>
+<meta name="twitter:title" content="技术文档编写规范"/>
+<meta name="twitter:description" content="本文只是简单记录编写技术文档的主要结构，以供参考。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -112,140 +119,178 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/python-design-pattern/">Python 设计模式实现</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-04-21 20:58 </span>
-      
-        <span class="more-meta"> 约 10951 字 </span>
-        <span class="more-meta"> 预计阅读 22 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>设计模式是指软件设计问题的推荐方案。设计模式一般是描述如何组织代码和使用最佳实践来解决常见的设计问题。</p>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">技术文档编写规范</h1>
 
-<p>它是高层次的方案，并不关注具体的实现细节。</p>
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-07 17:20 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%86%99%E4%BD%9C/"> 写作 </a>
+            </div>
+          <span class="more-meta"> 约 217 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
 
-<p>本文主要通过 Python 来简单介绍和实现不同的设计模式。</p>
-    </div>
-    <div class="read-more">
-      <a href="/python-design-pattern/" class="read-more-link">阅读更多</a>
-    </div>
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#结构">结构</a>
+<ul>
+<li><a href="#介绍-描述">介绍/描述</a></li>
+<li><a href="#目录">目录</a></li>
+<li><a href="#术语">术语</a></li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#body">Body</a></li>
+<li><a href="#reference">Reference</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#changelog">ChangeLog</a></li>
+<li><a href="#release">Release</a></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
   </div>
-</article>
+</div>
+    <div class="post-content">
+      <p>本文只是简单记录编写技术文档的主要结构，以供参考。</p>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/tmux/">tmux 使用总结</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-04-17 18:24 </span>
-      <div class="post-category">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
+<h2 id="结构">结构</h2>
+
+<h3 id="介绍-描述">介绍/描述</h3>
+
+<blockquote>
+<p>简单的介绍项目的背景信息。</p>
+</blockquote>
+
+<h3 id="目录">目录</h3>
+
+<blockquote>
+<p>目录是结构的直接体现。</p>
+</blockquote>
+
+<h3 id="术语">术语</h3>
+
+<blockquote>
+<p>术语解释。对于很多业务会有特定的词汇，需要单独解释。</p>
+</blockquote>
+
+<h3 id="setup">Setup</h3>
+
+<blockquote>
+<p>如何部署或者安装项目。</p>
+</blockquote>
+
+<h3 id="body">Body</h3>
+
+<blockquote>
+<p>文档的主体部分，具体结构需要根据内容来确定。</p>
+</blockquote>
+
+<h3 id="reference">Reference</h3>
+
+<blockquote>
+<p>文档中引用的其他相关需求或者资料。</p>
+</blockquote>
+
+<h3 id="faq">FAQ</h3>
+
+<blockquote>
+<p>其他人经常问的问题，遇到就记录在这个模块中，不断补充。</p>
+</blockquote>
+
+<h3 id="changelog">ChangeLog</h3>
+
+<blockquote>
+<p>变更日志。记录每个版本的重要变更。</p>
+</blockquote>
+
+<h3 id="release">Release</h3>
+
+<blockquote>
+<p>开源项目通常会有一个单独的 Release 发版页面。</p>
+</blockquote>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/WCM-JRMzlYTN-c--tJ6Nkw">技术文档写作的道与术</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">CxyFreedom</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-01-07 17:20
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a target="_blank" rel="license noopener" href="https://github.com/cxyfreedom/blog/blob/master/LICENSE">MIT</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%96%87%E6%A1%A3/">文档</a>
+          <a href="/tags/%E8%A7%84%E8%8C%83/">规范</a>
           </div>
-        <span class="more-meta"> 约 5138 字 </span>
-        <span class="more-meta"> 预计阅读 11 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&gt;
-发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时
-使用多个命令行，或多个任务时非常方便。</p>
-    </div>
-    <div class="read-more">
-      <a href="/tmux/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/target-offer-python/">剑指Offer——Python 题解</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-03-28 20:40 </span>
-      <div class="post-category">
-          <a href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
-          </div>
-        <span class="more-meta"> 约 24626 字 </span>
-        <span class="more-meta"> 预计阅读 50 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>剑指 Offer 题目的 Python 题解。</p>
-    </div>
-    <div class="read-more">
-      <a href="/target-offer-python/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/docker-base/">Docker 容器技术基础总结</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-16 18:10 </span>
-      <div class="post-category">
-          <a href="/categories/DevOps/"> DevOps </a>
-          </div>
-        <span class="more-meta"> 约 5248 字 </span>
-        <span class="more-meta"> 预计阅读 11 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。</p>
-    </div>
-    <div class="read-more">
-      <a href="/docker-base/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/python-tricks/">Python 中的一些技巧</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-10 18:08 </span>
-      <div class="post-category">
-          <a href="/categories/Python/"> Python </a>
-          </div>
-        <span class="more-meta"> 约 1406 字 </span>
-        <span class="more-meta"> 预计阅读 3 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>本文为阅读 《Python Tricks A Buffet of Awesome Python Features》书籍的笔记，仅供自己参考。由于大部分内容熟知，所以并未记录。</p>
-    </div>
-    <div class="read-more">
-      <a href="/python-tricks/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/2/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/4/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
+      <nav class="post-nav">
+        <a class="prev" href="/roadmap/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">博客文章目录</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019-theatre-review/">
+            <span class="next-text nav-default">2019 下半年观剧回顾</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cxyfreedom/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
 
       </div>
     </main>
