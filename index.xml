@@ -6,7 +6,7 @@
     <description>Recent content on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Jan 2020 17:20:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2020 16:59:34 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,15 @@
       
       <guid>https://reishin.me/roadmap/</guid>
       <description>&lt;p&gt;本文是为了便于查找博客中相关内容或者知识点，作为索引使用。持续更新！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决 GitHub 上图片无法加载的问题</title>
+      <link>https://reishin.me/github-dns/</link>
+      <pubDate>Wed, 08 Jan 2020 16:59:34 +0800</pubDate>
+      
+      <guid>https://reishin.me/github-dns/</guid>
+      <description></description>
     </item>
     
     <item>
