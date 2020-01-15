@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.57.2 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/docker-base/" />
@@ -48,16 +48,13 @@
 <meta property="article:modified_time" content="2019-01-16T18:10:40+08:00" />
 <meta itemprop="name" content="Docker 容器技术基础总结">
 <meta itemprop="description" content="Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。">
-
-
 <meta itemprop="datePublished" content="2019-01-16T18:10:40&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-16T18:10:40&#43;08:00" />
 <meta itemprop="wordCount" content="5248">
 
 
 
-<meta itemprop="keywords" content="Docker," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Docker," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker 容器技术基础总结"/>
 <meta name="twitter:description" content="Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。"/>
 
@@ -139,69 +136,67 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#简介">简介</a>
-<ul>
-<li><a href="#为什么要使用-docker">为什么要使用 Docker</a></li>
-</ul></li>
-<li><a href="#核心概念">核心概念</a>
-<ul>
-<li><a href="#安装">安装</a></li>
-</ul></li>
-<li><a href="#镜像">镜像</a>
-<ul>
-<li><a href="#获取镜像">获取镜像</a></li>
-<li><a href="#查看镜像">查看镜像</a></li>
-<li><a href="#查询镜像">查询镜像</a></li>
-<li><a href="#清理镜像">清理镜像</a></li>
-<li><a href="#创建镜像">创建镜像</a></li>
-<li><a href="#存出和载入镜像">存出和载入镜像</a></li>
-</ul></li>
-<li><a href="#容器">容器</a>
-<ul>
-<li><a href="#创建容器">创建容器</a></li>
-<li><a href="#停止容器">停止容器</a></li>
-<li><a href="#进入容器">进入容器</a></li>
-<li><a href="#删除容器">删除容器</a></li>
-<li><a href="#导出和导入容器">导出和导入容器</a></li>
-<li><a href="#查看容器">查看容器</a></li>
-<li><a href="#其他命令">其他命令</a></li>
-</ul></li>
-<li><a href="#数据管理">数据管理</a>
-<ul>
-<li><a href="#数据卷">数据卷</a></li>
-<li><a href="#数据卷容器">数据卷容器</a></li>
-</ul></li>
-<li><a href="#端口映射和容器互联">端口映射和容器互联</a></li>
-<li><a href="#dockerfile">Dockerfile</a>
-<ul>
-<li><a href="#指令说明">指令说明</a></li>
-<li><a href="#创建镜像-1">创建镜像</a></li>
-<li><a href="#最佳实践">最佳实践</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#简介">简介</a>
+      <ul>
+        <li><a href="#为什么要使用-docker">为什么要使用 Docker</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心概念">核心概念</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#镜像">镜像</a>
+      <ul>
+        <li><a href="#获取镜像">获取镜像</a></li>
+        <li><a href="#查看镜像">查看镜像</a></li>
+        <li><a href="#查询镜像">查询镜像</a></li>
+        <li><a href="#清理镜像">清理镜像</a></li>
+        <li><a href="#创建镜像">创建镜像</a></li>
+        <li><a href="#存出和载入镜像">存出和载入镜像</a></li>
+      </ul>
+    </li>
+    <li><a href="#容器">容器</a>
+      <ul>
+        <li><a href="#创建容器">创建容器</a></li>
+        <li><a href="#停止容器">停止容器</a></li>
+        <li><a href="#进入容器">进入容器</a></li>
+        <li><a href="#删除容器">删除容器</a></li>
+        <li><a href="#导出和导入容器">导出和导入容器</a></li>
+        <li><a href="#查看容器">查看容器</a></li>
+        <li><a href="#其他命令">其他命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据管理">数据管理</a>
+      <ul>
+        <li><a href="#数据卷">数据卷</a></li>
+        <li><a href="#数据卷容器">数据卷容器</a></li>
+      </ul>
+    </li>
+    <li><a href="#端口映射和容器互联">端口映射和容器互联</a></li>
+    <li><a href="#dockerfile">Dockerfile</a>
+      <ul>
+        <li><a href="#指令说明">指令说明</a></li>
+        <li><a href="#创建镜像-1">创建镜像</a></li>
+        <li><a href="#最佳实践">最佳实践</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。</p>
-
 <h2 id="简介">简介</h2>
-
 <h3 id="为什么要使用-docker">为什么要使用 Docker</h3>
-
 <ul>
 <li><strong>更快速的交付和部署</strong>。开发人员可以使用镜像快速构建一套标准的开发环境。然后测试和运维可以使用相同环境进行测试。Docker 可以快速创建和删除容器，实现快速迭代，节约开发、测试、部署的大量时间。</li>
 <li><strong>更高效的资源利用</strong>。Docker 是内核级的虚拟化，可以实现更高的性能，同时对资源的额外需求很低。</li>
 <li><strong>更轻松的迁移和扩展</strong>。几乎可以在任意的平台运行，同时支持主流的操作系统发行版本。</li>
 <li><strong>更简单的更新管理</strong>。使用 Dockerfile，通过很小的配置修改，就可以以增量的方式被分发和更新，从而实现自动化并且高效的容器管理。</li>
 </ul>
-
 <p>★ Docker 和虚拟机比较</p>
-
 <table>
 <thead>
 <tr>
@@ -210,44 +205,37 @@
 <th>虚拟机</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>启动速度</td>
 <td>秒级</td>
 <td>分钟级</td>
 </tr>
-
 <tr>
 <td>硬盘使用</td>
 <td>一般为 MB</td>
 <td>一般为 GB</td>
 </tr>
-
 <tr>
 <td>性能</td>
 <td>接近原生</td>
 <td>较弱</td>
 </tr>
-
 <tr>
 <td>内存代价</td>
 <td>很小</td>
 <td>较多</td>
 </tr>
-
 <tr>
 <td>运行密度</td>
 <td>单机支持上千个容器</td>
 <td>一般几十个</td>
 </tr>
-
 <tr>
 <td>隔离性</td>
 <td>安全隔离</td>
 <td>完全隔离</td>
 </tr>
-
 <tr>
 <td>迁移性</td>
 <td>优秀</td>
@@ -255,44 +243,32 @@
 </tr>
 </tbody>
 </table>
-
 <p>传统方式是在硬件层面实现虚拟化，需要有额外的虚拟机管理应用和虚拟机操作系统层。Docker 容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，因此更加轻量级。</p>
-
 <h2 id="核心概念">核心概念</h2>
-
 <p>★ 镜像</p>
-
 <p>Docker 镜像类似于虚拟机镜像，可以将其理解为一个只读的模板。镜像是创建 Docker 容器的基础。</p>
-
 <p>★ 容器</p>
-
 <p>镜像和容器的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
-
 <p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。</p>
-
 <p>★ 仓库</p>
-
 <p>类似于代码仓库，是 Docker 集中存放镜像文件的场所。可以分为公开仓库和私有仓库。</p>
-
 <h3 id="安装">安装</h3>
-
 <p>★ Ubuntu</p>
-
 <p>如果是 Ubuntu 16.04 LTS 版本，要让 Docker 使用 aufs 存储，推荐安装如下软件包：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">$ sudo apt-get update
-$ sudo apt-get install -y linux-image-extra-<span class="k">$(</span>uname -r<span class="k">)</span> linux-image-extra-virtual</code></pre></td></tr></table>
+$ sudo apt-get install -y linux-image-extra-<span class="k">$(</span>uname -r<span class="k">)</span> linux-image-extra-virtual
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>添加镜像源（以 16.04 为例，非该版本需要替换对应的系统代号）</p>
+</div><p>添加镜像源（以 16.04 为例，非该版本需要替换对应的系统代号）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -307,73 +283,66 @@ $ sudo apt-get install apt-transport-https ca-certificates curl software-propert
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
 <span class="c1"># 添加官方软件源</span>
 $ sudo add-apt-repository <span class="s2">&#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable&#34;</span>
-$ sudo apt-get update</code></pre></td></tr></table>
+$ sudo apt-get update
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>安装 Docker</p>
+</div><p>安装 Docker</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ sudo apt-get install -y docker-ce</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ sudo apt-get install -y docker-ce
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ CentOS 7</p>
-
+</div><p>★ CentOS 7</p>
 <p>添加软件源以及支持 devicemapper 存储类型</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">$ sudo yum update
 $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</code></pre></td></tr></table>
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>安装 Docker</p>
+</div><p>安装 Docker</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">$ sudo yum update
-$ sudo yum install -y docker-ce</code></pre></td></tr></table>
+$ sudo yum install -y docker-ce
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 脚本安装</p>
+</div><p>★ 脚本安装</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">$ curl -fsSL https://get.docker.com/ <span class="p">|</span> sh
 <span class="c1"># 或者</span>
-$ wget -qO- https://get.docker.com/ <span class="p">|</span> sh</code></pre></td></tr></table>
+$ wget -qO- https://get.docker.com/ <span class="p">|</span> sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>如果 Docker 服务不正常，可以通过命令 <code>journalctl -u docker.service</code> 查看相关日志信息。</p>
-
+</div><p>如果 Docker 服务不正常，可以通过命令 <code>journalctl -u docker.service</code> 查看相关日志信息。</p>
 <h2 id="镜像">镜像</h2>
-
 <h3 id="获取镜像">获取镜像</h3>
-
 <p>命令格式：<code>docker [image] pull NAME[:TAG]</code>。</p>
-
 <p>NAME 是镜像仓库名称，一般是两段式。即<code>&lt;用户名&gt;/&lt;软件名&gt;</code>。如果不给出用户名，则默认是<code>library</code>，也就是官方镜像。TAG 是镜像的标签，通常用来表示版本信息。如果不显示指定，默认选择 <code>latest</code> 标签。</p>
-
 <p>示例：<code>docker pull ubuntu:18.04</code>。</p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -382,17 +351,15 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh</code></pre></td
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 是否获取仓库中的所有镜像，默认为否。</span>
 -a, --all-tags<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 取消镜像的内容校验，默认为真。</span>
---disable-content-trust</code></pre></td></tr></table>
+--disable-content-trust
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="查看镜像">查看镜像</h3>
-
+</div><h3 id="查看镜像">查看镜像</h3>
 <p>命令格式：<code>docker images</code> 或 <code>docker image ls</code>。</p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -411,35 +378,27 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh</code></pre></td
 <span class="c1"># 列出镜像的数字摘要值，默认为否</span>
 --digests<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 过滤列出的镜像</span>
--f, --filter<span class="o">=[]</span>
+-f, --filter<span class="o">=</span><span class="o">[</span><span class="o">]</span>
 <span class="c1"># 控制输出格式，比如.ID代表ID信息</span>
 --format<span class="o">=</span><span class="s2">&#34;TEMPLATE&#34;</span>
 <span class="c1"># 截断输出结果，默认为是</span>
 --no-trunc<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 仅输出ID信息，默认为否</span>
--q, --quiet<span class="o">=</span>true<span class="p">|</span>false</code></pre></td></tr></table>
+-q, --quiet<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 使用 tag 命令添加标签</p>
-
+</div><p>★ 使用 tag 命令添加标签</p>
 <p>命令格式：<code>docker tag &lt;src-tag&gt; &lt;new-tag&gt;</code></p>
-
 <p>★ 获取镜像详细信息</p>
-
 <p>命令格式：<code>docker [image] inspect &lt;image&gt;</code></p>
-
 <p>★ 查看镜像历史</p>
-
 <p>命令格式：<code>docker history &lt;image&gt;</code></p>
-
 <h3 id="查询镜像">查询镜像</h3>
-
 <p>命令格式：<code>docker search [option] keyword</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -456,17 +415,15 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh</code></pre></td
 <span class="c1"># 限制输出结果个数，默认为 25 个</span>
 --limit int
 <span class="c1"># 不截断输出结果</span>
---no-trunc</code></pre></td></tr></table>
+--no-trunc
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="清理镜像">清理镜像</h3>
-
+</div><h3 id="清理镜像">清理镜像</h3>
 <p>命令格式：<code>docker rmi</code> 或者 <code>docker image rm</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -475,17 +432,15 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh</code></pre></td
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 强制删除镜像</span>
 -f, -force
 <span class="c1"># 不清理未带有标签的父镜像</span>
--no-prune</code></pre></td></tr></table>
+-no-prune
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>删除镜像可以通过标签，也可以通过镜像 ID。</p>
-
+</div><p>删除镜像可以通过标签，也可以通过镜像 ID。</p>
 <p>使用 Docker 后，系统中可能会遗留一些临时的镜像文件以及一些没有被使用的镜像，可以通过 <code>docker image prune</code> 来进行清理。</p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -498,19 +453,16 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh</code></pre></td
 <span class="c1"># 只清理符合给定过滤器的镜像</span>
 -filter filter
 <span class="c1"># 强制删除镜像</span>
--f</code></pre></td></tr></table>
+-f
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="创建镜像">创建镜像</h3>
-
+</div><h3 id="创建镜像">创建镜像</h3>
 <p>★ 基于已有容器创建</p>
-
 <p>命令格式：<code>docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -523,17 +475,17 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh</code></pre></td
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 作者信息</span>
 -a, --author<span class="o">=</span><span class="s2">&#34;&#34;</span>
 <span class="c1"># 提交的时候执行 Dockfile 指令</span>
--c, --change<span class="o">=[]</span>
+-c, --change<span class="o">=</span><span class="o">[</span><span class="o">]</span>
 <span class="c1"># 提交消息</span>
 -m, --message<span class="o">=</span><span class="s2">&#34;&#34;</span>
 <span class="c1"># 提交时暂停容器运行</span>
--p, --pause<span class="o">=</span>true</code></pre></td></tr></table>
+-p, --pause<span class="o">=</span><span class="nb">true</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>示例：</p>
+</div><p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -556,112 +508,98 @@ root@100040bb9a1c:/# <span class="nb">exit</span>
 $ docker commit -m <span class="s2">&#34;Added a new file&#34;</span> -a <span class="s2">&#34;Docker Newbee&#34;</span> 100040bb9a1c <span class="nb">test</span>
 
 <span class="c1"># 查看新创建的镜像</span>
-docker images</code></pre></td></tr></table>
+docker images
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 基于本地模板导入</p>
-
+</div><p>★ 基于本地模板导入</p>
 <p>可以使用 <a href="https://download.openvz.org/template/precreated/">OpenVZ</a> 提供的模板来创建。</p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">cat ubuntu-18.04-x86_64-minimal.tar.gz <span class="p">|</span>docker import - ubuntu:18.04</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">cat ubuntu-18.04-x86_64-minimal.tar.gz <span class="p">|</span>docker import - ubuntu:18.04
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 基于 Dockerfile 创建</p>
-
+</div><p>★ 基于 Dockerfile 创建</p>
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">FROM centos
-RUN yum install -y vim</code></pre></td></tr></table>
+RUN yum install -y vim
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>执行 <code>docker build -t centos-vim .</code> 即可。</p>
-
+</div><p>执行 <code>docker build -t centos-vim .</code> 即可。</p>
 <h3 id="存出和载入镜像">存出和载入镜像</h3>
-
 <p>★ 存出镜像</p>
-
 <p>比如将本地的 ubuntu:18.04 镜像导出为文件 ubuntu_18.04.tar，执行以下命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker save -o ubuntu_18.04.tar ubuntu:18:04</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker save -o ubuntu_18.04.tar ubuntu:18:04
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 载入镜像</p>
+</div><p>★ 载入镜像</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">$ docker load -i ubuntu_18.04.tar <span class="c1"># 方法一</span>
-$ docker load &lt; ubuntu_18.04.tar <span class="c1"># 方法二</span></code></pre></td></tr></table>
+$ docker load &lt; ubuntu_18.04.tar <span class="c1"># 方法二</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="容器">容器</h2>
-
+</div><h2 id="容器">容器</h2>
 <h3 id="创建容器">创建容器</h3>
-
 <p>★ 新建容器</p>
-
 <p>命令格式：<code>docker [container] create</code></p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker create -it ubuntu:latest</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker create -it ubuntu:latest
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 新建并启动容器</p>
+</div><p>★ 新建并启动容器</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run ubuntu:16.04 /bin/echo <span class="s2">&#34;Hello World&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run ubuntu:16.04 /bin/echo <span class="s2">&#34;Hello World&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>通常如果无法正常执行会直接退出，可以查看退出的错误代码。</p>
-
+</div><p>通常如果无法正常执行会直接退出，可以查看退出的错误代码。</p>
 <ul>
 <li>125: Docker daemon 执行出错，例如指定了不支持的 Docker 命令参数。</li>
 <li>126: 所指定命令无法执行，例如权限出错。</li>
 <li>127: 容器内命令无法找到。</li>
 </ul>
-
 <p>★ 守护态执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d ubuntu:18.04 /bin/sh -c <span class="s2">&#34;while true; do echo hello world; sleep 1; done&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d ubuntu:18.04 /bin/sh -c <span class="s2">&#34;while true; do echo hello world; sleep 1; done&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 查看容器输出</p>
-
+</div><p>★ 查看容器输出</p>
 <p>命令格式：<code>docker [container] logs</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -686,13 +624,13 @@ $ docker load &lt; ubuntu_18.04.tar <span class="c1"># 方法二</span></code></
 <span class="c1"># 显示时间戳信息</span>
 -t, -timestamps
 <span class="c1"># 输出某个时间之前的日志</span>
--until string</code></pre></td></tr></table>
+-until string
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="停止容器">停止容器</h3>
+</div><h3 id="停止容器">停止容器</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -709,19 +647,16 @@ docker unpause &lt;container&gt;
 <span class="c1"># 终止容器</span>
 docker stop &lt;container&gt;
 <span class="c1"># 重新启动容器</span>
-docker restart &lt;container&gt;</code></pre></td></tr></table>
+docker restart &lt;container&gt;
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="进入容器">进入容器</h3>
-
+</div><h3 id="进入容器">进入容器</h3>
 <p>★ attach</p>
-
 <p>命令格式：<code>docker attach &lt;container&gt;</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -730,28 +665,27 @@ docker restart &lt;container&gt;</code></pre></td></tr></table>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 指定退出 attach 模式的快捷键序列，默认 ctrl-p ctrl-q</span>
---detach-keys<span class="o">[=[]]</span>
+--detach-keys<span class="o">[</span><span class="o">=</span><span class="o">[</span><span class="o">]</span><span class="o">]</span>
 <span class="c1"># 是否关闭标准输入，默认是保持打开</span>
 --no-stdin<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 是否代理收到的系统信号给应用进程，默认为 true</span>
---sig-proxy<span class="o">=</span>true<span class="p">|</span>false</code></pre></td></tr></table>
+--sig-proxy<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ exec</p>
-
+</div><p>★ exec</p>
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker <span class="nb">exec</span> -it &lt;container&gt; /bin/bash</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker <span class="nb">exec</span> -it &lt;container&gt; /bin/bash
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>可选参数：</p>
+</div><p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -772,7 +706,7 @@ docker restart &lt;container&gt;</code></pre></td></tr></table>
 <span class="c1"># 指定将容器切回后台的按键</span>
 --detach-keys<span class="o">=</span><span class="s2">&#34;&#34;</span>
 <span class="c1"># 指定环境变量列表</span>
--e, --env<span class="o">=[]</span>
+-e, --env<span class="o">=</span><span class="o">[</span><span class="o">]</span>
 <span class="c1"># 打开标准输入接受用户输入命令，默认为false</span>
 -i, --interactive<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 是否给执行命令以高权限，默认为false</span>
@@ -780,17 +714,15 @@ docker restart &lt;container&gt;</code></pre></td></tr></table>
 <span class="c1"># 分配伪终端。默认为false</span>
 -t, --tty<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 执行命令的用户名或ID</span>
--u, --user<span class="o">=</span><span class="s2">&#34;&#34;</span></code></pre></td></tr></table>
+-u, --user<span class="o">=</span><span class="s2">&#34;&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="删除容器">删除容器</h3>
-
+</div><h3 id="删除容器">删除容器</h3>
 <p>命令格式：<code>docker rm &lt;container&gt;</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -803,53 +735,42 @@ docker restart &lt;container&gt;</code></pre></td></tr></table>
 <span class="c1"># 删除容器的连接，但保留容器</span>
 -l, --link<span class="o">=</span><span class="nb">false</span>
 <span class="c1"># 删除容器挂载的数据卷</span>
--v, --volumes<span class="o">=</span>false</code></pre></td></tr></table>
+-v, --volumes<span class="o">=</span><span class="nb">false</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="导出和导入容器">导出和导入容器</h3>
-
+</div><h3 id="导出和导入容器">导出和导入容器</h3>
 <p>★ 导出容器</p>
-
 <p>命令格式：<code>docker [container] export [-o|--output=&quot;&quot;]] &lt;container&gt;</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker <span class="nb">export</span> 72a &gt; ubuntu_container.tar</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker <span class="nb">export</span> 72a &gt; ubuntu_container.tar
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 导入容器</p>
-
+</div><p>★ 导入容器</p>
 <p>命令格式：<code>docker [container] import &lt;container&gt; - [repository[:tag]]</code></p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker import ubuntu_container.tar - cxyfreedom/ubuntu:v1.0</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker import ubuntu_container.tar - cxyfreedom/ubuntu:v1.0
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="查看容器">查看容器</h3>
-
+</div><h3 id="查看容器">查看容器</h3>
 <p>★ 查看容器详情</p>
-
 <p>命令格式：<code>docker inspect &lt;container&gt;</code></p>
-
 <p>★ 查看容器进程</p>
-
 <p>命令格式：<code>docker [container] top &lt;container&gt;</code></p>
-
 <p>★ 查看统计信息</p>
-
 <p>命令格式：<code>docker [container] stats &lt;container&gt;</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -866,19 +787,16 @@ docker restart &lt;container&gt;</code></pre></td></tr></table>
 <span class="c1"># 不持续输出，默认会自动更新持续实时结果</span>
 -no-stream
 <span class="c1"># 不截断输出信息</span>
--no-trunc</code></pre></td></tr></table>
+-no-trunc
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="其他命令">其他命令</h3>
-
+</div><h3 id="其他命令">其他命令</h3>
 <p>★ 复制文件</p>
-
 <p>命令格式：<code>docker [container] cp &lt;container&gt;:&lt;src_path&gt; dest_path|-</code></p>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -887,136 +805,116 @@ docker restart &lt;container&gt;</code></pre></td></tr></table>
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 打包模式，复制文件会带有原始的uid/gid信息</span>
 -a, -archive
 <span class="c1"># 跟随软连接。当原路径为软连接时，默认只复制链接信息，使用该选项会复制链接的目标内容</span>
--L, -follow-link</code></pre></td></tr></table>
+-L, -follow-link
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>示例：</p>
+</div><p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 将本地路径的 data 复制到 test 容器的 /tmp 路径下</span>
-docker cp data test:/tmp/</code></pre></td></tr></table>
+docker cp data test:/tmp/
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 查看变更</p>
-
+</div><p>★ 查看变更</p>
 <p>命令格式：<code>docker [container] diff &lt;container&gt;</code></p>
-
 <p>★ 查看端口映射</p>
-
 <p>命令格式：<code>docker [container] port &lt;container&gt;</code></p>
-
 <p>★ 更新配置</p>
-
 <p>命令格式：<code>docker [container] update [options] &lt;container&gt;</code></p>
-
 <p>支持很多的参数，这里不具体展开，可以查看相关文档。</p>
-
 <h2 id="数据管理">数据管理</h2>
-
 <h3 id="数据卷">数据卷</h3>
-
 <p>数据卷是一个可供容器使用的特殊目录，它将主机操作系统目录直接映射进容器，类似于 Linux 中的 mount 行为。</p>
-
 <p>★ 创建数据卷</p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 在 /var/lib/docker/volumes 下创建</span>
-$ docker volume create -d <span class="nb">local</span> test</code></pre></td></tr></table>
+$ docker volume create -d <span class="nb">local</span> <span class="nb">test</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ 绑定数据卷</p>
-
+</div><p>★ 绑定数据卷</p>
 <p>在启动容器时，可以使用 <code>--mount</code> 来使用数据卷。支持三种类型的数据卷：</p>
-
 <ul>
 <li>volume：普通数据卷，映射到主机 <code>/var/lib/docker/volumes</code> 路径下。</li>
 <li>bind: 绑定数据卷，映射到主机指定路径下。</li>
 <li>tmpfs: 临时数据卷，只存在于内存中。</li>
 </ul>
-
 <p>示例：使用 training/webapp 镜像创建一个 Web 容器，并创建一个数据卷挂载到容器的 /opt/webapp 目录。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d -P --name web --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/webapp,destination<span class="o">=</span>/opt/webapp training/webapp python app.py</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d -P --name web --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/webapp,destination<span class="o">=</span>/opt/webapp training/webapp python app.py
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>等同于使用 <code>-v</code>:</p>
+</div><p>等同于使用 <code>-v</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d -P --name web -v /webapp:/opt/webapp training/webapp python app.py</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d -P --name web -v /webapp:/opt/webapp training/webapp python app.py
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>挂载数据卷的默认权限是读写，也可用通过 ro 指定为只读。</p>
+</div><p>挂载数据卷的默认权限是读写，也可用通过 ro 指定为只读。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d -P --name web -v /webapp:/opt/webapp:ro training/webapp python app.py</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -d -P --name web -v /webapp:/opt/webapp:ro training/webapp python app.py
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="数据卷容器">数据卷容器</h3>
-
+</div><h3 id="数据卷容器">数据卷容器</h3>
 <p>如果需要在多个容器之间共享一些持续更新的容器，最简单的方式就是使用数据卷容器。</p>
-
 <p>示例：
 首先创建一个数据卷容器 dbdata，并在其中创建一个数据卷挂载到 /dbdata。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -it -v /dbdata --name dbdata ubuntu</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -it -v /dbdata --name dbdata ubuntu
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>然后可以在其他容器中使用 <code>--volumes-from</code> 参数来挂载 dbdata 容器中的数据卷。</p>
+</div><p>然后可以在其他容器中使用 <code>--volumes-from</code> 参数来挂载 dbdata 容器中的数据卷。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run -it --volumes-from dbdata --name db1 ubuntu
-$ docker run -it --volumes-from dbdata --name db2 ubuntu</code></pre></td></tr></table>
+$ docker run -it --volumes-from dbdata --name db2 ubuntu
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>此时，容器 db1 和 db2 都挂载同一个数据卷到相同的 /dbdata 目录，三个容器任何一方在该目录下的写入，其他容器都可以看到。</p>
-
+</div><p>此时，容器 db1 和 db2 都挂载同一个数据卷到相同的 /dbdata 目录，三个容器任何一方在该目录下的写入，其他容器都可以看到。</p>
 <p>如果删除了挂载的容器，数据卷并不会被自动删除。如果需要删除数据卷，需要在删除最后一个还挂载着它的容器时显式使用 <code>docker rm -v</code> 来制定同时删除关联的数据卷。</p>
-
 <p>★ 迁移数据</p>
-
 <p>备份</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run --volumes-from dbdata -v <span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/backup --name worker ubuntu tar cvf /backup/backup.tar /dbdata</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ docker run --volumes-from dbdata -v <span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/backup --name worker ubuntu tar cvf /backup/backup.tar /dbdata
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>首先创建一个 worker 容器并挂载 dbdata 容器的数据卷，然后挂载本地目录到容器中的 /backup 目录下。启动后，使用打包压缩的方式将数据备份到容器内的 /backup/backup.tar，即本地当前目录下的 backup.tar。</p>
-
+</div><p>首先创建一个 worker 容器并挂载 dbdata 容器的数据卷，然后挂载本地目录到容器中的 /backup 目录下。启动后，使用打包压缩的方式将数据备份到容器内的 /backup/backup.tar，即本地当前目录下的 backup.tar。</p>
 <p>恢复</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1025,113 +923,77 @@ $ docker run -it --volumes-from dbdata --name db2 ubuntu</code></pre></td></tr><
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 创建一个带有数据卷的容器 dbdata2</span>
 $ docker run -v /dbdata --name dbdata2 ubuntu /bin/bash
 <span class="c1"># 恢复</span>
-$ docker run --volumes-from dbdata -v <span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/backup busybox tar xvf /backup/backup.tar</code></pre></td></tr></table>
+$ docker run --volumes-from dbdata -v <span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/backup busybox tar xvf /backup/backup.tar
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="端口映射和容器互联">端口映射和容器互联</h2>
-
+</div><h2 id="端口映射和容器互联">端口映射和容器互联</h2>
 <p>★ 端口映射</p>
-
 <p>通过 <code>-p</code> 或者 <code>-P</code> 来指定端口映射。如果使用 <code>-P</code>，会随机映射一个 49000～49900 的短裤到内部容器开放的网络端口。使用 <code>-p</code> 时，可以有多种支持格式：</p>
-
 <ul>
 <li>IP:HostPort:ContainerPort 映射到指定地址的指定端口</li>
 <li>IP::ContainerPort 映射到指定地址的任意端口</li>
 <li>HostPort:ContainerPort 映射所有接口地址</li>
 </ul>
-
 <p>★ 容器互联</p>
-
 <p>通过 <code>--link</code> 参数可以让容器之间安全地进行交互。参数格式为：<code>--link name:alias</code>，其中 name 是要链接的容器的名称，alias 是别名。</p>
-
 <h2 id="dockerfile">Dockerfile</h2>
-
 <p>Dockerfile 主题内容分为四个部分：基础镜像信息、维护者信息、镜像操作指令和容器启动时执行指令。</p>
-
 <h3 id="指令说明">指令说明</h3>
-
 <p>★ ARG: 定义创建镜像过程中使用的变量</p>
-
 <p>格式：<code>ARG &lt;name&gt;[=&lt;default value&gt;]</code>
 示例：<code>ARG VERSION=9.3</code></p>
-
 <p>★ FROM: 指定所创建镜像的基础镜像</p>
-
 <p>格式：<code>FROM &lt;image&gt; [AS &lt;name&gt;]</code>
 示例：<code>FROM ubuntu:18.04</code></p>
-
 <p>★ LABEL: 添加元数据标签信息</p>
-
 <p>格式：<code>LABEL &lt;key&gt;=&lt;value&gt; ...</code>
 示例：<code>LABEL author=&quot;cxyfreedom&quot;</code></p>
-
 <p>★ EXPOSE: 声明镜像内服务监听的端口</p>
-
 <p>格式：<code>EXPOSE &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</code>
 示例：<code>EXPOSE 22 80 443</code></p>
-
 <p>★ ENV: 指定环境变量，在镜像生成过程中会被 RUN 指令使用，在启动的容器中也会存在</p>
-
 <p>格式：<code>ENV &lt;key&gt; &lt;value&gt;</code> 或 <code>ENV &lt;key&gt;=&lt;value&gt; ...</code>
 示例：<code>ENV APP_VERSION=1.0.0</code></p>
-
 <p>运行时会被覆盖掉。</p>
-
 <p>★ ENTRYPOINT: 指定镜像的默认入口命令，该入口命令会在启动容器时作为根命令执行，所有传入值作为该命令的参数</p>
-
 <p>格式：</p>
-
 <ul>
 <li><code>ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code>: exec 调用执行</li>
 <li><code>ENTRYPOINT command param1 param2</code>: shell 中执行</li>
 </ul>
-
 <p>每个 Dockerfile 中只能有一个 ENTRYPOINT，当指定多个时，只有最后一个起效。</p>
-
 <p>★ VOLUME: 创建一个数据卷挂载点</p>
-
 <p>格式：<code>VOLUME [&quot;/data&quot;]</code></p>
-
 <p>★ USER: 指定运行容器时的用户名或UID</p>
-
 <p>格式：<code>USER &lt;用户名&gt;[:&lt;用户组&gt;]</code>
 示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh">RUN groupadd -r postgres <span class="o">&amp;&amp;</span> useradd --no-log-init -r -g postgres postgres
-USER postgres</code></pre></td></tr></table>
+USER postgres
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ WORKDIR: 为后续的 RUN、CMD、ENTRYPOINT 指令配置工作目录</p>
-
+</div><p>★ WORKDIR: 为后续的 RUN、CMD、ENTRYPOINT 指令配置工作目录</p>
 <p>格式：<code>WORKDIR &lt;workdir&gt;</code>
 推荐该指令中只使用绝对路径。</p>
-
 <p>★ ONBUILD: 指定当基于所生成镜像创建子镜像时，自动执行的操作指令</p>
-
 <p>格式：<code>ONBUILD [instruction]</code></p>
-
 <p>由于 ONBUILD 指令是隐式执行的，推荐在使用它的镜像标签中进行标注。</p>
-
 <p>★ STOPSIGINAL: 指定所创建镜像启动的容器接收退出的信号值</p>
-
 <p>格式：<code>STOPSIGNAL signal</code></p>
-
 <p>★ HEALTHCHECK: 配置容器如何进行健康检查</p>
-
 <ul>
 <li><code>HEALTHCHECK [option] CMD command</code>: 根据所执行命令返回值是否为 0 来判断</li>
 <li><code>HEALTHCHECK NONE</code>: 禁止基础镜像中的健康检查</li>
 </ul>
-
 <p>可选参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1144,51 +1006,34 @@ USER postgres</code></pre></td></tr></table>
 <span class="c1"># 每次检查等待结果的超时，默认 30s</span>
 -timeout<span class="o">=</span>DURATION
 <span class="c1"># 重试几次认为失败，默认 3 次</span>
--retries<span class="o">=</span>N</code></pre></td></tr></table>
+-retries<span class="o">=</span>N
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>★ SHELL: 指定其他命令使用 shell 时的默认 shell 类型</p>
-
+</div><p>★ SHELL: 指定其他命令使用 shell 时的默认 shell 类型</p>
 <p>格式：<code>SHELL [&quot;executable&quot;, &quot;parameters&quot;]</code>，默认值为 <code>[&quot;/bin/sh&quot;, &quot;-c&quot;]</code></p>
-
 <p>★ RUN: 运行指定命令</p>
-
 <p>格式：<code>RUN &lt;command&gt;</code> 或 <code>RUN [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code>。前者默认在 shell 终端中执行，后者使用 exec 执行，不会启动 shell 环境。</p>
-
 <p>每条 RUN 指令将在当前镜像基础上执行指定命令，并提交为新的镜像层。</p>
-
 <p>★ CMD: 指定启动容器时默认执行的命令</p>
-
 <p>格式：</p>
-
 <ul>
 <li><code>CMD [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code>: 推荐方式</li>
 <li><code>CMD command param1 param2</code>: 在默认的 shell 中执行</li>
 <li><code>CMD [&quot;param1&quot;, &quot;param2&quot;]</code>: 提供给 ENTRYPOINT 的默认参数</li>
 </ul>
-
 <p>每个 Dockfile 只能有一条 CMD 命令。如果指定了多条命令，只有最后一条会被执行。如果 <code>docker run</code> 指定了其它命令，<code>CMD</code> 命令被忽略。</p>
-
 <p>★ ADD: 添加内容到镜像</p>
-
 <p>格式：<code>ADD &lt;src&gt; &lt;dst&gt;</code></p>
-
 <p>将指定的 <code>&lt;src&gt;</code> 路径下内容复制到容器中的 <code>&lt;dst&gt;</code> 路径下。其中 <code>&lt;src&gt;</code> 可以是 Dockfile 所在目录的一个相对路径；也可以是一个 URL；也可以是一个 tar 文件（会自动解压为目录）。<code>&lt;dst&gt;</code> 可以是镜像内的绝对路径，也可以是相对于工作目录的相对路径。</p>
-
 <p>★ COPY: 复制内容到镜像</p>
-
 <p>格式：<code>COPY &lt;src&gt; &lt;dst&gt;</code></p>
-
 <p>将指定的 <code>&lt;src&gt;</code> 路径下内容复制到容器中的 <code>&lt;dst&gt;</code> 路径下。目标路径不存在时，会自动创建。</p>
-
 <h3 id="创建镜像-1">创建镜像</h3>
-
 <p>★ 多步骤创建</p>
-
 <p>示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1211,11 +1056,10 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from<span class="o">=</span>builder /go/src/test/app .
-CMD <span class="o">[</span><span class="s2">&#34;./app&#34;</span><span class="o">]</span></code></pre></td></tr></table>
+CMD <span class="o">[</span><span class="s2">&#34;./app&#34;</span><span class="o">]</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="最佳实践">最佳实践</h3>
-
+</div><h3 id="最佳实践">最佳实践</h3>
 <ul>
 <li>精简镜像用途</li>
 <li>选用合适的基础镜像</li>
