@@ -30,6 +30,13 @@
   </url>
   
   <url>
+    <loc>https://reishin.me/tags/GitHub/</loc>
+    <lastmod>2020-01-08T16:59:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://reishin.me/post/</loc>
     <lastmod>2020-01-08T16:59:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/%E8%8B%B1%E8%AF%AD/</loc>
+    <loc>https://reishin.me/tags/%E8%8B%B1%E8%AF%AD/</loc>
     <lastmod>2019-09-14T16:53:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/%E8%8B%B1%E8%AF%AD/</loc>
+    <loc>https://reishin.me/categories/%E8%8B%B1%E8%AF%AD/</loc>
     <lastmod>2019-09-14T16:53:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -198,13 +205,6 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/Blog/</loc>
-    <lastmod>2019-08-23T22:14:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://reishin.me/tags/Blog/</loc>
     <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -212,7 +212,7 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Github/</loc>
+    <loc>https://reishin.me/categories/Blog/</loc>
     <lastmod>2019-08-23T22:14:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -464,13 +464,6 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Hexo/</loc>
-    <lastmod>2018-09-10T20:31:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://reishin.me/blog-seo-optimization/</loc>
     <lastmod>2018-09-10T20:31:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -508,6 +501,13 @@
   <url>
     <loc>https://reishin.me/tags/SSL/</loc>
     <lastmod>2016-08-25T03:14:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/hexo/</loc>
+    <lastmod>2015-11-06T15:35:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
