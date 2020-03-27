@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.66.0 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/python-metaclass/" />
@@ -50,7 +50,7 @@
 <meta itemprop="description" content="元类（metaclass）是 Python 中一个比较难理解的概念，找了许多资料和官方文档，花了好久才算基本理解清楚。本文记录了多篇文章中的内容和自己的一些理解，便于自己和他人查漏补缺。">
 <meta itemprop="datePublished" content="2019-04-24T17:03:19&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-24T17:03:19&#43;08:00" />
-<meta itemprop="wordCount" content="3290">
+<meta itemprop="wordCount" content="3294">
 
 
 
@@ -89,6 +89,8 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
       </a>
   </ul>
 </nav>
@@ -108,6 +110,8 @@
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
       </li>
   </ul>
 </nav>
@@ -124,7 +128,7 @@
       <div class="post-meta">
         <span class="post-time"> 2019-04-24 17:03 </span>
         
-          <span class="more-meta"> 约 3290 字 </span>
+          <span class="more-meta"> 约 3294 字 </span>
           <span class="more-meta"> 预计阅读 7 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -138,14 +142,14 @@
     <li><a href="#类也是对象">类也是对象</a></li>
     <li><a href="#动态地创建类">动态地创建类</a>
       <ul>
-        <li><a href="#type-和-type__new__-的区别">type 和 type.__new__ 的区别</a></li>
+        <li><a href="#type-和-type__new__-的区别">type 和 <code>type.__new__</code> 的区别</a></li>
         <li><a href="#type-和-object-的关系">type 和 object 的关系</a></li>
       </ul>
     </li>
     <li><a href="#元类metaclass是什么">元类（metaclass）是什么？</a>
       <ul>
         <li><a href="#six-模块的-with_metaclass-函数">six 模块的 with_metaclass 函数</a></li>
-        <li><a href="#元类的-__prepare__-方法">元类的 __prepare__ 方法</a></li>
+        <li><a href="#元类的-__prepare__-方法">元类的 <code>__prepare__</code> 方法</a></li>
       </ul>
     </li>
     <li><a href="#metaclass-属性">metaclass 属性</a></li>
@@ -197,32 +201,32 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span> <span class="k">class</span> <span class="nc">ObjectCreator</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
-   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="k">pass</span>
-   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">ObjectCreator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="k">pass</span>
+   <span class="o">...</span><span class="p">:</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&gt;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span><span class="s1">&#39;&gt;</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="p">:</span> <span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">o</span><span class="p">)</span><span class="p">:</span>
-   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="k">print</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
-   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="k">print</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="p">:</span> <span class="n">echo</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&gt;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">echo</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span><span class="s1">&#39;&gt;</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="p">:</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">new_attribute</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="p">:</span> <span class="bp">False</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">,</span> <span class="s1">&#39;new_attribute&#39;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="bp">False</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="p">:</span> <span class="n">ObjectCreator</span><span class="o">.</span><span class="n">new_attribute</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">foo</span><span class="s1">&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">ObjectCreator</span><span class="o">.</span><span class="n">new_attribute</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="p">:</span> <span class="n">ObjectCreator</span><span class="o">.</span><span class="n">new_attribute</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">foo</span><span class="s1">&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">ObjectCreator</span><span class="o">.</span><span class="n">new_attribute</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="s1">&#39;foo&#39;</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="p">:</span> <span class="n">ObjectCreatorMirror</span> <span class="o">=</span> <span class="n">ObjectCreator</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">ObjectCreatorMirror</span> <span class="o">=</span> <span class="n">ObjectCreator</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="p">:</span> <span class="n">ObjectCreatorMirror</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="p">:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">ObjectCreatorMirror</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="动态地创建类">动态地创建类</h2>
@@ -245,10 +249,10 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">MyShinyClass</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MyShinyClass</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">MyShinyClass</span>
-<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">MyShinyClass</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&gt;</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">MyShinyClass</span><span class="p">(</span><span class="p">)</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">MyShinyClass</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;MyShinyClass&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">MyShinyClass</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">MyShinyClass</span><span class="s1">&#39;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">MyShinyClass</span><span class="p">()</span>
 <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">MyShinyClass</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10bfcb358</span><span class="o">&gt;</span>
 </code></pre></td></tr></table>
 </div>
@@ -273,13 +277,13 @@
     <span class="n">bar</span> <span class="o">=</span> <span class="bp">True</span>
 
 <span class="c1"># 等同于</span>
-<span class="n">Foo</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Foo</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">bar</span><span class="s1">&#39;</span><span class="p">:</span><span class="bp">True</span><span class="p">}</span><span class="p">)</span>
+<span class="n">Foo</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;Foo&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{</span><span class="s1">&#39;bar&#39;</span><span class="p">:</span><span class="bp">True</span><span class="p">})</span>
 
 <span class="c1"># 继承</span>
-<span class="k">class</span> <span class="nc">FooChild</span><span class="p">(</span><span class="n">Foo</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">FooChild</span><span class="p">(</span><span class="n">Foo</span><span class="p">):</span>
     <span class="k">pass</span>
 
-<span class="n">FooChild</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">FooChild</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,</span><span class="p">)</span><span class="p">,</span><span class="p">{</span><span class="p">}</span><span class="p">)</span>
+<span class="n">FooChild</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;FooChild&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,),{})</span>
 <span class="n">FooChild</span><span class="o">.</span><span class="n">bar</span> <span class="c1"># True</span>
 </code></pre></td></tr></table>
 </div>
@@ -296,14 +300,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">echo_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">echo_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span>
 
-<span class="n">FooChild</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">FooChild</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="p">)</span><span class="p">,</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">echo_bar</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">echo_bar</span><span class="p">}</span><span class="p">)</span>
-<span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">echo_bar</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># False</span>
-<span class="nb">hasattr</span><span class="p">(</span><span class="n">FooChild</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">echo_bar</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># True</span>
-<span class="n">my_foo</span> <span class="o">=</span> <span class="n">FooChild</span><span class="p">(</span><span class="p">)</span>
-<span class="n">my_foo</span><span class="o">.</span><span class="n">echo_bar</span><span class="p">(</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="n">FooChild</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;FooChild&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="p">),</span> <span class="p">{</span><span class="s1">&#39;echo_bar&#39;</span><span class="p">:</span> <span class="n">echo_bar</span><span class="p">})</span>
+<span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;echo_bar&#39;</span><span class="p">)</span>  <span class="c1"># False</span>
+<span class="nb">hasattr</span><span class="p">(</span><span class="n">FooChild</span><span class="p">,</span> <span class="s1">&#39;echo_bar&#39;</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="n">my_foo</span> <span class="o">=</span> <span class="n">FooChild</span><span class="p">()</span>
+<span class="n">my_foo</span><span class="o">.</span><span class="n">echo_bar</span><span class="p">()</span>  <span class="c1"># True</span>
 </code></pre></td></tr></table>
 </div>
 </div><!-- raw HTML omitted -->
@@ -343,31 +347,31 @@
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">MetaA</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MetaA.__new__</span><span class="s1">&#39;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">MetaA</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;MetaA.__new__&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MetaA.__init__</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;MetaA.__init__&#39;</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MetaA</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MetaA</span><span class="p">):</span>
     <span class="k">pass</span>
 
 <span class="c1"># output: MetaA.__new__</span>
 
 
-<span class="k">class</span> <span class="nc">MetaB</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MetaB.__new__</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MetaB</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;MetaB.__new__&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MetaB.__init__</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;MetaB.__init__&#39;</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MetaB</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MetaB</span><span class="p">):</span>
     <span class="k">pass</span>
 
 <span class="c1"># output: </span>
@@ -424,7 +428,7 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">M</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">M</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="k">pass</span>
 
 <span class="n">M</span><span class="o">.</span><span class="vm">__class__</span>  <span class="c1"># type</span>
@@ -469,11 +473,11 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Python2</span>
-<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="vm">__metaclass__</span> <span class="o">=</span> <span class="n">MyMeta</span>
 
 <span class="c1"># Python3</span>
-<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MyMeta</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MyMeta</span><span class="p">):</span>
     <span class="k">pass</span>
 </code></pre></td></tr></table>
 </div>
@@ -512,17 +516,17 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="k">def</span> <span class="nf">with_metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="o">*</span><span class="n">bases</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    :param meta: metaclass</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    :param bases: base class</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    :return:</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
-    <span class="k">return</span> <span class="n">meta</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">temp_class</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">with_metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="o">*</span><span class="n">bases</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    :param meta: metaclass
+</span><span class="s2">    :param bases: base class
+</span><span class="s2">    :return:
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">meta</span><span class="p">(</span><span class="s1">&#39;temp_class&#39;</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="p">{})</span>
 
 
-<span class="k">class</span> <span class="nc">TestMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">TestMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
 
 
@@ -530,11 +534,11 @@
     <span class="k">pass</span>
 
 
-<span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">TestMeta</span><span class="p">,</span> <span class="n">Foo</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">TestMeta</span><span class="p">,</span> <span class="n">Foo</span><span class="p">)):</span>
     <span class="k">pass</span>
 
 
-<span class="k">print</span><span class="p">(</span><span class="n">Bar</span><span class="o">.</span><span class="n">mro</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>  <span class="c1"># [&lt;class &#39;__main__.Bar&#39;&gt;, &lt;class &#39;__main__.temp_class&#39;&gt;, &lt;class &#39;__main__.Foo&#39;&gt;, &lt;class &#39;object&#39;&gt;]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">Bar</span><span class="o">.</span><span class="n">mro</span><span class="p">())</span>  <span class="c1"># [&lt;class &#39;__main__.Bar&#39;&gt;, &lt;class &#39;__main__.temp_class&#39;&gt;, &lt;class &#39;__main__.Foo&#39;&gt;, &lt;class &#39;object&#39;&gt;]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>我们创建了一个以 TestMeta 为元类，继承 Foo 的 Bar 类。但是在 mro 中混入了一个 <code>temp_class</code> 的临时类，我们希望这个最好可以过滤掉。</p>
@@ -559,20 +563,20 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">with_metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="o">*</span><span class="n">bases</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">Create a base class with a metaclass.</span><span class="s2">&#34;&#34;&#34;</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">with_metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="o">*</span><span class="n">bases</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Create a base class with a metaclass.&#34;&#34;&#34;</span>
     <span class="c1"># This requires a bit of explanation: the basic idea is to make a dummy</span>
     <span class="c1"># metaclass for one level of class instantiation that replaces itself with</span>
     <span class="c1"># the actual metaclass.</span>
-    <span class="k">class</span> <span class="nc">metaclass</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">class</span> <span class="nc">metaclass</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
 
-        <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">this_bases</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">this_bases</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">meta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
 
         <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">this_bases</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__prepare__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">this_bases</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="n">__prepare__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">metaclass</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">temporary_class</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">metaclass</span><span class="p">,</span> <span class="s1">&#39;temporary_class&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>结合我们代码来分析一下这段代码：</p>
@@ -599,9 +603,9 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">TestMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{cls} __new__ is called.</span><span class="s1">&#39;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">TestMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{cls} __new__ is called.&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
 
 
@@ -613,7 +617,7 @@
 <span class="c1"># 执行到这里无输出</span>
 
 
-<span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">Tmp</span><span class="p">)</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">Tmp</span><span class="p">):</span>
     <span class="k">pass</span>
 <span class="c1"># 执行到这里输出：</span>
 <span class="c1"># &lt;class &#39;__main__.with_metaclass.&lt;locals&gt;.metaclass&#39;&gt; __new__ is called.</span>
@@ -659,24 +663,24 @@ A: 可以创建一个类的东西。type 或者任何使用到 type 或者子类
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="k">def</span> <span class="nf">upper_attr</span><span class="p">(</span><span class="n">future_class_name</span><span class="p">,</span> <span class="n">future_class_parents</span><span class="p">,</span> <span class="n">future_class_attr</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">返回一个类对象，将属性都转换为大写</span><span class="s2">&#34;&#34;&#34;</span>
-    <span class="n">attrs</span> <span class="o">=</span> <span class="p">(</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">future_class_attr</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span> <span class="k">if</span>
-             <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">__</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">upper_attr</span><span class="p">(</span><span class="n">future_class_name</span><span class="p">,</span> <span class="n">future_class_parents</span><span class="p">,</span> <span class="n">future_class_attr</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;返回一个类对象，将属性都转换为大写&#34;&#34;&#34;</span>
+    <span class="n">attrs</span> <span class="o">=</span> <span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">future_class_attr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span>
+             <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">))</span>
     <span class="c1"># 将它们转换为大写形式</span>
-    <span class="n">uppercase_attr</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">)</span>
+    <span class="n">uppercase_attr</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">)</span>
     <span class="c1"># 通过 type 来做类对象的创建</span>
     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">future_class_name</span><span class="p">,</span> <span class="n">future_class_parents</span><span class="p">,</span> <span class="n">uppercase_attr</span><span class="p">)</span>
 
 <span class="c1"># python2 使用 __metaclass__，python3 中使用 metaclass</span>
-<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">upper_attr</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">bar</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">bip</span><span class="s1">&#39;</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">upper_attr</span><span class="p">):</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="s1">&#39;bip&#39;</span>
 
 
-<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">bar</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">BAR</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;BAR&#39;</span><span class="p">))</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">(</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">BAR</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;type&#39;&gt;</span>
 </code></pre></td></tr></table>
@@ -703,21 +707,21 @@ A: 可以创建一个类的东西。type 或者任何使用到 type 或者子类
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">UpperAttrMetaClass</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">class_parents</span><span class="p">,</span> <span class="n">class_attr</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">attrs</span> <span class="o">=</span> <span class="p">(</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">class_attr</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">__</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
-        <span class="n">uppercase_attr</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">class_parents</span><span class="p">,</span> <span class="n">uppercase_attr</span><span class="p">)</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">UpperAttrMetaClass</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">class_parents</span><span class="p">,</span> <span class="n">class_attr</span><span class="p">):</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">class_attr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">))</span>
+        <span class="n">uppercase_attr</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">class_parents</span><span class="p">,</span> <span class="n">uppercase_attr</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">UpperAttrMetaClass</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">bar</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">bip</span><span class="s1">&#39;</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">UpperAttrMetaClass</span><span class="p">):</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="s1">&#39;bip&#39;</span>
 
 
-<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">bar</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>  <span class="c1"># False</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">BAR</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;BAR&#39;</span><span class="p">))</span>  <span class="c1"># True</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">(</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">BAR</span><span class="p">)</span>  <span class="c1"># bip</span>
 <span class="k">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;__main__.UpperAttrMetaClass&#39;&gt;</span>
 </code></pre></td></tr></table>
@@ -729,8 +733,8 @@ A: 可以创建一个类的东西。type 或者任何使用到 type 或者子类
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Thing</span><span class="p">,</span> <span class="n">kwarg1</span><span class="o">=</span><span class="n">value1</span><span class="p">)</span><span class="p">:</span>
-    <span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Thing</span><span class="p">,</span> <span class="n">kwarg1</span><span class="o">=</span><span class="n">value1</span><span class="p">):</span>
+    <span class="o">...</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>那么在 metaclass 中应该写入如下格式：</p>
@@ -741,9 +745,9 @@ A: 可以创建一个类的东西。type 或者任何使用到 type 或者子类
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Thing</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">clsname</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="n">kwargs1</span><span class="o">=</span><span class="n">default</span><span class="p">)</span><span class="p">:</span>
-        <span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Thing</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">clsname</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="n">kwargs1</span><span class="o">=</span><span class="n">default</span><span class="p">):</span>
+        <span class="o">...</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>元类本身并不复杂，它主要负责拦截类的创建、修改类和返回修改之后的类。</p>

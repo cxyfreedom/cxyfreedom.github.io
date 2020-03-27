@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.66.0 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/tmux/" />
@@ -54,7 +54,7 @@
 使用多个命令行，或多个任务时非常方便。">
 <meta itemprop="datePublished" content="2019-04-17T18:24:21&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-17T18:24:21&#43;08:00" />
-<meta itemprop="wordCount" content="5137">
+<meta itemprop="wordCount" content="5138">
 
 
 
@@ -95,6 +95,8 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
       </a>
   </ul>
 </nav>
@@ -114,6 +116,8 @@
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
       </li>
   </ul>
 </nav>
@@ -132,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
             </div>
-          <span class="more-meta"> 约 5137 字 </span>
+          <span class="more-meta"> 约 5138 字 </span>
           <span class="more-meta"> 预计阅读 11 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -383,7 +387,7 @@ prefix w
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 垂直切割</span>
 prefix %
 <span class="c1"># 水平切割</span>
-prefix <span class="s2">&#34;</span><span class="s2">
+prefix <span class="s2">&#34;
 </span><span class="s2"># 面板间来回切换
 </span><span class="s2">prefix o
 </span><span class="s2"># 最大化或者恢复面板
@@ -1316,7 +1320,7 @@ join-pane -s <span class="m">1</span>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">TMUX_CURRENT_DIR</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 tmux split-window <span class="nv">$1</span>
-tmux send-keys <span class="s2">&#34;</span><span class="s2">cd </span><span class="nv">$TMUX_CURRENT_DIR</span><span class="s2">;clear</span><span class="s2">&#34;</span>
+tmux send-keys <span class="s2">&#34;cd </span><span class="nv">$TMUX_CURRENT_DIR</span><span class="s2">;clear&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>然后编辑 <code>.tmux.conf</code> 来调用这个文件做分割。这里使用 <code>PREFIX v</code> 和 <code>PREFIX n</code> 键，防止覆盖已有的分割快捷键。</p>

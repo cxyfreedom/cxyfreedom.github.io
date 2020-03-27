@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hexo on Field of Hope</title>
-    <link>https://reishin.me/tags/hexo/</link>
-    <description>Recent content in hexo on Field of Hope</description>
+    <title>Hexo on Field of Hope</title>
+    <link>https://reishin.me/tags/Hexo/</link>
+    <description>Recent content in Hexo on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Nov 2015 15:35:56 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Sep 2018 20:31:51 +0800</lastBuildDate>
     
-	<atom:link href="https://reishin.me/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://reishin.me/tags/Hexo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hexo 博客 SEO 优化</title>
+      <link>https://reishin.me/blog-seo-optimization/</link>
+      <pubDate>Mon, 10 Sep 2018 20:31:51 +0800</pubDate>
+      
+      <guid>https://reishin.me/blog-seo-optimization/</guid>
+      <description>&lt;p&gt;为了能让我们的博客被搜索引擎更好的收录，我们需要对 SEO 进行优化。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>利用 Hexo &#43; GitHub 搭建个人博客</title>

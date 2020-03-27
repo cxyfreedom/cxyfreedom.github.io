@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.66.0 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/deploy-kubernetes-using-kubeadm/" />
@@ -50,7 +50,7 @@
 <meta itemprop="description" content="kubeadm 是 Kubernetes 官方提供的用于快速部署 Kubernetes 集群的工具，本文主要记录自己通过 kubeadm 部署 Kubernetes 过程中遇到的问题和踩过的坑，便于自己和他人查阅。">
 <meta itemprop="datePublished" content="2018-11-22T17:26:21&#43;08:00" />
 <meta itemprop="dateModified" content="2018-11-22T17:26:21&#43;08:00" />
-<meta itemprop="wordCount" content="5309">
+<meta itemprop="wordCount" content="5310">
 
 
 
@@ -89,6 +89,8 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
       </a>
   </ul>
 </nav>
@@ -108,6 +110,8 @@
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
       </li>
   </ul>
 </nav>
@@ -126,7 +130,7 @@
         <div class="post-category">
             <a href="/categories/DevOps/"> DevOps </a>
             </div>
-          <span class="more-meta"> 约 5309 字 </span>
+          <span class="more-meta"> 约 5310 字 </span>
           <span class="more-meta"> 预计阅读 11 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -490,7 +494,7 @@ sudo apt-get -y install apt-transport-https ca-certificates curl software-proper
 <span class="c1"># 安装GPG证书</span>
 curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
 <span class="c1"># 写入软件源信息</span>
-sudo add-apt-repository <span class="s2">&#34;</span><span class="s2">deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable</span><span class="s2">&#34;</span>
+sudo add-apt-repository <span class="s2">&#34;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&#34;</span>
 <span class="c1"># 更新并安装 Docker-CE</span>
 sudo apt-get -y update
 sudo apt-get -y install docker-ce
@@ -718,7 +722,7 @@ k8s.gcr.io/coredns:1.2.2
 <span class="nv">GCR_URL</span><span class="o">=</span>gcr.io/google-containers
 <span class="nv">ALIYUN_URL</span><span class="o">=</span>registry.cn-shanghai.aliyuncs.com/cxyfreedom
 
-<span class="nv">images</span><span class="o">=</span><span class="o">(</span>kube-proxy-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
+<span class="nv">images</span><span class="o">=(</span>kube-proxy-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
 kube-scheduler-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
 kube-controller-manager-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
 kube-apiserver-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
@@ -786,7 +790,7 @@ coredns:<span class="si">${</span><span class="nv">DNS_VERSION</span><span class
 <span class="nv">DNS_VERSION</span><span class="o">=</span>1.2.2
 <span class="nv">username</span><span class="o">=</span>registry.cn-shanghai.aliyuncs.com/cxyfreedom
 
-<span class="nv">images</span><span class="o">=</span><span class="o">(</span>kube-proxy-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
+<span class="nv">images</span><span class="o">=(</span>kube-proxy-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
 kube-scheduler-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
 kube-controller-manager-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
 kube-apiserver-amd64:<span class="si">${</span><span class="nv">KUBE_VERSION</span><span class="si">}</span>
@@ -1420,24 +1424,24 @@ openssl pkcs12 -export -clcerts -inkey kubecfg.key -in kubecfg.crt -out kubecfg.
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>ServiceAccount<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>admin-user<span class="w">
-</span><span class="w">  </span>namespace<span class="p">:</span><span class="w"> </span>kube-system<span class="w">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>ServiceAccount<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>admin-user<span class="w">
+</span><span class="w">  </span><span class="k">namespace</span><span class="p">:</span><span class="w"> </span>kube-system<span class="w">
 </span><span class="w"></span>---<span class="w">
-</span><span class="w"></span>apiVersion<span class="p">:</span><span class="w"> </span>rbac.authorization.k8s.io/v1beta1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>ClusterRoleBinding<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>admin-user<span class="w">
-</span><span class="w"></span>roleRef<span class="p">:</span><span class="w">
-</span><span class="w">  </span>apiGroup<span class="p">:</span><span class="w"> </span>rbac.authorization.k8s.io<span class="w">
-</span><span class="w">  </span>kind<span class="p">:</span><span class="w"> </span>ClusterRole<span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>cluster-admin<span class="w">
-</span><span class="w"></span>subjects<span class="p">:</span><span class="w">
-</span><span class="w"></span>-<span class="w"> </span>kind<span class="p">:</span><span class="w"> </span>ServiceAccount<span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>admin-user<span class="w">
-</span><span class="w">  </span>namespace<span class="p">:</span><span class="w"> </span>kube-system<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>rbac.authorization.k8s.io/v1beta1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>ClusterRoleBinding<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>admin-user<span class="w">
+</span><span class="w"></span><span class="k">roleRef</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">apiGroup</span><span class="p">:</span><span class="w"> </span>rbac.authorization.k8s.io<span class="w">
+</span><span class="w">  </span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>ClusterRole<span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>cluster-admin<span class="w">
+</span><span class="w"></span><span class="k">subjects</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="k">kind</span><span class="p">:</span><span class="w"> </span>ServiceAccount<span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>admin-user<span class="w">
+</span><span class="w">  </span><span class="k">namespace</span><span class="p">:</span><span class="w"> </span>kube-system<span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>然后执行以下命令即可：</p>

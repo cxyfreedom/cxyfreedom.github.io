@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.66.0 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/python-tricks/" />
@@ -50,7 +50,7 @@
 <meta itemprop="description" content="本文为阅读 《Python Tricks A Buffet of Awesome Python Features》书籍的笔记，仅供自己参考。由于大部分内容熟知，所以并未记录。">
 <meta itemprop="datePublished" content="2019-01-10T18:08:40&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-10T18:08:40&#43;08:00" />
-<meta itemprop="wordCount" content="1404">
+<meta itemprop="wordCount" content="1406">
 
 
 
@@ -89,6 +89,8 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
       </a>
   </ul>
 </nav>
@@ -108,6 +110,8 @@
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
       </li>
   </ul>
 </nav>
@@ -126,7 +130,7 @@
         <div class="post-category">
             <a href="/categories/Python/"> Python </a>
             </div>
-          <span class="more-meta"> 约 1404 字 </span>
+          <span class="more-meta"> 约 1406 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -139,7 +143,7 @@
   <ul>
     <li><a href="#1-使用断言">1. 使用断言</a></li>
     <li><a href="#2-context-manager">2. Context Manager</a></li>
-    <li><a href="#3-__repr__">3. __repr__</a></li>
+    <li><a href="#3-__repr__">3. <code>__repr__</code></a></li>
     <li><a href="#4-namedtuple">4. Namedtuple</a></li>
     <li><a href="#5-字典">5. 字典</a></li>
     <li><a href="#6-字符串">6. 字符串</a></li>
@@ -173,13 +177,13 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">apply_discount</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">discount</span><span class="p">)</span><span class="p">:</span>
-   <span class="n">price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">price</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">discount</span><span class="p">)</span><span class="p">)</span>
-   <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">price</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">product</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">price</span><span class="s1">&#39;</span><span class="p">]</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">apply_discount</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">discount</span><span class="p">):</span>
+   <span class="n">price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">discount</span><span class="p">))</span>
+   <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">price</span> <span class="o">&lt;=</span> <span class="n">product</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
    <span class="k">return</span> <span class="n">price</span>
 
 
-<span class="n">shoes</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">name</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Fancy shoes</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">price</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">14900</span><span class="p">}</span>
+<span class="n">shoes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Fancy shoes&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">14900</span><span class="p">}</span>
 <span class="n">apply_discount</span><span class="p">(</span><span class="n">shoes</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>  <span class="c1"># correct </span>
 <span class="n">apply_discount</span><span class="p">(</span><span class="n">shoes</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>   <span class="c1"># incorrect</span>
 </code></pre></td></tr></table>
@@ -191,7 +195,7 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">assert</span> <span class="n">expression1</span> <span class="p">[</span><span class="p">,</span> <span class="n">expression2</span><span class="p">]</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">assert</span> <span class="n">expression1</span> <span class="p">[,</span> <span class="n">expression2</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>注意事项：</p>
@@ -224,19 +228,19 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">ManagedFile</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">with</span> <span class="n">ManagedFile</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello.txt</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello, world!</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ManagedFile</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;hello, world!&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>示例2:</p>
@@ -259,15 +263,15 @@
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 
 <span class="nd">@contextmanager</span>
-<span class="k">def</span> <span class="nf">managed_file</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">managed_file</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">w</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">f</span>
     <span class="k">finally</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">with</span> <span class="n">managed_file</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello.txt</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello, world!</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">managed_file</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;hello, world!&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="3-__repr__">3. <code>__repr__</code></h2>
@@ -288,16 +292,16 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">mileage</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">mileage</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mileage</span> <span class="o">=</span> <span class="n">mileage</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{self.__class__.__name__}(</span><span class="s1">&#39;</span>
-                <span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{self.color!r}, {self.mileage!r})</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="s1">&#39;{self.__class__.__name__}(&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;{self.color!r}, {self.mileage!r})&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">f</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">a {self.color} car</span><span class="s1">&#39;</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;a {self.color} car&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Python2.X 写法：</p>
@@ -319,20 +323,20 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">mileage</span><span class="p">)</span><span class="p">:</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">mileage</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mileage</span> <span class="o">=</span> <span class="n">mileage</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">{}({!r}, {!r})</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;{}({!r}, {!r})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
                                        <span class="bp">self</span><span class="o">.</span><span class="n">mileage</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="s1">a {self.color} car</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;a {self.color} car&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">utf-8</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -375,28 +379,28 @@
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
-<span class="n">Car</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Car</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">color, mileage</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">my_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">read</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mf">3812.4</span><span class="p">)</span>
+<span class="n">Car</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Car&#39;</span><span class="p">,</span> <span class="s1">&#39;color, mileage&#39;</span><span class="p">)</span>
+<span class="n">my_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="mf">3812.4</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">my_car</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">MyCarWithMethods</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">hexcolor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#ff0000</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">red</span><span class="s1">&#39;</span> <span class="k">else</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#000000</span><span class="s1">&#39;</span>
+<span class="k">class</span> <span class="nc">MyCarWithMethods</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">hexcolor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;#ff0000&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">==</span> <span class="s1">&#39;red&#39;</span> <span class="k">else</span> <span class="s1">&#39;#000000&#39;</span>
 
-<span class="n">c</span> <span class="o">=</span> <span class="n">MyCarWithMethods</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">red</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">hexcolor</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">MyCarWithMethods</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">hexcolor</span><span class="p">())</span>
 
-<span class="n">ElectricCar</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">ElectricCar</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">Car</span><span class="o">.</span><span class="n">_fields</span> <span class="o">+</span> <span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">charge</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">)</span><span class="p">)</span>
-<span class="n">electric_car</span> <span class="o">=</span> <span class="n">ElectricCar</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">red</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">)</span>
+<span class="n">ElectricCar</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;ElectricCar&#39;</span><span class="p">,</span> <span class="n">Car</span><span class="o">.</span><span class="n">_fields</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;charge&#39;</span><span class="p">,</span> <span class="p">))</span>
+<span class="n">electric_car</span> <span class="o">=</span> <span class="n">ElectricCar</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">electric_car</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">_asdict</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">_asdict</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">_asdict</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()))</span>
 
-<span class="n">my_car</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">blue</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">my_car</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">my_car</span><span class="p">)</span>
 
-<span class="n">new_car</span> <span class="o">=</span> <span class="n">Car</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">red</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">999</span><span class="p">]</span><span class="p">)</span>
+<span class="n">new_car</span> <span class="o">=</span> <span class="n">Car</span><span class="o">.</span><span class="n">_make</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">999</span><span class="p">])</span>
 <span class="k">print</span><span class="p">(</span><span class="n">new_car</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -411,8 +415,8 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">one</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">two</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
-<span class="n">dict2</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">three</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">four</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">dict2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;three&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
 <span class="n">chain</span> <span class="o">=</span> <span class="n">ChainMap</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">dict2</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">chain</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -434,12 +438,12 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">MappingProxyType</span>
 
-<span class="n">writable</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">one</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">two</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">writable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 <span class="n">read_only</span> <span class="o">=</span> <span class="n">MappingProxyType</span><span class="p">(</span><span class="n">writable</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">read_only</span><span class="p">)</span>
 <span class="c1"># read_only[&#39;one&#39;] = 3  # TypeError</span>
-<span class="n">writable</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">one</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">writable</span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="k">print</span><span class="p">(</span><span class="n">read_only</span><span class="p">)</span>  <span class="c1">#  {&#39;one&#39;: 4, &#39;two&#39;: 2}</span>
 </code></pre></td></tr></table>
 </div>
@@ -449,7 +453,7 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">name</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">age</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">(unknown)</span><span class="s1">&#39;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="s1">&#39;(unknown)&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="6-字符串">6. 字符串</h2>
@@ -464,8 +468,8 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">Template</span>
 
-<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Hello, $who! $what enough for ya?</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">who</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Mars</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Dusty</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">tmpl</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="s2">&#34;Hello, $who! $what enough for ya?&#34;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">tmpl</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">who</span><span class="o">=</span><span class="s2">&#34;Mars&#34;</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s2">&#34;Dusty&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>★ 宽度、精度和千位分隔符</p>
@@ -511,40 +515,40 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 宽度</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">{num:10}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">         3</span><span class="s1">&#39;</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">{name:10}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">freedom</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">freedom   </span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{num:10}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="s1">&#39;         3&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{name:10}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;freedom&#34;</span><span class="p">)</span>
+<span class="s1">&#39;freedom   &#39;</span>
 <span class="c1"># 精度</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">Pi day is {pi:.2f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="o">=</span><span class="n">pi</span><span class="p">)</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">Pi day is 3.14</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;Pi day is {pi:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="o">=</span><span class="n">pi</span><span class="p">)</span>
+<span class="s1">&#39;Pi day is 3.14&#39;</span>
 <span class="c1"># 千位分隔符</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">One googol is {:,}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">One googol is 10,000,000,000</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;One googol is {:,}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span>
+<span class="s1">&#39;One googol is 10,000,000,000&#39;</span>
 <span class="c1"># 用 0 填充</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">{:010.2f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">0000003.14</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{:010.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<span class="s1">&#39;0000003.14&#39;</span>
 <span class="c1"># 对齐，左对齐、右对齐和居中，可分别使用&lt;、&gt;和^</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{0:&lt;10.2f}</span><span class="se">\n</span><span class="s1">{0:^10.2f}</span><span class="se">\n</span><span class="s1">{0:&gt;10.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0:&lt;10.2f}</span><span class="se">\n</span><span class="s1">{0:^10.2f}</span><span class="se">\n</span><span class="s1">{0:&gt;10.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
 <span class="mf">3.14</span>      
    <span class="mf">3.14</span>   
       <span class="mf">3.14</span>
 <span class="c1"># 填充字符</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">{:$^15}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2"> WIN BIG </span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">$$$ WIN BIG $$$</span><span class="s1">&#39;</span> 
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{0:10.2f}</span><span class="se">\n</span><span class="s1">{1:10.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="p">)</span><span class="p">)</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{:$^15}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34; WIN BIG &#34;</span><span class="p">)</span>
+<span class="s1">&#39;$$$ WIN BIG $$$&#39;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0:10.2f}</span><span class="se">\n</span><span class="s1">{1:10.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="p">))</span> 
       <span class="mf">3.14</span>
      <span class="o">-</span><span class="mf">3.14</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{0:10.2f}</span><span class="se">\n</span><span class="s1">{1:=10.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="p">)</span><span class="p">)</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0:10.2f}</span><span class="se">\n</span><span class="s1">{1:=10.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="p">))</span> 
       <span class="mf">3.14</span>
 <span class="o">-</span>     <span class="mf">3.14</span>
 <span class="c1"># 加上正负号</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{0:+.2}</span><span class="se">\n</span><span class="s1">{1:+.2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="p">)</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0:+.2}</span><span class="se">\n</span><span class="s1">{1:+.2}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="p">))</span>
 <span class="o">+</span><span class="mf">3.1</span>
 <span class="o">-</span><span class="mf">3.1</span>
 <span class="c1"># 特殊转换</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">{:#b}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="sa"></span><span class="s1">&#39;</span><span class="s1">0b101010</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&#34;{:#b}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="s1">&#39;0b101010&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="7-类">7. 类</h2>
@@ -573,7 +577,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">callable</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>  <span class="c1"># 判断对象是否可以调用</span>
-<span class="nb">getattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">name</span><span class="p">[</span><span class="p">,</span> <span class="n">default</span><span class="p">]</span><span class="p">)</span>  <span class="c1"># 获取属性的值，还可以提供默认值</span>
+<span class="nb">getattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">name</span><span class="p">[,</span> <span class="n">default</span><span class="p">])</span>  <span class="c1"># 获取属性的值，还可以提供默认值</span>
 <span class="nb">hasattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>  <span class="c1"># 获取对象是否有指定的属性</span>
 <span class="nb">setattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>  <span class="c1"># 将对象的指定属性设置为指定的值</span>
 </code></pre></td></tr></table>
@@ -605,10 +609,10 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">fileinput</span>
 
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="p">)</span>
-    <span class="n">num</span> <span class="o">=</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">lineno</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">{:&lt;50} # {:2d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">lineno</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{:&lt;50} # {:2d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="10-heapq">10. heapq</h2>
@@ -644,9 +648,9 @@
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">shuffle</span>
 
 
-<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">shuffle</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">heap</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="n">heap</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 

@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.66.0 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/build-blog-with-hugo/" />
@@ -89,6 +89,8 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
       </a>
   </ul>
 </nav>
@@ -108,6 +110,8 @@
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
       </li>
   </ul>
 </nav>
@@ -322,7 +326,7 @@ $ git rm themes/even
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="err">/</span><span class="err">:</span><span class="nx">monthname</span><span class="err">/</span><span class="err">:</span><span class="nx">day</span><span class="err">/</span><span class="err">:</span><span class="nx">weekday</span><span class="err">/</span><span class="err">:</span><span class="nx">weekdayname</span><span class="err">/</span><span class="err">:</span><span class="nx">yearday</span><span class="err">/</span><span class="err">:</span><span class="nx">section</span><span class="err">/</span><span class="err">:</span><span class="nx">title</span><span class="err">/</span><span class="err">:</span><span class="nx">slug</span><span class="err">/</span><span class="err">:</span><span class="nx">filename</span><span class="err">/</span>
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="err">/:</span><span class="nx">monthname</span><span class="err">/:</span><span class="nx">day</span><span class="err">/:</span><span class="nx">weekday</span><span class="err">/:</span><span class="nx">weekdayname</span><span class="err">/:</span><span class="nx">yearday</span><span class="err">/:</span><span class="nx">section</span><span class="err">/:</span><span class="nx">title</span><span class="err">/:</span><span class="nx">slug</span><span class="err">/:</span><span class="nx">filename</span><span class="err">/</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="部署">部署</h2>
@@ -375,7 +379,7 @@ git init
 git add .
 
 <span class="c1"># Commit changes.</span>
-<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">building site </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&#34;</span>
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;building site </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&#34;</span>
 <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 	<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
 <span class="k">fi</span>

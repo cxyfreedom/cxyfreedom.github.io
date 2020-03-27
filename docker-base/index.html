@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.66.0 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/docker-base/" />
@@ -89,6 +89,8 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
       </a>
   </ul>
 </nav>
@@ -108,6 +110,8 @@
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
       </li>
   </ul>
 </nav>
@@ -383,7 +387,7 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh
 <span class="c1"># 列出镜像的数字摘要值，默认为否</span>
 --digests<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 过滤列出的镜像</span>
--f, --filter<span class="o">=</span><span class="o">[</span><span class="o">]</span>
+-f, --filter<span class="o">=[]</span>
 <span class="c1"># 控制输出格式，比如.ID代表ID信息</span>
 --format<span class="o">=</span><span class="s2">&#34;TEMPLATE&#34;</span>
 <span class="c1"># 截断输出结果，默认为是</span>
@@ -480,7 +484,7 @@ $ wget -qO- https://get.docker.com/ <span class="p">|</span> sh
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 作者信息</span>
 -a, --author<span class="o">=</span><span class="s2">&#34;&#34;</span>
 <span class="c1"># 提交的时候执行 Dockfile 指令</span>
--c, --change<span class="o">=</span><span class="o">[</span><span class="o">]</span>
+-c, --change<span class="o">=[]</span>
 <span class="c1"># 提交消息</span>
 -m, --message<span class="o">=</span><span class="s2">&#34;&#34;</span>
 <span class="c1"># 提交时暂停容器运行</span>
@@ -670,7 +674,7 @@ docker restart &lt;container&gt;
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 指定退出 attach 模式的快捷键序列，默认 ctrl-p ctrl-q</span>
---detach-keys<span class="o">[</span><span class="o">=</span><span class="o">[</span><span class="o">]</span><span class="o">]</span>
+--detach-keys<span class="o">[=[]]</span>
 <span class="c1"># 是否关闭标准输入，默认是保持打开</span>
 --no-stdin<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 是否代理收到的系统信号给应用进程，默认为 true</span>
@@ -711,7 +715,7 @@ docker restart &lt;container&gt;
 <span class="c1"># 指定将容器切回后台的按键</span>
 --detach-keys<span class="o">=</span><span class="s2">&#34;&#34;</span>
 <span class="c1"># 指定环境变量列表</span>
--e, --env<span class="o">=</span><span class="o">[</span><span class="o">]</span>
+-e, --env<span class="o">=[]</span>
 <span class="c1"># 打开标准输入接受用户输入命令，默认为false</span>
 -i, --interactive<span class="o">=</span>true<span class="p">|</span><span class="nb">false</span>
 <span class="c1"># 是否给执行命令以高权限，默认为false</span>

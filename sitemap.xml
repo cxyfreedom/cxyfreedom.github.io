@@ -30,7 +30,7 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/GitHub/</loc>
+    <loc>https://reishin.me/tags/Github/</loc>
     <lastmod>2020-01-08T16:59:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -93,14 +93,14 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/categories/2019/</loc>
+    <loc>https://reishin.me/tags/2019/</loc>
     <lastmod>2020-01-05T17:18:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/2019/</loc>
+    <loc>https://reishin.me/categories/2019/</loc>
     <lastmod>2020-01-05T17:18:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -464,6 +464,13 @@
   </url>
   
   <url>
+    <loc>https://reishin.me/tags/Hexo/</loc>
+    <lastmod>2018-09-10T20:31:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://reishin.me/blog-seo-optimization/</loc>
     <lastmod>2018-09-10T20:31:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -501,13 +508,6 @@
   <url>
     <loc>https://reishin.me/tags/SSL/</loc>
     <lastmod>2016-08-25T03:14:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/hexo/</loc>
-    <lastmod>2015-11-06T15:35:56+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

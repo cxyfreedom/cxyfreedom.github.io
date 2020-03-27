@@ -24,7 +24,7 @@
 <meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.66.0 with theme even" />
 
 
 <link rel="canonical" href="https://reishin.me/python-source-code-parse-with-rlock/" />
@@ -50,7 +50,7 @@
 <meta itemprop="description" content="本文主要针对 Python 中的可重入锁 RLock 的源码剖析。">
 <meta itemprop="datePublished" content="2018-08-20T20:07:47&#43;00:00" />
 <meta itemprop="dateModified" content="2018-08-20T20:07:47&#43;00:00" />
-<meta itemprop="wordCount" content="1832">
+<meta itemprop="wordCount" content="1804">
 
 
 
@@ -89,6 +89,8 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
       </a>
   </ul>
 </nav>
@@ -108,6 +110,8 @@
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
       </li>
   </ul>
 </nav>
@@ -126,7 +130,7 @@
         <div class="post-category">
             <a href="/categories/Python/"> Python </a>
             </div>
-          <span class="more-meta"> 约 1832 字 </span>
+          <span class="more-meta"> 约 1804 字 </span>
           <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -199,28 +203,28 @@
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">RLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="o">*</span><span class="n">kwargs</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    该工厂函数返回一个新的可重入锁。</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    一个可重入锁必须由创建它的线程释放。一旦一个线程获得了一个可重入锁，该线程可用无阻塞的再次获取。每次获取锁后必须进行释放。</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    Python支持用C语言实现的 RLock 锁和用Python本身实现的 RLock 锁，默认使用的是C语言版本的</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">RLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    该工厂函数返回一个新的可重入锁。
+</span><span class="s2">    一个可重入锁必须由创建它的线程释放。一旦一个线程获得了一个可重入锁，该线程可用无阻塞的再次获取。每次获取锁后必须进行释放。
+</span><span class="s2">    Python支持用C语言实现的 RLock 锁和用Python本身实现的 RLock 锁，默认使用的是C语言版本的
+</span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="k">if</span> <span class="n">_CRLock</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_PyRLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="o">*</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_CRLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="o">*</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_PyRLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_CRLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">_RLock</span><span class="p">:</span>
     <span class="c1"># RLock的核心即 acquire 和 release 这两个方法</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_block</span> <span class="o">=</span> <span class="n">_allocate_lock</span><span class="p">(</span><span class="p">)</span>  <span class="c1"># 分配一个锁</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block</span> <span class="o">=</span> <span class="n">_allocate_lock</span><span class="p">()</span>  <span class="c1"># 分配一个锁</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c1"># RLock对象所属的线程pid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># 锁计数器，对于RLock对象所在线程，每获取一次就加一，相对的每次释放就减一，当减到零时，就会释放内部创建的锁，这样其他线程就可以继续获得这个锁。</span>
 
-    <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">me</span> <span class="o">=</span> <span class="n">get_ident</span><span class="p">(</span><span class="p">)</span>    <span class="c1"># 获取当前线程的pid</span>
+    <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">me</span> <span class="o">=</span> <span class="n">get_ident</span><span class="p">()</span>    <span class="c1"># 获取当前线程的pid</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">==</span> <span class="n">me</span><span class="p">:</span>   <span class="c1"># 如果当前线程的pid是RLock对象所在的线程，那么对计数器进行加一操作</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">return</span> <span class="mi">1</span>
         <span class="c1"># 如果不满足上述条件：</span>
         <span class="c1"># 1. 当前线程非RLock对象所在线程</span>
@@ -233,13 +237,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">1</span>     <span class="c1"># 将计数器重置到1</span>
         <span class="k">return</span> <span class="n">rc</span>
 
-    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">!=</span> <span class="n">get_ident</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>  <span class="c1"># 如果持有锁的线程非当前线程，则抛异常</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">cannot release un-acquired lock</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">!=</span> <span class="n">get_ident</span><span class="p">():</span>  <span class="c1"># 如果持有锁的线程非当前线程，则抛异常</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&#34;cannot release un-acquired lock&#34;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">-</span> <span class="mi">1</span>   <span class="c1"># 每次释放对计数器进行减一</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">count</span><span class="p">:</span>   <span class="c1"># 如果计数器减到0，那么释放RLock内部的锁，此时其他线程就可以获取到锁</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">=</span> <span class="bp">None</span>    <span class="c1"># 还原RLock对象持有锁的拥有者None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_block</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="p">)</span> <span class="c1"># 释放锁</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_block</span><span class="o">.</span><span class="n">release</span><span class="p">()</span> <span class="c1"># 释放锁</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="acquire-方法流程图">acquire 方法流程图</h2>
@@ -390,67 +394,67 @@ cond2(no)-&gt;e2
 
 
 <span class="k">class</span> <span class="nc">_RLock</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">acquired</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">me</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">get_ident</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">acquired</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">me</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">==</span> <span class="n">me</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">acquired count = {self._count}</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;acquired count = {self._count}&#34;</span><span class="p">)</span>
             <span class="k">return</span> <span class="mi">1</span>
 
         <span class="n">rc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">rc</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">acquired count = {self._count}</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;acquired count = {self._count}&#34;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">=</span> <span class="n">me</span>
         <span class="k">return</span> <span class="n">rc</span>
 
-    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">me</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">get_ident</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">me</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">!=</span> <span class="n">me</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">can not release the un-acquired the lock</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&#34;can not release the un-acquired the lock&#34;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">release count = {self._count}</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;release count = {self._count}&#34;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">count</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="o">=</span> <span class="bp">None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">====非可重入锁所在线程释放RLock内部锁====</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">pid</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">current pid = {pid}</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">lock</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;====非可重入锁所在线程释放RLock内部锁====&#34;</span><span class="p">)</span>
+    <span class="n">pid</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;current pid = {pid}&#34;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">====非可重入锁所在线程释放RLock内部锁失败====</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">waiting......</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">lock</span><span class="o">.</span><span class="n">acquired</span><span class="p">(</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;====非可重入锁所在线程释放RLock内部锁失败====&#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;waiting......&#34;</span><span class="p">)</span>
+    <span class="n">lock</span><span class="o">.</span><span class="n">acquired</span><span class="p">()</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">RLock所在线程已释放所有锁，worker线程获取RLock内部锁成功</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;RLock所在线程已释放所有锁，worker线程获取RLock内部锁成功&#34;</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">生成一个R锁对象</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">rlock</span> <span class="o">=</span> <span class="n">RLock</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">主线程获取RLock</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">rlock</span><span class="o">.</span><span class="n">acquired</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">current pid = {threading.current_thread()}</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">创建并启动一个worker线程</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">rlock</span><span class="p">,</span><span class="p">)</span><span class="p">)</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">主线程开始获取RLock锁</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">rlock</span><span class="o">.</span><span class="n">acquired</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">主线程释放RLock锁</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">rlock</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">主线程释放完所有的RLock锁</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;生成一个R锁对象&#34;</span><span class="p">)</span>
+    <span class="n">rlock</span> <span class="o">=</span> <span class="n">RLock</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;主线程获取RLock&#34;</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">rlock</span><span class="o">.</span><span class="n">acquired</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;current pid = {threading.current_thread()}&#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;创建并启动一个worker线程&#34;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">rlock</span><span class="p">,))</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;主线程开始获取RLock锁&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">rlock</span><span class="o">.</span><span class="n">acquired</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;主线程释放RLock锁&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="n">rlock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;主线程释放完所有的RLock锁&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>测试代码使用两个线程，一个主线程，一个是 worker 线程。
