@@ -6,7 +6,7 @@
     <description>Recent content on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Jan 2020 16:59:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 21:53:30 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,15 @@
       
       <guid>https://reishin.me/roadmap/</guid>
       <description>&lt;p&gt;本文是为了便于查找博客中相关内容或者知识点，作为索引使用。持续更新！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tornado 模板引擎原理解析</title>
+      <link>https://reishin.me/tornado-template-engine-analysis/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tornado-template-engine-analysis/</guid>
+      <description></description>
     </item>
     
     <item>

@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Jan 2020 16:59:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 21:53:30 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python</title>
+      <link>https://reishin.me/tags/Python/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tornado</title>
+      <link>https://reishin.me/tags/Tornado/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/Tornado/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>原理</title>
+      <link>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>模板引擎</title>
+      <link>https://reishin.me/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>DNS</title>
@@ -120,15 +156,6 @@
     </item>
     
     <item>
-      <title>Python</title>
-      <link>https://reishin.me/tags/Python/</link>
-      <pubDate>Fri, 30 Aug 2019 18:38:05 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/Python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Blog</title>
       <link>https://reishin.me/tags/Blog/</link>
       <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
@@ -170,15 +197,6 @@
       <pubDate>Thu, 25 Apr 2019 18:33:45 +0800</pubDate>
       
       <guid>https://reishin.me/tags/redis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>原理</title>
-      <link>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</link>
-      <pubDate>Thu, 25 Apr 2019 18:33:45 +0800</pubDate>
-      
-      <guid>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</guid>
       <description></description>
     </item>
     

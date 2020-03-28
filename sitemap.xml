@@ -10,7 +10,70 @@
   
   <url>
     <loc>https://reishin.me/categories/</loc>
-    <lastmod>2020-01-08T16:59:34+08:00</lastmod>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/post/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/Python/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/categories/Python/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/Tornado/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tornado-template-engine-analysis/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</loc>
+    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -23,28 +86,7 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/</loc>
-    <lastmod>2020-01-08T16:59:34+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://reishin.me/tags/Github/</loc>
-    <lastmod>2020-01-08T16:59:34+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/post/</loc>
-    <lastmod>2020-01-08T16:59:34+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/</loc>
     <lastmod>2020-01-08T16:59:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -184,20 +226,6 @@
   </url>
   
   <url>
-    <loc>https://reishin.me/tags/Python/</loc>
-    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/categories/Python/</loc>
-    <lastmod>2019-08-30T18:38:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://reishin.me/lesser-known-features-in-python/</loc>
     <lastmod>2019-08-30T18:38:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -262,13 +290,6 @@
   
   <url>
     <loc>https://reishin.me/tags/redis/</loc>
-    <lastmod>2019-04-25T18:33:45+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2019-04-25T18:33:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

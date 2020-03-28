@@ -6,10 +6,19 @@
     <description>Recent content in 原理 on Field of Hope</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Apr 2019 18:33:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 21:53:30 +0800</lastBuildDate>
     
 	<atom:link href="https://reishin.me/tags/%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tornado 模板引擎原理解析</title>
+      <link>https://reishin.me/tornado-template-engine-analysis/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tornado-template-engine-analysis/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Python 中 Redis 连接池原理</title>
