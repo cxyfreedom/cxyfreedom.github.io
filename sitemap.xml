@@ -9,22 +9,57 @@
   </url>
   
   <url>
+    <loc>https://reishin.me/tags/2020/</loc>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/categories/2020/</loc>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/2020-annual-review/</loc>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://reishin.me/categories/</loc>
-    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://reishin.me/</loc>
-    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://reishin.me/post/</loc>
-    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/</loc>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://reishin.me/tags/%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2020-12-20T19:07:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,13 +73,6 @@
   
   <url>
     <loc>https://reishin.me/categories/Python/</loc>
-    <lastmod>2020-03-28T21:53:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/</loc>
     <lastmod>2020-03-28T21:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -178,13 +206,6 @@
   
   <url>
     <loc>https://reishin.me/2019-annual-review/</loc>
-    <lastmod>2019-12-25T15:49:51+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://reishin.me/tags/%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2019-12-25T15:49:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
