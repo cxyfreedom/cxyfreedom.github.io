@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Field of Hope</title>
+    <link>https://reishin.me/tags/Docker/</link>
+    <description>Recent content in Docker on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 16 Jan 2019 18:10:40 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/Docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker 容器技术基础总结</title>
+      <link>https://reishin.me/docker-base/</link>
+      <pubDate>Wed, 16 Jan 2019 18:10:40 +0800</pubDate>
+      
+      <guid>https://reishin.me/docker-base/</guid>
+      <description>&lt;p&gt;Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

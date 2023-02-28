@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Field of Hope</title>
+    <link>https://reishin.me/tags/Kubernetes/</link>
+    <description>Recent content in Kubernetes on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 22 Nov 2018 17:26:21 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/Kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 kubeadm 安装 Kubernetes 1.12</title>
+      <link>https://reishin.me/deploy-kubernetes-using-kubeadm/</link>
+      <pubDate>Thu, 22 Nov 2018 17:26:21 +0800</pubDate>
+      
+      <guid>https://reishin.me/deploy-kubernetes-using-kubeadm/</guid>
+      <description>&lt;p&gt;kubeadm 是 Kubernetes 官方提供的用于快速部署 Kubernetes 集群的工具，本文主要记录自己通过 kubeadm 部署 Kubernetes 过程中遇到的问题和踩过的坑，便于自己和他人查阅。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Helm 使用教程</title>
+      <link>https://reishin.me/kubernetes-helm-installation/</link>
+      <pubDate>Thu, 13 Sep 2018 21:30:37 +0800</pubDate>
+      
+      <guid>https://reishin.me/kubernetes-helm-installation/</guid>
+      <description>&lt;p&gt;Helm 是 Kubernetes 的一个包管理器，用来简化 Kubernetes 应用的部署和管理。类似于 CentOS 的 yum 工具 或者是 Ubuntu 的 apt-get 工具。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tricks on Field of Hope</title>
+    <link>https://reishin.me/tags/Tricks/</link>
+    <description>Recent content in Tricks on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 10 Jan 2019 18:08:40 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/Tricks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 中的一些技巧</title>
+      <link>https://reishin.me/python-tricks/</link>
+      <pubDate>Thu, 10 Jan 2019 18:08:40 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-tricks/</guid>
+      <description>&lt;p&gt;本文为阅读 《Python Tricks A Buffet of Awesome Python Features》书籍的笔记，仅供自己参考。由于大部分内容熟知，所以并未记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

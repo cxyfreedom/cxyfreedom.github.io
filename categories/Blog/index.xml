@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Field of Hope</title>
+    <link>https://reishin.me/categories/Blog/</link>
+    <description>Recent content in Blog on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 23 Aug 2019 22:14:05 +0800</lastBuildDate><atom:link href="https://reishin.me/categories/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Hugo 搭建 Blog</title>
+      <link>https://reishin.me/build-blog-with-hugo/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/build-blog-with-hugo/</guid>
+      <description>&lt;p&gt;相比于 Hexo，Hugo 更加的轻量，从零部署也是十分简单。本文主要记录从 Hexo 迁移到 Hugo 的过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用 Hexo &#43; GitHub 搭建个人博客</title>
+      <link>https://reishin.me/%E5%88%A9%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Fri, 06 Nov 2015 15:35:56 +0800</pubDate>
+      
+      <guid>https://reishin.me/%E5%88%A9%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;p&gt;网上看到各式各样的博客，因此，自己也想拥有一个属于自己的独立博客。利用搜索引擎，最终选择了 Hexo + Github 的方式来搭建一个静态博客。搭建完成后，决定把自己从开始到搭建完成的整个过程给记录下来，也可以给以后搭建博客的人一个参考。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>其他 on Field of Hope</title>
+    <link>https://reishin.me/categories/%E5%85%B6%E4%BB%96/</link>
+    <description>Recent content in 其他 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 08 Jan 2020 16:59:34 +0800</lastBuildDate><atom:link href="https://reishin.me/categories/%E5%85%B6%E4%BB%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决 GitHub 上图片无法加载的问题</title>
+      <link>https://reishin.me/github-dns/</link>
+      <pubDate>Wed, 08 Jan 2020 16:59:34 +0800</pubDate>
+      
+      <guid>https://reishin.me/github-dns/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

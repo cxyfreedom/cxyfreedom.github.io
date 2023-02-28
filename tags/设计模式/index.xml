@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on Field of Hope</title>
+    <link>https://reishin.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 21 Apr 2019 20:58:10 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 设计模式实现</title>
+      <link>https://reishin.me/python-design-pattern/</link>
+      <pubDate>Sun, 21 Apr 2019 20:58:10 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-design-pattern/</guid>
+      <description>&lt;p&gt;设计模式是指软件设计问题的推荐方案。设计模式一般是描述如何组织代码和使用最佳实践来解决常见的设计问题。&lt;/p&gt;
+&lt;p&gt;它是高层次的方案，并不关注具体的实现细节。&lt;/p&gt;
+&lt;p&gt;本文主要通过 Python 来简单介绍和实现不同的设计模式。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

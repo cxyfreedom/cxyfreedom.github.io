@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fcntl on Field of Hope</title>
+    <link>https://reishin.me/tags/fcntl/</link>
+    <description>Recent content in fcntl on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Jan 2019 15:02:07 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/fcntl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 中给文件加锁——fcntl</title>
+      <link>https://reishin.me/python-module-fcntl/</link>
+      <pubDate>Tue, 08 Jan 2019 15:02:07 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-module-fcntl/</guid>
+      <description>&lt;p&gt;在 Python 中，如果想要给一个文件加锁，可以使用 &lt;code&gt;fcntl&lt;/code&gt; 模块。其中有 &lt;code&gt;flock&lt;/code&gt; 和 &lt;code&gt;lockf&lt;/code&gt; 两种不同的方式。首先我们先了解一下在 Linux 中的文件锁。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

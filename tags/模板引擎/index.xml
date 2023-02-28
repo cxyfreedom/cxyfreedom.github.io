@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>模板引擎 on Field of Hope</title>
+    <link>https://reishin.me/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</link>
+    <description>Recent content in 模板引擎 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Mar 2020 21:53:30 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tornado 模板引擎原理解析</title>
+      <link>https://reishin.me/tornado-template-engine-analysis/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tornado-template-engine-analysis/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

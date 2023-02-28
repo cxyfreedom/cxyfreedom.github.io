@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>一致性哈希 on Field of Hope</title>
+    <link>https://reishin.me/tags/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C/</link>
+    <description>Recent content in 一致性哈希 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 29 Apr 2019 14:43:31 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 HashRing 实现 Python 下的一致性哈希算法</title>
+      <link>https://reishin.me/python-consistent-hash/</link>
+      <pubDate>Mon, 29 Apr 2019 14:43:31 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-consistent-hash/</guid>
+      <description>&lt;p&gt;当我们需要实现服务器负载均衡的时候，能够实现负载均衡的算法有很多种，包括：轮询算法（Round Robin）、哈希算法（Hash）、最少连接算法（Least Connection）、响应速度算法（Response Time）、加权法（Weighted）等等。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

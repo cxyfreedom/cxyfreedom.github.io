@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on Field of Hope</title>
+    <link>https://reishin.me/tags/Github/</link>
+    <description>Recent content in Github on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 08 Jan 2020 16:59:34 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/Github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Hugo 搭建 Blog</title>
+      <link>https://reishin.me/build-blog-with-hugo/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/build-blog-with-hugo/</guid>
+      <description>&lt;p&gt;相比于 Hexo，Hugo 更加的轻量，从零部署也是十分简单。本文主要记录从 Hexo 迁移到 Hugo 的过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GitHub Pages 启用 SSL/TLS</title>
+      <link>https://reishin.me/Hexo-with-SSL-hosted-on-GitHub-Pages/</link>
+      <pubDate>Thu, 25 Aug 2016 03:14:00 +0800</pubDate>
+      
+      <guid>https://reishin.me/Hexo-with-SSL-hosted-on-GitHub-Pages/</guid>
+      <description>&lt;p&gt;通过本文，可以让 GitHub Pages 从 http 转变为 https，从而让数据更加安全。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

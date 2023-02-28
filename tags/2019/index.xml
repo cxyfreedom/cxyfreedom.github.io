@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2019 on Field of Hope</title>
+    <link>https://reishin.me/tags/2019/</link>
+    <description>Recent content in 2019 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 05 Jan 2020 17:18:38 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/2019/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2019 下半年观剧回顾</title>
+      <link>https://reishin.me/2019-theatre-review/</link>
+      <pubDate>Sun, 05 Jan 2020 17:18:38 +0800</pubDate>
+      
+      <guid>https://reishin.me/2019-theatre-review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2019 年个人年终总结</title>
+      <link>https://reishin.me/2019-annual-review/</link>
+      <pubDate>Wed, 25 Dec 2019 15:49:51 +0800</pubDate>
+      
+      <guid>https://reishin.me/2019-annual-review/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

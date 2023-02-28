@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>连接池 on Field of Hope</title>
+    <link>https://reishin.me/tags/%E8%BF%9E%E6%8E%A5%E6%B1%A0/</link>
+    <description>Recent content in 连接池 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 25 Apr 2019 18:33:45 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/%E8%BF%9E%E6%8E%A5%E6%B1%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 中 Redis 连接池原理</title>
+      <link>https://reishin.me/python-redis-pool/</link>
+      <pubDate>Thu, 25 Apr 2019 18:33:45 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-redis-pool/</guid>
+      <description>&lt;p&gt;通常情况下，我们进行 &lt;code&gt;redis&lt;/code&gt; 操作时，会创建一个连接，并基于这个连接进行操作。操作完成后，释放该连接。但是当并发较高时，频繁的创建和释放会对性能造成影响。连接池的原理是通过预先创建多个连接。进行获取已经创建好的连接进行操作，操作完成之后，不会进行释放，可以用于后续其他redis的操作。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>目录 on Field of Hope</title>
+    <link>https://reishin.me/tags/%E7%9B%AE%E5%BD%95/</link>
+    <description>Recent content in 目录 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 29 Apr 2019 14:32:15 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/%E7%9B%AE%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博客文章目录</title>
+      <link>https://reishin.me/roadmap/</link>
+      <pubDate>Mon, 29 Apr 2019 14:32:15 +0800</pubDate>
+      
+      <guid>https://reishin.me/roadmap/</guid>
+      <description>&lt;p&gt;本文是为了便于查找博客中相关内容或者知识点，作为索引使用。持续更新！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

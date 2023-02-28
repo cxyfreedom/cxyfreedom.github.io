@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>tmux 使用总结 - Field of Hope</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CxyFreedom" /><meta name="description" content="tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&amp;gt; 发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时 使用多个命令行，或多个任务时非常方便。
+" /><meta name="keywords" content="Hugo, theme, even, cxyfreedom, 博客, blog, reishin, python, BackEnd" />
+
+
+
+<meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
+
+
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
+
+
+<link rel="canonical" href="https://reishin.me/tmux/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+<meta property="og:title" content="tmux 使用总结" />
+<meta property="og:description" content="tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&gt;
+发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时
+使用多个命令行，或多个任务时非常方便。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://reishin.me/tmux/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-04-17T18:24:21+08:00" />
+<meta property="article:modified_time" content="2019-04-17T18:24:21+08:00" />
+<meta itemprop="name" content="tmux 使用总结">
+<meta itemprop="description" content="tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&gt;
+发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时
+使用多个命令行，或多个任务时非常方便。"><meta itemprop="datePublished" content="2019-04-17T18:24:21+08:00" />
+<meta itemprop="dateModified" content="2019-04-17T18:24:21+08:00" />
+<meta itemprop="wordCount" content="5138">
+<meta itemprop="keywords" content="tmux," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="tmux 使用总结"/>
+<meta name="twitter:description" content="tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&gt;
+发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时
+使用多个命令行，或多个任务时非常方便。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Field of Hope</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Field of Hope</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">tmux 使用总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-17 18:24 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
+            </div>
+          <span class="more-meta"> 约 5138 字 </span>
+          <span class="more-meta"> 预计阅读 11 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础知识">基础知识</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#session">Session</a></li>
+        <li><a href="#window">Window</a></li>
+        <li><a href="#panel">Panel</a></li>
+        <li><a href="#命令模式">命令模式</a></li>
+        <li><a href="#快捷键表">快捷键表</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置tmux">配置tmux</a>
+      <ul>
+        <li><a href="#设置前缀键">设置前缀键</a></li>
+        <li><a href="#修改默认延时">修改默认延时</a></li>
+        <li><a href="#设置窗口和面板索引">设置窗口和面板索引</a></li>
+        <li><a href="#创建重新加载配置的快捷键">创建重新加载配置的快捷键</a></li>
+        <li><a href="#分割面板">分割面板</a></li>
+        <li><a href="#调整移动键和调整面板大小">调整移动键和调整面板大小</a></li>
+        <li><a href="#处理鼠标">处理鼠标</a></li>
+        <li><a href="#配置颜色">配置颜色</a></li>
+        <li><a href="#开启活动通知">开启活动通知</a></li>
+        <li><a href="#设置状态栏">设置状态栏</a></li>
+        <li><a href="#窗口列表居中显示">窗口列表居中显示</a></li>
+        <li><a href="#启用-vi-模式">启用 vi 模式</a></li>
+        <li><a href="#配置表">配置表</a></li>
+      </ul>
+    </li>
+    <li><a href="#脚本定制-tmux-环境">脚本定制 tmux 环境</a>
+      <ul>
+        <li><a href="#项目配置脚本">项目配置脚本</a></li>
+        <li><a href="#使用-tmux-配置">使用 tmux 配置</a></li>
+        <li><a href="#使用-tmuxinator-管理配置">使用 tmuxinator 管理配置</a></li>
+        <li><a href="#脚本化-tmux-命令">脚本化 tmux 命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#文本和缓冲区">文本和缓冲区</a>
+      <ul>
+        <li><a href="#在缓冲区中快速移动">在缓冲区中快速移动</a></li>
+        <li><a href="#复制和粘贴文本">复制和粘贴文本</a></li>
+        <li><a href="#按键表">按键表</a></li>
+      </ul>
+    </li>
+    <li><a href="#工作流">工作流</a>
+      <ul>
+        <li><a href="#高效使用面板和窗口">高效使用面板和窗口</a></li>
+        <li><a href="#在同一目录下打开新面板">在同一目录下打开新面板</a></li>
+        <li><a href="#会话间移动">会话间移动</a></li>
+        <li><a href="#会话间移动窗口">会话间移动窗口</a></li>
+        <li><a href="#设置-shell">设置 shell</a></li>
+        <li><a href="#将程序输出记录到日志">将程序输出记录到日志</a></li>
+      </ul>
+    </li>
+    <li><a href="#个人完整配置参考">个人完整配置参考</a></li>
+    <li><a href="#参考文章">参考文章</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-17T18:24:21" title="April 17, 2019">April 17, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&gt;
+发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时
+使用多个命令行，或多个任务时非常方便。</p>
+<h2 id="基础知识">基础知识</h2>
+<p>Tmux 中的主要概念分为三个：</p>
+<ul>
+<li>Session - 默认开启Tmux的时候，就会自动新建一个会话，在这个会话中，也会给你开启一个默认的Window（也即窗口）。Tmux中可以拥有多个会话，多个会话之间可以来回无缝切换。</li>
+<li>Window - 一个 Session 中，可以开启多个 window。这些 window 同属一个 Session，并由其管理。</li>
+<li>Panel - Panel是比 Window 更小的界面元素。由 window 分割出来的单位就叫做 Panel。在同一个 window 中，通过控制光标在分割出的 Panel 中随意移动用来选定当前激活状态的 Panel。</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>三者之间的关系是：Session -&gt; Window -&gt; Panel</p>
+<h3 id="安装">安装</h3>
+<p>Mac OS 下通过 Homebrew 安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ brew install tmux
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过以下命令查看是否安装正确以及版本号：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmux -V
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmux
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>退出（不推荐这种方式）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ <span class="nb">exit</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="session">Session</h3>
+<p><strong>创建命名会话</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmux new-session -s basic
+</span></span><span class="line"><span class="cl"><span class="c1"># 简化命令</span>
+</span></span><span class="line"><span class="cl">$ tmux new -s basic
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>默认前缀快捷键</strong>
+<code>ctrl(^)+b</code></p>
+<p><strong>列出当前存在的会话</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmux list-sessions
+</span></span><span class="line"><span class="cl"><span class="c1"># 简化命令</span>
+</span></span><span class="line"><span class="cl">$ tmux ls
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>重新连接到已有会话</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 如果只有一个会话</span>
+</span></span><span class="line"><span class="cl">$ tmux attach
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果存在多个会话</span>
+</span></span><span class="line"><span class="cl">$ tmux attach -t &lt;session-name&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>杀死会话</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 方式一</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 方式二</span>
+</span></span><span class="line"><span class="cl">$ tmux kill-session -t &lt;session-name&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>分离会话</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">PREFIX d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="window">Window</h3>
+<p><strong>创建并命名窗口</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 创建窗口</span>
+</span></span><span class="line"><span class="cl">prefix c
+</span></span><span class="line"><span class="cl"><span class="c1"># 重命名窗口（前缀+逗号键）</span>
+</span></span><span class="line"><span class="cl">prefix ,
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>在窗口之间切换</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 切换到下一个窗口（n=next）</span>
+</span></span><span class="line"><span class="cl">prefix n
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换到上一个窗口（p=previous）</span>
+</span></span><span class="line"><span class="cl">prefix p
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换到某个编号的窗口</span>
+</span></span><span class="line"><span class="cl">prefix &lt;num&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果窗口数量超过 9 个，通过窗口名称查找（f=find）</span>
+</span></span><span class="line"><span class="cl">prefix f
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果窗口数量超过 9 个，通过窗口列表查找（w=window）</span>
+</span></span><span class="line"><span class="cl">prefix w
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭一个窗口</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> 或者 prefix <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="panel">Panel</h3>
+<p><strong>切割面板</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 垂直切割</span>
+</span></span><span class="line"><span class="cl">prefix %
+</span></span><span class="line"><span class="cl"><span class="c1"># 水平切割</span>
+</span></span><span class="line"><span class="cl">prefix <span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 面板间来回切换
+</span></span></span><span class="line"><span class="cl"><span class="s2">prefix o
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 最大化或者恢复面板
+</span></span></span><span class="line"><span class="cl"><span class="s2">prefix z
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>面板布局</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 切换面板布局</span>
+</span></span><span class="line"><span class="cl">prefix &lt;space&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认布局有以下几种：</p>
+<ul>
+<li>even-horizontal 把所有面板均匀地水平排列，从左到右</li>
+<li>even-vertical 把所有均匀地垂直排列，从上到下</li>
+<li>main-horizontal 在顶部创建一个非常大的面板，其余面板变为小面板水平的放在底部</li>
+<li>main-vertical 在左侧创建一个非常大的面板，其余面板变为小面板水平的放在底部</li>
+<li>tiled 把所有面板大小均等地在屏幕上显示</li>
+</ul>
+<p><strong>关闭面板</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 大写的 X</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> 或者 prefix X
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="命令模式">命令模式</h3>
+<p><strong>进入命令模式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">prefix :
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>创建新窗口</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">new-window -n console
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>创建新窗口并执行命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">new-window -n processes <span class="s2">&#34;top&#34;</span><span class="sb">`</span>。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行后，如果按下 q 键，程序会随窗口一起被关闭</p>
+<h3 id="快捷键表">快捷键表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">tmux new-session</td>
+<td style="text-align:center">创建一个未命名的会话。可以简写为 tmux new 或者 tmux</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux new -s development</td>
+<td style="text-align:center">创建一个名为 development 的会话</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux new -s development -n editor</td>
+<td style="text-align:center">创建一个名为 development 的会话，并将第一个窗口命名为 editor</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux attach -t development</td>
+<td style="text-align:center">连接到名为 development 的会话</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PREFIX d</td>
+<td style="text-align:center">从会话中分离，让该会话在后台运行</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX :</td>
+<td style="text-align:center">进入命令模式</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX c</td>
+<td style="text-align:center">在当前会话中创建一个新窗口</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX 0&hellip;9</td>
+<td style="text-align:center">根据窗口编号选择窗口</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX w</td>
+<td style="text-align:center">显示当前会话中所有窗口的可选列表</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX ,</td>
+<td style="text-align:center">显示一个提示符来重命名窗口</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX &amp;</td>
+<td style="text-align:center">杀死当前窗口，有确认提示</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX %</td>
+<td style="text-align:center">将当前窗口垂直分割</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX &quot;</td>
+<td style="text-align:center">将当前窗口水平分割</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX o</td>
+<td style="text-align:center">在以打开的面板之间循环移动当前焦点</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX q</td>
+<td style="text-align:center">短暂地显示每个面板的编号</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX X</td>
+<td style="text-align:center">关闭当前面板，有确认提示</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX SPACE</td>
+<td style="text-align:center">循环使用 tmux 的默认面板布局</td>
+</tr>
+</tbody>
+</table>
+<h2 id="配置tmux">配置tmux</h2>
+<p>默认情况下，tmux 会在两个位置查找配置文件。首先查找 <code>/etc/tmux.conf</code> 作为系统配置，然后在当前用户的目录下查找（<code>~/.tmux.conf</code>）文件，后者优先级更高。</p>
+<h3 id="设置前缀键">设置前缀键</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g prefix C-a
+</span></span><span class="line"><span class="cl">unbind C-b
+</span></span><span class="line"><span class="cl"><span class="c1"># 发送前缀键到其它程序</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-a send-prefix
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="修改默认延时">修改默认延时</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -sg escape-time <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="设置窗口和面板索引">设置窗口和面板索引</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 让窗口索引从 1 开始</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g base-index <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 让面板索引从 1 开始</span>
+</span></span><span class="line"><span class="cl">setw -g pane-base-index <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建重新加载配置的快捷键">创建重新加载配置的快捷键</h3>
+<p>设置快捷键为：<code>prefix r</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> r source-file ~/.tmux.conf<span class="se">\;</span> display <span class="s2">&#34;Reloaded!&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 display 能让 tmux 在状态栏输出一个消息。
+在多个命令之间添加 ; 符号可以使一个键绑定执行多个命令。</p>
+<p>然后通过 <code>prefix :</code> 进入命令模式，执行以下命令重新加载配置文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">source-file ~/.tmux.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="分割面板">分割面板</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 水平分割</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> <span class="p">|</span> split-window -h
+</span></span><span class="line"><span class="cl"><span class="c1"># 垂直分割</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> - split-window -v
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="调整移动键和调整面板大小">调整移动键和调整面板大小</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 调整移动键</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> h <span class="k">select</span>-pane -L <span class="c1"># 左</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> j <span class="k">select</span>-pane -D <span class="c1"># 下</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> k <span class="k">select</span>-pane -U <span class="c1"># 上</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> l <span class="k">select</span>-pane -R <span class="c1"># 右</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择窗口</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r C-h <span class="k">select</span>-window -t :-
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r C-l <span class="k">select</span>-window -t :+
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整面板大小</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r H resize-pane -L <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r J resize-pane -D <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r K resize-pane -U <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r L resize-pane -R <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="处理鼠标">处理鼠标</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g mode-mouse on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置颜色">配置颜色</h3>
+<p>测试终端色彩模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ wget http://www.vim.org/scripts/download_script.php?src_id<span class="o">=</span><span class="m">4568</span> -O colortest
+</span></span><span class="line"><span class="cl">$ perl colortest -w
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果是 Linux 系统，需要在 <code>~/.bashrc</code> 中加入 <code>[ -z &quot;$TMUX&quot;] &amp;&amp; export TERM=xterm-256color</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g default-terminal <span class="s2">&#34;screen-256color&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>设置状态栏的颜色</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g status-fg white
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-bg black
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>设置窗口列表的颜色</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">setw -g window-status-fg cyan
+</span></span><span class="line"><span class="cl">setw -g window-status-bg default
+</span></span><span class="line"><span class="cl">setw -g window-status-attr dim
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>设置活动窗口的颜色</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">setw -g window-status-current-fg white
+</span></span><span class="line"><span class="cl">setw -g window-status-current-bg red
+</span></span><span class="line"><span class="cl">setw -g window-status-current-attr bright
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>设置命令行或消息的颜色</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g message-fg white
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g message-bg black
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g message-attr bright
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="开启活动通知">开启活动通知</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">setw -g monitor-activity on
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g visual-activity on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="设置状态栏">设置状态栏</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 设置状态栏左侧的内容和颜色</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-left-length <span class="m">40</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-left <span class="s2">&#34;[fg=green]Session: #S #[fg=yellow]#I #[fg=cyan]#P&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-utf8 on
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置状态栏右侧的内容和颜色</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 15% | 28 Nov 18:15</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-right <span class="s2">&#34;#(~/battery Discharging) | #[fg=cyan]%d %b %R&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每 60 秒更新一次状态栏</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-interval <span class="m">60</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>状态栏变量</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">变量</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">#H</td>
+<td style="text-align:center">本地主机的主机名</td>
+</tr>
+<tr>
+<td style="text-align:center">#h</td>
+<td style="text-align:center">本地主机的主机名，没有 domain</td>
+</tr>
+<tr>
+<td style="text-align:center">#F</td>
+<td style="text-align:center">当前窗口的标签</td>
+</tr>
+<tr>
+<td style="text-align:center">#I</td>
+<td style="text-align:center">当前窗口的索引</td>
+</tr>
+<tr>
+<td style="text-align:center">#P</td>
+<td style="text-align:center">当前面板的索引</td>
+</tr>
+<tr>
+<td style="text-align:center">#S</td>
+<td style="text-align:center">当前会话的名称</td>
+</tr>
+<tr>
+<td style="text-align:center">#T</td>
+<td style="text-align:center">当前窗口的标题</td>
+</tr>
+<tr>
+<td style="text-align:center">#W</td>
+<td style="text-align:center">当前窗口的名称</td>
+</tr>
+<tr>
+<td style="text-align:center">##</td>
+<td style="text-align:center">一个 # 符号</td>
+</tr>
+<tr>
+<td style="text-align:center">#(shell-command)</td>
+<td style="text-align:center">shell 命令的第一行输出</td>
+</tr>
+<tr>
+<td style="text-align:center">#[attributes]</td>
+<td style="text-align:center">要改变的颜色或属性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="窗口列表居中显示">窗口列表居中显示</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g status-justify centre
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启用-vi-模式">启用 vi 模式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">setw -g mode-keys vi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置表">配置表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">set -g prefix C-a</td>
+<td style="text-align:center">设置前缀键为 Ctrl-a</td>
+</tr>
+<tr>
+<td style="text-align:center">set -sg escape-time n</td>
+<td style="text-align:center">设置 tmux 等待前缀键和命令键之间的时间间隔（毫秒）</td>
+</tr>
+<tr>
+<td style="text-align:center">source-file [file]</td>
+<td style="text-align:center">加载一个配置文件。重新加载当前配置文件或以后加入附加配置选项</td>
+</tr>
+<tr>
+<td style="text-align:center">bind C-a send-prefix</td>
+<td style="text-align:center">两次按下 PREFIX 键后向 tmux 发送组合键</td>
+</tr>
+<tr>
+<td style="text-align:center">bind-key [key] [command]</td>
+<td style="text-align:center">新建一个快捷键，执行指定的 command，可简写为 bind</td>
+</tr>
+<tr>
+<td style="text-align:center">bind-key -r [key] [command]</td>
+<td style="text-align:center">新建一个可重复的快捷键，就是说只需要按下一次 PREFIX 键之后就可以重复地按下命令键</td>
+</tr>
+<tr>
+<td style="text-align:center">unbind-key [key]</td>
+<td style="text-align:center">移除一个定义的快捷键，将它绑定到其它命令</td>
+</tr>
+<tr>
+<td style="text-align:center">display-message 或 display</td>
+<td style="text-align:center">在状态消息里显示给定的文字</td>
+</tr>
+<tr>
+<td style="text-align:center">set-option [flags] [option] [value]</td>
+<td style="text-align:center">配置会话选项。使用 -g 可作为全局配置</td>
+</tr>
+<tr>
+<td style="text-align:center">set-window-option [option] [value]</td>
+<td style="text-align:center">配置窗口选项，比如活动通知、光标移动等</td>
+</tr>
+<tr>
+<td style="text-align:center">set -a</td>
+<td style="text-align:center">将值添加到当前选项而不是替换选项的值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="脚本定制-tmux-环境">脚本定制 tmux 环境</h2>
+<h3 id="项目配置脚本">项目配置脚本</h3>
+<p>创建脚本并设置可执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ touch development
+</span></span><span class="line"><span class="cl">$ chmod +x development
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 判断会话是否存在</span>
+</span></span><span class="line"><span class="cl">tmux has-session -t development
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> !<span class="o">=</span> <span class="m">0</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 创建一个新的会话并分离</span>
+</span></span><span class="line"><span class="cl">    tmux new-session -s development -n editor -d
+</span></span><span class="line"><span class="cl">    <span class="c1"># 变更工作目录，需要事先创建好（C-m 表示回车）</span>
+</span></span><span class="line"><span class="cl">    tmux send-keys -t development <span class="s1">&#39;cd ~/prj/&#39;</span> C-m
+</span></span><span class="line"><span class="cl">    <span class="c1"># 打开编辑器</span>
+</span></span><span class="line"><span class="cl">    tmux send-keys -t development <span class="s1">&#39;vim&#39;</span> C-m
+</span></span><span class="line"><span class="cl">    <span class="c1"># 分割主编辑窗口</span>
+</span></span><span class="line"><span class="cl">    tmux split-window -v -t development
+</span></span><span class="line"><span class="cl">    <span class="c1"># 调整主编辑窗口布局</span>
+</span></span><span class="line"><span class="cl">    tmux <span class="k">select</span>-layout -t development main-horizontal
+</span></span><span class="line"><span class="cl">    <span class="c1"># 在分割后的第二个面板切换路径</span>
+</span></span><span class="line"><span class="cl">    tmux send-keys -t development:1.2 <span class="s1">&#39;cd ~/prj&#39;</span> C-m
+</span></span><span class="line"><span class="cl">    <span class="c1"># 创建第二个窗口并切换路径</span>
+</span></span><span class="line"><span class="cl">    tmux new-window -n console -t development
+</span></span><span class="line"><span class="cl">    tmux send-keys -t development:2 <span class="s1">&#39;cd ~/prj&#39;</span> C-m
+</span></span><span class="line"><span class="cl">    <span class="c1"># 切回第一个窗口</span>
+</span></span><span class="line"><span class="cl">    tmux <span class="k">select</span>-window -t development:1
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">tmux attach -t development
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后执行脚本即可。</p>
+<h3 id="使用-tmux-配置">使用 tmux 配置</h3>
+<p>创建一个名为 <code>app.conf</code> 的配置文件，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">source-file ~/.tmux.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建一个新的会话并分离</span>
+</span></span><span class="line"><span class="cl">new-session -s development -n editor -d
+</span></span><span class="line"><span class="cl"><span class="c1"># 变更工作目录，需要事先创建好（C-m 表示回车）</span>
+</span></span><span class="line"><span class="cl">send-keys -t development <span class="s1">&#39;cd ~/prj/&#39;</span> C-m
+</span></span><span class="line"><span class="cl"><span class="c1"># 打开编辑器</span>
+</span></span><span class="line"><span class="cl">send-keys -t development <span class="s1">&#39;vim&#39;</span> C-m
+</span></span><span class="line"><span class="cl"><span class="c1"># 分割主编辑窗口</span>
+</span></span><span class="line"><span class="cl">split-window -v -t development
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整主编辑窗口布局</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span>-layout -t development main-horizontal
+</span></span><span class="line"><span class="cl"><span class="c1"># 在分割后的第二个面板切换路径</span>
+</span></span><span class="line"><span class="cl">send-keys -t development:1.2 <span class="s1">&#39;cd ~/prj&#39;</span> C-m
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建第二个窗口并切换路径</span>
+</span></span><span class="line"><span class="cl">new-window -n console -t development
+</span></span><span class="line"><span class="cl">send-keys -t development:2 <span class="s1">&#39;cd ~/prj&#39;</span> C-m
+</span></span><span class="line"><span class="cl"><span class="c1"># 切回第一个窗口</span>
+</span></span><span class="line"><span class="cl"><span class="k">select</span>-window -t development:1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后使用该配置文件，必须传入 <code>-f</code> 参数，并且需要使用 attach，因为 tmux 启动总是调用 new-session，如果不使用 attch 就会创建两个会话。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmux -f app.conf attach
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-tmuxinator-管理配置">使用 tmuxinator 管理配置</h3>
+<p>前提：需要配置环境变量 $EDITOR。</p>
+<p>首先创建一个新的 tmuxinator 项目，这里称为 development。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmuxinator open development
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后修改配置文件内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">name: development
+</span></span><span class="line"><span class="cl">root: ~/prj
+</span></span><span class="line"><span class="cl">windows:
+</span></span><span class="line"><span class="cl">  - editor:
+</span></span><span class="line"><span class="cl">      layout: main-horizontal
+</span></span><span class="line"><span class="cl">      panes:
+</span></span><span class="line"><span class="cl">        - vim
+</span></span><span class="line"><span class="cl">        - <span class="c1">#empty, will just run plain bash</span>
+</span></span><span class="line"><span class="cl">  - console: <span class="c1">#empty</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>保存配置后，执行以下命令，tmuxinator 就会自动加载原始 <code>.tmux.conf</code> 配置文件并应用设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmuxinator development
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="脚本化-tmux-命令">脚本化 tmux 命令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">tmux new-session -s development -n editor</td>
+<td style="text-align:center">创建一个名为 development 的会话并将第一个窗口命名为 editor</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux attach -t development</td>
+<td style="text-align:center">连接到名为 development 的会话</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux send-keys -t development &lsquo;[keys]&rsquo; C-m</td>
+<td style="text-align:center">向 development 会话的活动窗口或面板发送键盘命令，C-m 相当于按下回车键</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux send-keys -t development:1.0 &lsquo;[keys]&rsquo; C-m</td>
+<td style="text-align:center">向 development 会话的第1个窗口和第1个面板发送键盘命令，C-m 相当于按下回车键</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux select-window -t development:1</td>
+<td style="text-align:center">选择 development 会话的第1个窗口为活动窗口</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux split-window -v -p 10 -t development</td>
+<td style="text-align:center">在 development 会话里垂直分割当前窗口并将设置高度为总窗口大小的 10%</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux select-layout -t development main-horizontal</td>
+<td style="text-align:center">设置 development 的布局为 main-horizontal</td>
+</tr>
+<tr>
+<td style="text-align:center">tmux -f app.conf attach</td>
+<td style="text-align:center">加载配置文件 app.conf，并连接到该会话</td>
+</tr>
+<tr>
+<td style="text-align:center">tmuxinator open [name]</td>
+<td style="text-align:center">在项目名为 name 的路径下使用默认编辑器打开配置文件，如果不存在就创建</td>
+</tr>
+<tr>
+<td style="text-align:center">tmuxinator [name]</td>
+<td style="text-align:center">对指定项目加载 tmux 会话</td>
+</tr>
+<tr>
+<td style="text-align:center">tmuxinator list</td>
+<td style="text-align:center">列出当前的项目</td>
+</tr>
+<tr>
+<td style="text-align:center">tmuxinator copy [source] [destination]</td>
+<td style="text-align:center">复制一个项目配置文件</td>
+</tr>
+<tr>
+<td style="text-align:center">tmuxinator delete [name]</td>
+<td style="text-align:center">删除指定项目</td>
+</tr>
+<tr>
+<td style="text-align:center">tmuxinator implode</td>
+<td style="text-align:center">删除当前所有的项目</td>
+</tr>
+<tr>
+<td style="text-align:center">tmuxinator doctor</td>
+<td style="text-align:center">使用 tmuxinator 和系统配置查找问题</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文本和缓冲区">文本和缓冲区</h2>
+<p>按下 <code>PREFIX [</code> 键会进入复制模式。如果要离开复制模式，按下回车键即可。</p>
+<h3 id="在缓冲区中快速移动">在缓冲区中快速移动</h3>
+<p>使用 <code>Ctrl b</code> 向上翻滚一屏或者使用 <code>Ctrl f</code> 向下翻滚一屏，使用 <code>g</code> 键跳转到缓冲区历史的最顶部，或者使用 <code>G</code> 键跳转到缓冲区历史的最底部。</p>
+<h3 id="复制和粘贴文本">复制和粘贴文本</h3>
+<p>按下 <code>PREFIX ]</code> 键会切换到粘贴模式。</p>
+<p><strong>捕捉面板</strong></p>
+<p>按下 <code>PREFIX :</code> 键进入命令模式然后输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">capture-pane
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>显示并保存缓存区</strong></p>
+<p>在命令模式中输入 <code>show-buffer</code> 或者通过 <code>tmux show-buffer</code> 可以显示粘贴缓存区的内容。</p>
+<p>通过 <code>save-buffer</code> 命令可以把缓存区保存到一个文件里。比如可以捕捉当前缓存区并保存到一个文本文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmux capture-pane <span class="o">&amp;&amp;</span> tmux save-buffer buffer.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者在命令模式中执行 <code>capture-pane; save-buffer buffer.txt</code> 命令。</p>
+<p>通过 <code>list-buffers</code> 命令可以查看所有缓存区。然后输入 <code>choose-buffer</code> 来选择一个特定的缓存区将它放到焦点面板中。</p>
+<h3 id="按键表">按键表</h3>
+<p><strong>快捷键</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PREFIX [</td>
+<td style="text-align:center">进入复制模式</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX ]</td>
+<td style="text-align:center">粘贴当前缓存区的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">PREFIX =</td>
+<td style="text-align:center">列出所有粘贴缓存区并粘贴选中的缓存内容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>复制模式</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">h,j,k,l</td>
+<td style="text-align:center">移动光标，分别表示向左，向下，向上，向右</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:center">以一个单词为单位向前移动光标</td>
+</tr>
+<tr>
+<td style="text-align:center">b</td>
+<td style="text-align:center">以一个单词为单位向后移动光标</td>
+</tr>
+<tr>
+<td style="text-align:center">f 后跟随任意字符</td>
+<td style="text-align:center">移动光标到指定字符的下一个匹配位置</td>
+</tr>
+<tr>
+<td style="text-align:center">F 后跟随任意字符</td>
+<td style="text-align:center">移动光标到指定字符的前一个匹配位置</td>
+</tr>
+<tr>
+<td style="text-align:center">CTRL b</td>
+<td style="text-align:center">向上翻滚一个屏幕的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">CTRL f</td>
+<td style="text-align:center">向下翻滚一个屏幕的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:center">跳转到缓存区的顶部</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td style="text-align:center">跳转到缓存区的底部</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td style="text-align:center">在缓存区内向后查找</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">在缓存区内向前查找</td>
+</tr>
+</tbody>
+</table>
+<p><strong>命令模式</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">show-buffer</td>
+<td style="text-align:center">显示当前缓存区的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">capture-pane</td>
+<td style="text-align:center">捕捉指定面板的可视内容并复制到一个新的缓存区</td>
+</tr>
+<tr>
+<td style="text-align:center">list-buffers</td>
+<td style="text-align:center">列出所有的粘贴缓存区</td>
+</tr>
+<tr>
+<td style="text-align:center">choose-buffer</td>
+<td style="text-align:center">显示粘贴缓存区并粘贴选择的缓存区内的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">save-buffer [filename]</td>
+<td style="text-align:center">保存缓存区的内容到指定文件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="工作流">工作流</h2>
+<h3 id="高效使用面板和窗口">高效使用面板和窗口</h3>
+<p><strong>把面板变为窗口</strong></p>
+<p>按下 <code>PREFIX !</code> 键就会根据当前面板创建一个新的窗口。</p>
+<p><strong>把窗口变为面板</strong></p>
+<p>假设现在有一个带有两个窗口的 tmux 会话：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ tmux new-session -s panes -n first -d
+</span></span><span class="line"><span class="cl">$ tmux new-window -t panes -n second
+</span></span><span class="line"><span class="cl">$ tmux attach -t panes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后进入命令模式，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 详细格式为 join-pane -t [session_name]:[window].[pane]</span>
+</span></span><span class="line"><span class="cl">join-pane -s <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样会取出窗口 1 并添加到当前窗口，因为没有指定目标窗口。</p>
+<h3 id="在同一目录下打开新面板">在同一目录下打开新面板</h3>
+<blockquote>
+<p>根据个人喜好选择使用该功能。</p>
+</blockquote>
+<p>通过使用 <code>send-keys</code> 命令来调用一个脚本把当前路径保存到环境变量中，然后这个脚本回调 <code>send-keys</code> 向拆分的窗口中发送命令，再把路径更改为环境变量中保存的那个路径。</p>
+<p>首先在主目录下创建一个 <code>~/tmux-panes</code> 的新文件，写入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">TMUX_CURRENT_DIR</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">tmux split-window <span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">tmux send-keys <span class="s2">&#34;cd </span><span class="nv">$TMUX_CURRENT_DIR</span><span class="s2">;clear&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后编辑 <code>.tmux.conf</code> 来调用这个文件做分割。这里使用 <code>PREFIX v</code> 和 <code>PREFIX n</code> 键，防止覆盖已有的分割快捷键。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">unbind v
+</span></span><span class="line"><span class="cl">unbind n
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> v send-keys <span class="s2">&#34;~/tmux-panes -h&#34;</span> C-m
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> n send-keys <span class="s2">&#34;~/tmux-panes -v&#34;</span> C-m
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后给 <code>tmux-panes</code> 脚本添加可执行权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ chmod +x ~/tmux-panes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="会话间移动">会话间移动</h3>
+<p>按下 <code>PREFIX (</code> 键会进入前一个会话，按下 <code>PREFIX )</code> 键会进入下一个会话，按下 <code>PREFIX s</code> 键会显示一个会话列表，这样可以快速跳转。</p>
+<h3 id="会话间移动窗口">会话间移动窗口</h3>
+<p>默认快捷键为 <code>PREFIX .</code>，按下后，在显示的命令行输入会话名称，就可以将当前窗口移动到输入的会话中。也可以通过 shell 命令来完成这个功能。比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 把 proesses 会话的第 1 个窗口移动到 editor 会话中</span>
+</span></span><span class="line"><span class="cl">$ tmx move-window -s processes:1 -t editor
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="设置-shell">设置 shell</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g default-command /bin/zsh
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g default-shell /bin/zsh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="将程序输出记录到日志">将程序输出记录到日志</h3>
+<p>可以通过 <code>pipe-pane</code> 命令选择打开或者关闭这个功能。要激活该功能可以在命令模式下输入 <code>pipe-pane -o &quot;mylog.txt&quot;</code>，再次输入相同的命令可以将这个功能关闭。</p>
+<p>为了便于使用，对该功能绑定一个快捷键：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> P pipe-pane -o <span class="s2">&#34;cat &gt;&gt;~/prj/logs/#W.log&#34;</span> <span class="se">\;</span> display <span class="s2">&#34;Toggled logging to ~/prj/logs/#W.log&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后我们就可以通过 <code>PREFIX P</code> 命令来控制打开日志功能。</p>
+<h2 id="个人完整配置参考">个人完整配置参考</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># -----------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Tmux2.8 自定义配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -----------------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备注</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 移除前缀绑定键</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># unbind C-b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改 Prefix 组合键为 ⌃-a</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g prefix C-a
+</span></span><span class="line"><span class="cl">unbind C-b
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-a send-prefix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置延时</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span>  -sg escape-time     <span class="m">1</span> <span class="c1"># 修改默认延时，设置为1ms，增加响应</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置窗口面板和索引</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span>  -g  base-index      <span class="m">1</span> <span class="c1"># 让窗口索引从 1 开始</span>
+</span></span><span class="line"><span class="cl">setw -g  pane-base-index <span class="m">1</span> <span class="c1"># 让面板索引从 1 开始</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择面板快捷键</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> h <span class="k">select</span>-pane -L <span class="c1"># 左</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> j <span class="k">select</span>-pane -D <span class="c1"># 下</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> k <span class="k">select</span>-pane -U <span class="c1"># 上</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> l <span class="k">select</span>-pane -R <span class="c1"># 右</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择窗口快捷键</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r C-h <span class="k">select</span>-window -t :-
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r C-l <span class="k">select</span>-window -t :+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 调节面板大小快捷键</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r H resize-pane -L <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r J resize-pane -D <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r K resize-pane -U <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r L resize-pane -R <span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启鼠标模式</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g mouse on
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改默认的分割panel快捷键</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> <span class="p">|</span> split-window -h
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> - split-window -v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 加载tmux配置文件的快捷键: prefix r</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> r source-file ~/.tmux.conf<span class="se">\;</span> display <span class="s2">&#34;Reloaded!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># --------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 颜色配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 以256色显示内容</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g default-terminal <span class="s2">&#34;screen-256color&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置状态栏的颜色</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-fg white
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-bg black
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置窗口列表颜色</span>
+</span></span><span class="line"><span class="cl">setw -g window-status-fg cyan
+</span></span><span class="line"><span class="cl">setw -g window-status-bg default
+</span></span><span class="line"><span class="cl">setw -g window-status-attr dim
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置活动窗口的颜色</span>
+</span></span><span class="line"><span class="cl">setw -g window-status-current-fg white
+</span></span><span class="line"><span class="cl">setw -g window-status-current-bg red
+</span></span><span class="line"><span class="cl">setw -g window-status-current-attr bright
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置命令行或消息的颜色</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g message-fg white
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g message-bg black
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g message-attr bright
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启活动通知</span>
+</span></span><span class="line"><span class="cl">setw -g monitor-activity on
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g visual-activity on
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置状态栏左侧的内容和颜色</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-left-length <span class="m">40</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-left <span class="s2">&#34;#[fg=green]Session: #S #[fg=yellow]#I #[fg=cyan]#P&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置状态栏右侧的内容和颜色</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 28 Nov 18:15</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-right <span class="s2">&#34;#[fg=cyan]%d %b %R&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每 60 秒更新一次状态栏</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g status-interval <span class="m">60</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启 vi 按键</span>
+</span></span><span class="line"><span class="cl">setw -g mode-keys vi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更加便捷的方法可以直接使用别人配置好的，这里推荐使用 <a href="https://github.com/gpakosz/.tmux/blob/master/.tmux.conf">.tmux</a>。</p>
+<h2 id="参考文章">参考文章</h2>
+<ul>
+<li><a href="https://legacy.gitbook.com/book/aquaregia/tmux-productive-mouse-free-development_zh/details">tmux-Productive-Mouse-Free-Development_zh</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">CxyFreedom</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-17 18:24
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a target="_blank" rel="license noopener" href="https://github.com/cxyfreedom/blog/blob/master/LICENSE">MIT</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/tmux/">tmux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/python-design-pattern/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python 设计模式实现</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/target-offer-python/">
+            <span class="next-text nav-default">剑指Offer——Python 题解</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cxyfreedom/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:cxydfreedom@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cxyfreedom" class="iconfont icon-github" title="github"></a>
+      <a href="http://weibo.com/207071991" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://reishin.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CxyFreedom</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-83044258-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

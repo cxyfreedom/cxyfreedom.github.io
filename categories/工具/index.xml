@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具 on Field of Hope</title>
+    <link>https://reishin.me/categories/%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 工具 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Apr 2019 18:24:21 +0800</lastBuildDate><atom:link href="https://reishin.me/categories/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tmux 使用总结</title>
+      <link>https://reishin.me/tmux/</link>
+      <pubDate>Wed, 17 Apr 2019 18:24:21 +0800</pubDate>
+      
+      <guid>https://reishin.me/tmux/</guid>
+      <description>&lt;p&gt;tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&amp;gt;
+发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时
+使用多个命令行，或多个任务时非常方便。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

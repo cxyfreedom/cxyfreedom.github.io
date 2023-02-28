@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Field of Hope</title>
+    <link>https://reishin.me/post/</link>
+    <description>Recent content in Posts on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Mar 2020 21:53:30 +0800</lastBuildDate><atom:link href="https://reishin.me/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博客文章目录</title>
+      <link>https://reishin.me/roadmap/</link>
+      <pubDate>Mon, 29 Apr 2019 14:32:15 +0800</pubDate>
+      
+      <guid>https://reishin.me/roadmap/</guid>
+      <description>&lt;p&gt;本文是为了便于查找博客中相关内容或者知识点，作为索引使用。持续更新！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tornado 模板引擎原理解析</title>
+      <link>https://reishin.me/tornado-template-engine-analysis/</link>
+      <pubDate>Sat, 28 Mar 2020 21:53:30 +0800</pubDate>
+      
+      <guid>https://reishin.me/tornado-template-engine-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>解决 GitHub 上图片无法加载的问题</title>
+      <link>https://reishin.me/github-dns/</link>
+      <pubDate>Wed, 08 Jan 2020 16:59:34 +0800</pubDate>
+      
+      <guid>https://reishin.me/github-dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>技术文档编写规范</title>
+      <link>https://reishin.me/technical-document-specification/</link>
+      <pubDate>Tue, 07 Jan 2020 17:20:07 +0800</pubDate>
+      
+      <guid>https://reishin.me/technical-document-specification/</guid>
+      <description>&lt;p&gt;本文只是简单记录编写技术文档的主要结构，以供参考。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2019 下半年观剧回顾</title>
+      <link>https://reishin.me/2019-theatre-review/</link>
+      <pubDate>Sun, 05 Jan 2020 17:18:38 +0800</pubDate>
+      
+      <guid>https://reishin.me/2019-theatre-review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2019 年个人年终总结</title>
+      <link>https://reishin.me/2019-annual-review/</link>
+      <pubDate>Wed, 25 Dec 2019 15:49:51 +0800</pubDate>
+      
+      <guid>https://reishin.me/2019-annual-review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>恶魔奶爸英语学习方法</title>
+      <link>https://reishin.me/learn-english/</link>
+      <pubDate>Sat, 14 Sep 2019 16:53:37 +0800</pubDate>
+      
+      <guid>https://reishin.me/learn-english/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python 中容易出现误解的特性</title>
+      <link>https://reishin.me/lesser-known-features-in-python/</link>
+      <pubDate>Fri, 30 Aug 2019 18:38:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/lesser-known-features-in-python/</guid>
+      <description>&lt;p&gt;阅读了&lt;a href=&#34;https://github.com/satwikkansal/wtfpython#-be-careful-with-chained-operations&#34;&gt;wtfpython&lt;/a&gt;，发现 Python 中还有许多自己不知道的一些细节和特性。本文根据原文记录了一些自己不熟悉和容易忘记的一些点。更多的内容可以直接去看原文。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Hugo 搭建 Blog</title>
+      <link>https://reishin.me/build-blog-with-hugo/</link>
+      <pubDate>Fri, 23 Aug 2019 22:14:05 +0800</pubDate>
+      
+      <guid>https://reishin.me/build-blog-with-hugo/</guid>
+      <description>&lt;p&gt;相比于 Hexo，Hugo 更加的轻量，从零部署也是十分简单。本文主要记录从 Hexo 迁移到 Hugo 的过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 HashRing 实现 Python 下的一致性哈希算法</title>
+      <link>https://reishin.me/python-consistent-hash/</link>
+      <pubDate>Mon, 29 Apr 2019 14:43:31 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-consistent-hash/</guid>
+      <description>&lt;p&gt;当我们需要实现服务器负载均衡的时候，能够实现负载均衡的算法有很多种，包括：轮询算法（Round Robin）、哈希算法（Hash）、最少连接算法（Least Connection）、响应速度算法（Response Time）、加权法（Weighted）等等。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 中 Redis 连接池原理</title>
+      <link>https://reishin.me/python-redis-pool/</link>
+      <pubDate>Thu, 25 Apr 2019 18:33:45 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-redis-pool/</guid>
+      <description>&lt;p&gt;通常情况下，我们进行 &lt;code&gt;redis&lt;/code&gt; 操作时，会创建一个连接，并基于这个连接进行操作。操作完成后，释放该连接。但是当并发较高时，频繁的创建和释放会对性能造成影响。连接池的原理是通过预先创建多个连接。进行获取已经创建好的连接进行操作，操作完成之后，不会进行释放，可以用于后续其他redis的操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>深入理解 Python 中的元类（metaclass）</title>
+      <link>https://reishin.me/python-metaclass/</link>
+      <pubDate>Wed, 24 Apr 2019 17:03:19 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-metaclass/</guid>
+      <description>&lt;p&gt;元类（metaclass）是 Python 中一个比较难理解的概念，找了许多资料和官方文档，花了好久才算基本理解清楚。本文记录了多篇文章中的内容和自己的一些理解，便于自己和他人查漏补缺。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 设计模式实现</title>
+      <link>https://reishin.me/python-design-pattern/</link>
+      <pubDate>Sun, 21 Apr 2019 20:58:10 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-design-pattern/</guid>
+      <description>&lt;p&gt;设计模式是指软件设计问题的推荐方案。设计模式一般是描述如何组织代码和使用最佳实践来解决常见的设计问题。&lt;/p&gt;
+&lt;p&gt;它是高层次的方案，并不关注具体的实现细节。&lt;/p&gt;
+&lt;p&gt;本文主要通过 Python 来简单介绍和实现不同的设计模式。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>tmux 使用总结</title>
+      <link>https://reishin.me/tmux/</link>
+      <pubDate>Wed, 17 Apr 2019 18:24:21 +0800</pubDate>
+      
+      <guid>https://reishin.me/tmux/</guid>
+      <description>&lt;p&gt;tmux 是一个优秀的终端复用器类自由软件，功能类似 GNU Screen，但使用 BSD 许可&amp;gt;
+发布。用户可以通过 tmux 在一个终端内管理多个分离的会话，窗口及面板，对于同时
+使用多个命令行，或多个任务时非常方便。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>剑指Offer——Python 题解</title>
+      <link>https://reishin.me/target-offer-python/</link>
+      <pubDate>Thu, 28 Mar 2019 20:40:22 +0800</pubDate>
+      
+      <guid>https://reishin.me/target-offer-python/</guid>
+      <description>&lt;p&gt;剑指 Offer 题目的 Python 题解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker 容器技术基础总结</title>
+      <link>https://reishin.me/docker-base/</link>
+      <pubDate>Wed, 16 Jan 2019 18:10:40 +0800</pubDate>
+      
+      <guid>https://reishin.me/docker-base/</guid>
+      <description>&lt;p&gt;Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 中的一些技巧</title>
+      <link>https://reishin.me/python-tricks/</link>
+      <pubDate>Thu, 10 Jan 2019 18:08:40 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-tricks/</guid>
+      <description>&lt;p&gt;本文为阅读 《Python Tricks A Buffet of Awesome Python Features》书籍的笔记，仅供自己参考。由于大部分内容熟知，所以并未记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 中给文件加锁——fcntl</title>
+      <link>https://reishin.me/python-module-fcntl/</link>
+      <pubDate>Tue, 08 Jan 2019 15:02:07 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-module-fcntl/</guid>
+      <description>&lt;p&gt;在 Python 中，如果想要给一个文件加锁，可以使用 &lt;code&gt;fcntl&lt;/code&gt; 模块。其中有 &lt;code&gt;flock&lt;/code&gt; 和 &lt;code&gt;lockf&lt;/code&gt; 两种不同的方式。首先我们先了解一下在 Linux 中的文件锁。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解析自定义 Logger 后会打印第三方库中 Logger 日志的原因</title>
+      <link>https://reishin.me/python-custom-logger/</link>
+      <pubDate>Wed, 26 Dec 2018 15:35:13 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-custom-logger/</guid>
+      <description>&lt;p&gt;在使用第三方库 pika 连接 RabbitMQ 的代码中，自定义了 Logger，并将相关配置写在了配置文件中。但是执行程序发现，pika 库中本身的 Logger 日志也写入到了文件，但我们只希望记录我们自己所写的日志。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 kubeadm 安装 Kubernetes 1.12</title>
+      <link>https://reishin.me/deploy-kubernetes-using-kubeadm/</link>
+      <pubDate>Thu, 22 Nov 2018 17:26:21 +0800</pubDate>
+      
+      <guid>https://reishin.me/deploy-kubernetes-using-kubeadm/</guid>
+      <description>&lt;p&gt;kubeadm 是 Kubernetes 官方提供的用于快速部署 Kubernetes 集群的工具，本文主要记录自己通过 kubeadm 部署 Kubernetes 过程中遇到的问题和踩过的坑，便于自己和他人查阅。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Helm 使用教程</title>
+      <link>https://reishin.me/kubernetes-helm-installation/</link>
+      <pubDate>Thu, 13 Sep 2018 21:30:37 +0800</pubDate>
+      
+      <guid>https://reishin.me/kubernetes-helm-installation/</guid>
+      <description>&lt;p&gt;Helm 是 Kubernetes 的一个包管理器，用来简化 Kubernetes 应用的部署和管理。类似于 CentOS 的 yum 工具 或者是 Ubuntu 的 apt-get 工具。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hexo 博客 SEO 优化</title>
+      <link>https://reishin.me/blog-seo-optimization/</link>
+      <pubDate>Mon, 10 Sep 2018 20:31:51 +0800</pubDate>
+      
+      <guid>https://reishin.me/blog-seo-optimization/</guid>
+      <description>&lt;p&gt;为了能让我们的博客被搜索引擎更好的收录，我们需要对 SEO 进行优化。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python源码解析——可重入锁RLock</title>
+      <link>https://reishin.me/python-source-code-parse-with-rlock/</link>
+      <pubDate>Mon, 20 Aug 2018 20:07:47 +0000</pubDate>
+      
+      <guid>https://reishin.me/python-source-code-parse-with-rlock/</guid>
+      <description>&lt;p&gt;本文主要针对 Python 中的可重入锁 RLock 的源码剖析。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GitHub Pages 启用 SSL/TLS</title>
+      <link>https://reishin.me/Hexo-with-SSL-hosted-on-GitHub-Pages/</link>
+      <pubDate>Thu, 25 Aug 2016 03:14:00 +0800</pubDate>
+      
+      <guid>https://reishin.me/Hexo-with-SSL-hosted-on-GitHub-Pages/</guid>
+      <description>&lt;p&gt;通过本文，可以让 GitHub Pages 从 http 转变为 https，从而让数据更加安全。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用 Hexo &#43; GitHub 搭建个人博客</title>
+      <link>https://reishin.me/%E5%88%A9%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Fri, 06 Nov 2015 15:35:56 +0800</pubDate>
+      
+      <guid>https://reishin.me/%E5%88%A9%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;p&gt;网上看到各式各样的博客，因此，自己也想拥有一个属于自己的独立博客。利用搜索引擎，最终选择了 Hexo + Github 的方式来搭建一个静态博客。搭建完成后，决定把自己从开始到搭建完成的整个过程给记录下来，也可以给以后搭建博客的人一个参考。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>写作 on Field of Hope</title>
+    <link>https://reishin.me/categories/%E5%86%99%E4%BD%9C/</link>
+    <description>Recent content in 写作 on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 07 Jan 2020 17:20:07 +0800</lastBuildDate><atom:link href="https://reishin.me/categories/%E5%86%99%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术文档编写规范</title>
+      <link>https://reishin.me/technical-document-specification/</link>
+      <pubDate>Tue, 07 Jan 2020 17:20:07 +0800</pubDate>
+      
+      <guid>https://reishin.me/technical-document-specification/</guid>
+      <description>&lt;p&gt;本文只是简单记录编写技术文档的主要结构，以供参考。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

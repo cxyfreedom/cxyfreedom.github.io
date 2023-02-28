@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pika on Field of Hope</title>
+    <link>https://reishin.me/tags/pika/</link>
+    <description>Recent content in pika on Field of Hope</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 26 Dec 2018 15:35:13 +0800</lastBuildDate><atom:link href="https://reishin.me/tags/pika/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解析自定义 Logger 后会打印第三方库中 Logger 日志的原因</title>
+      <link>https://reishin.me/python-custom-logger/</link>
+      <pubDate>Wed, 26 Dec 2018 15:35:13 +0800</pubDate>
+      
+      <guid>https://reishin.me/python-custom-logger/</guid>
+      <description>&lt;p&gt;在使用第三方库 pika 连接 RabbitMQ 的代码中，自定义了 Logger，并将相关配置写在了配置文件中。但是执行程序发现，pika 库中本身的 Logger 日志也写入到了文件，但我们只希望记录我们自己所写的日志。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

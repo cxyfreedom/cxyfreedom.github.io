@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>利用 Hexo &#43; GitHub 搭建个人博客 - Field of Hope</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CxyFreedom" /><meta name="description" content="网上看到各式各样的博客，因此，自己也想拥有一个属于自己的独立博客。利用搜索引擎，最终选择了 Hexo &#43; Github 的方式来搭建一个静态博客。搭建完成后，决定把自己从开始到搭建完成的整个过程给记录下来，也可以给以后搭建博客的人一个参考。
+" /><meta name="keywords" content="Hugo, theme, even, cxyfreedom, 博客, blog, reishin, python, BackEnd" />
+
+
+
+<meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
+
+
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
+
+
+<link rel="canonical" href="https://reishin.me/%E5%88%A9%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+<meta property="og:title" content="利用 Hexo &#43; GitHub 搭建个人博客" />
+<meta property="og:description" content="网上看到各式各样的博客，因此，自己也想拥有一个属于自己的独立博客。利用搜索引擎，最终选择了 Hexo &#43; Github 的方式来搭建一个静态博客。搭建完成后，决定把自己从开始到搭建完成的整个过程给记录下来，也可以给以后搭建博客的人一个参考。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://reishin.me/%E5%88%A9%E7%94%A8Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2015-11-06T15:35:56+08:00" />
+<meta property="article:modified_time" content="2015-11-06T15:35:56+08:00" />
+<meta itemprop="name" content="利用 Hexo &#43; GitHub 搭建个人博客">
+<meta itemprop="description" content="网上看到各式各样的博客，因此，自己也想拥有一个属于自己的独立博客。利用搜索引擎，最终选择了 Hexo &#43; Github 的方式来搭建一个静态博客。搭建完成后，决定把自己从开始到搭建完成的整个过程给记录下来，也可以给以后搭建博客的人一个参考。"><meta itemprop="datePublished" content="2015-11-06T15:35:56+08:00" />
+<meta itemprop="dateModified" content="2015-11-06T15:35:56+08:00" />
+<meta itemprop="wordCount" content="1533">
+<meta itemprop="keywords" content="hexo,Blog," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="利用 Hexo &#43; GitHub 搭建个人博客"/>
+<meta name="twitter:description" content="网上看到各式各样的博客，因此，自己也想拥有一个属于自己的独立博客。利用搜索引擎，最终选择了 Hexo &#43; Github 的方式来搭建一个静态博客。搭建完成后，决定把自己从开始到搭建完成的整个过程给记录下来，也可以给以后搭建博客的人一个参考。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Field of Hope</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Field of Hope</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">利用 Hexo &#43; GitHub 搭建个人博客</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-11-06 15:35 </span>
+        <div class="post-category">
+            <a href="/categories/Blog/"> Blog </a>
+            </div>
+          <span class="more-meta"> 约 1533 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装前提">安装前提</a>
+      <ul>
+        <li><a href="#安装-git">安装 Git</a></li>
+        <li><a href="#安装-nodejs">安装 Node.js</a></li>
+      </ul>
+    </li>
+    <li><a href="#开始搭建博客">开始搭建博客</a>
+      <ul>
+        <li><a href="#安装-hexo">安装 Hexo</a></li>
+        <li><a href="#配置-hexo">配置 Hexo</a></li>
+        <li><a href="#部署-hexo">部署 Hexo</a></li>
+      </ul>
+    </li>
+    <li><a href="#博客部署到-github">博客部署到 GitHub</a>
+      <ul>
+        <li><a href="#新建一个博客的项目仓库">新建一个博客的项目仓库</a></li>
+        <li><a href="#配置本地的-ssh-key-到-github">配置本地的 SSH KEY 到 GitHub</a></li>
+        <li><a href="#把本地-hexo-部署到-github">把本地 Hexo 部署到 GitHub</a></li>
+      </ul>
+    </li>
+    <li><a href="#绑定独立域名">绑定独立域名</a></li>
+    <li><a href="#博客同步和备份">博客同步和备份</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#更新日志">更新日志</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2015-11-06T15:35:56" title="November 6, 2015">November 6, 2015</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>网上看到各式各样的博客，因此，自己也想拥有一个属于自己的独立博客。利用搜索引擎，最终选择了 Hexo + Github 的方式来搭建一个静态博客。搭建完成后，决定把自己从开始到搭建完成的整个过程给记录下来，也可以给以后搭建博客的人一个参考。</p>
+<h2 id="安装前提">安装前提</h2>
+<ul>
+<li><a href="http://git-scm.com/">Git</a></li>
+<li><a href="https://nodejs.org/en/">Node.js</a></li>
+</ul>
+<p>我是在Ubuntu平台上搭建的，所以就以Ubuntu下为例：</p>
+<h3 id="安装-git">安装 Git</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ sudo apt-get install git-core
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装-nodejs">安装 Node.js</h3>
+<ul>
+<li>脚本安装</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh <span class="p">|</span> bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>手动安装</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvm&#34;</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">  git clone https://github.com/creationix/nvm.git <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">cd</span> <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  git checkout <span class="sb">`</span>git describe --abbrev<span class="o">=</span><span class="m">0</span> --tags --match <span class="s2">&#34;v[0-9]*&#34;</span> origin<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span> <span class="o">&amp;&amp;</span> . <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加以下内容到~/.bashrc或者~/.profile或者~/.zshrc</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvm&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -s <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> . <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh&#34;</span> <span class="c1"># This loads nvm</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装完毕后，重启终端，然后执行以下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ nvm install v6.2.2
+</span></span><span class="line"><span class="cl">$ nvm alias default v6.2.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="开始搭建博客">开始搭建博客</h2>
+<h3 id="安装-hexo">安装 Hexo</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npm install -g hexo-cli
+</span></span><span class="line"><span class="cl">$ npm install hexo --save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果上述命令无法安装，可以将官方源替换成<a href="https://npm.taobao.org/">淘宝npm源</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npm install -g cnpm --registry<span class="o">=</span>https://registry.npm.taobao.org
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看 Hexo 版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ hexo version
+</span></span><span class="line"><span class="cl">hexo: 3.2.2
+</span></span><span class="line"><span class="cl">hexo-cli: 1.0.2
+</span></span><span class="line"><span class="cl">os: Linux 3.13.0-32-generic linux ia32
+</span></span><span class="line"><span class="cl">http_parser: 2.7.0
+</span></span><span class="line"><span class="cl">node: 6.2.2
+</span></span><span class="line"><span class="cl">v8: 5.0.71.52
+</span></span><span class="line"><span class="cl">uv: 1.9.1
+</span></span><span class="line"><span class="cl">zlib: 1.2.8
+</span></span><span class="line"><span class="cl">ares: 1.10.1-DEV
+</span></span><span class="line"><span class="cl">icu: 57.1
+</span></span><span class="line"><span class="cl">modules: <span class="m">48</span>
+</span></span><span class="line"><span class="cl">openssl: 1.0.2h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置-hexo">配置 Hexo</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ hexo init &lt;folder&gt;
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> &lt;folder&gt;
+</span></span><span class="line"><span class="cl">$ sudo npm install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="部署-hexo">部署 Hexo</h3>
+<p>执行以下命令，启动本地服务器。然后在浏览器中输入 <a href="http://localhost:4000">http://localhost:4000</a> 即可访问</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ hexo s    <span class="c1">#启动本地服务器</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="博客部署到-github">博客部署到 GitHub</h2>
+<h3 id="新建一个博客的项目仓库">新建一个博客的项目仓库</h3>
+<p><code>Repository name</code> 为<code>your_github_name.github.io</code></p>
+<h3 id="配置本地的-ssh-key-到-github">配置本地的 SSH KEY 到 GitHub</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ssh-keygen -t rsa -C <span class="s2">&#34;your email address&#34;</span> <span class="c1"># 默认生成的文件名为id_rsa和id_rsa.pub</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">$ ssh-keygen -t ras -C <span class="s2">&#34;your email address&#34;</span> -f <span class="s2">&#34;file_name&#34;</span> <span class="c1"># 生成的文件名就为file_name和file_name.pub</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在GitHub上新建一个SSH KEYS，把 *.pub 的内容拷贝进去。可以使用以下命令来测试是否设置成功</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ssh -T git@github.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="把本地-hexo-部署到-github">把本地 Hexo 部署到 GitHub</h3>
+<p>首先，需要修改站点的配置文件 <code>_config.yml</code>, 在文件中添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">deploy:
+</span></span><span class="line"><span class="cl">  type: git
+</span></span><span class="line"><span class="cl">  repository: https://github.com/cxyfreedom/cxyfreedom.github.io.git
+</span></span><span class="line"><span class="cl">  branch: master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后执行以下命令，就能够很容易把 Hexo 部署到 GitHub 上面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ hexo clean    <span class="c1">#清除缓存</span>
+</span></span><span class="line"><span class="cl">$ hexo g    <span class="c1"># 生成静态文件</span>
+</span></span><span class="line"><span class="cl">$ hexo d    <span class="c1"># 部署网站</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正常情况下，稍微等一会儿，输入<code>XXX.github.io</code>就能看到搭建好的博客了～</p>
+<h2 id="绑定独立域名">绑定独立域名</h2>
+<ol>
+<li>
+<p>购买独立域名
+域名购买我是选择通过 <a href="https://www.godaddy.com/">Godaddy</a>, 找个优惠码注册，购买，一般没有什么问题</p>
+</li>
+<li>
+<p>域名解析
+因为Godaddy的关系，我把域名解析移到了国内，我选择了 <a href="https://www.dnspod.cn/">DNSPOD</a>, 目前来说还是比较稳定的</p>
+</li>
+<li>
+<p>绑定域名
+在你博客根目录下的 <code>source</code> 中，新建一个 <code>CNAME</code> 文件。在文件中填写你的域名。例如</p>
+</li>
+</ol>
+<blockquote>
+<p>reishin.me</p>
+</blockquote>
+<p>最后部署到 GitHub 上面</p>
+<h2 id="博客同步和备份">博客同步和备份</h2>
+<p>由于我们可能会在不同的 PC 上进行文章的编写，那么自然而然的我们需要同步我们的博客。
+因为有些配置文件涉及到一些隐私数据，所以为了安全起见，我选择了用 <code>bitbucket</code> 上建立一个私有仓库，然后把整个 Hexo 的文件用 git 来备份到仓库。因为 Hexo 的主题文件默认是不会同步的，为了便于博客更好的同步更新，我另外使用了一个 <code>git-backup</code> 的插件，这个插件可以备份整个博客，包括主题。</p>
+<p>1.新建仓库并配置 SSH KEY 到 bitbucket 上</p>
+<p>2.安装插件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npm install hexo-git-backup --save    <span class="c1"># install base on 3.x.x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.配置文件</p>
+<p>在根目录下的 <code>_config.yml</code> 添加以下内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">backup</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">git</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">theme</span><span class="p">:</span><span class="w"> </span><span class="o">`</span><span class="n">theme</span><span class="o">`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="o">`</span><span class="n">commit</span><span class="err">的内容</span><span class="o">`</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">repository</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">bitbucket</span><span class="p">:</span><span class="w"> </span><span class="n">git</span><span class="o">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="n">org</span><span class="p">:</span><span class="n">xxx</span><span class="o">/</span><span class="n">xxx</span><span class="p">.</span><span class="n">git</span><span class="p">,</span><span class="n">branchName</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.备份博客</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ hexo b
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.同步博客</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 依次安装 git 和 nodejs</span>
+</span></span><span class="line"><span class="cl">$ npm install -g hexo-cli
+</span></span><span class="line"><span class="cl">$ git clone git@bitbucket.org:cxyfreedom/hexo-blog.git
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> hexo-blog
+</span></span><span class="line"><span class="cl">$ npm install hexo --save
+</span></span><span class="line"><span class="cl">$ npm install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>第一次搭建博客的确花了不少时间，虽然搭建的过程大同小异，但是自己也遇到了很多配置上面的问题，所以只有耐心尝试，才能真正的搭建自己的博客。相比其他搭建博客的方式，Hexo + GitHub 这种方式的确更加简便，可塑性也非常高。</p>
+<p>目前还只是初步搭建完成，还有很多细节的地方需要完善。博客也只是个平台，要坚持写文章才能让博客有意义，现在还只是个开始。</p>
+<p>这篇文章只是大致描述了搭建的过程，如果能够对你有帮助，真是再好不过了～
+欢迎相互交流～</p>
+<h2 id="参考链接">参考链接</h2>
+<p>[1] <a href="http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog/">如何搭建一个独立博客——简明 Github Pages与 jekyll 教程</a>
+[2] <a href="http://www.jianshu.com/p/73779eacb494#">Hexo 静态博客使用指南</a>
+[3] <a href="http://chitanda.me/2015/06/18/hexo-sync-in-multiple-pc/">利用 git 解决 hexo 博客多PC间同步问题</a>
+[4] <a href="http://www.zhihu.com/question/21193762">使用 hexo，如果换了电脑怎么更新博客？</a>
+[5] <a href="http://hexo.io/">Hexo 官网</a></p>
+<h2 id="更新日志">更新日志</h2>
+<ul>
+<li>[2016.01.15] 增加一些步骤的细节和同步的方法</li>
+<li>[2016.07.04] 更新主题版本，修正一些细节</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">CxyFreedom</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-11-06 15:35
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a target="_blank" rel="license noopener" href="https://github.com/cxyfreedom/blog/blob/master/LICENSE">MIT</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/hexo/">hexo</a>
+          <a href="/tags/Blog/">Blog</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/Hexo-with-SSL-hosted-on-GitHub-Pages/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">GitHub Pages 启用 SSL/TLS</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cxyfreedom/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:cxydfreedom@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cxyfreedom" class="iconfont icon-github" title="github"></a>
+      <a href="http://weibo.com/207071991" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://reishin.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CxyFreedom</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-83044258-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

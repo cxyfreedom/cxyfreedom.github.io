@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>深入理解 Python 中的元类（metaclass） - Field of Hope</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CxyFreedom" /><meta name="description" content="元类（metaclass）是 Python 中一个比较难理解的概念，找了许多资料和官方文档，花了好久才算基本理解清楚。本文记录了多篇文章中的内容和自己的一些理解，便于自己和他人查漏补缺。
+" /><meta name="keywords" content="Hugo, theme, even, cxyfreedom, 博客, blog, reishin, python, BackEnd" />
+
+
+
+<meta name="google-site-verification" content="BXyY8kRGyP8O8dUaJk8XURntqXDjfgU5O9tBzPegieI" />
+
+
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
+
+
+<link rel="canonical" href="https://reishin.me/python-metaclass/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+<meta property="og:title" content="深入理解 Python 中的元类（metaclass）" />
+<meta property="og:description" content="元类（metaclass）是 Python 中一个比较难理解的概念，找了许多资料和官方文档，花了好久才算基本理解清楚。本文记录了多篇文章中的内容和自己的一些理解，便于自己和他人查漏补缺。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://reishin.me/python-metaclass/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-04-24T17:03:19+08:00" />
+<meta property="article:modified_time" content="2019-04-24T17:03:19+08:00" />
+<meta itemprop="name" content="深入理解 Python 中的元类（metaclass）">
+<meta itemprop="description" content="元类（metaclass）是 Python 中一个比较难理解的概念，找了许多资料和官方文档，花了好久才算基本理解清楚。本文记录了多篇文章中的内容和自己的一些理解，便于自己和他人查漏补缺。"><meta itemprop="datePublished" content="2019-04-24T17:03:19+08:00" />
+<meta itemprop="dateModified" content="2019-04-24T17:03:19+08:00" />
+<meta itemprop="wordCount" content="3295">
+<meta itemprop="keywords" content="Python,metaclass,元类," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="深入理解 Python 中的元类（metaclass）"/>
+<meta name="twitter:description" content="元类（metaclass）是 Python 中一个比较难理解的概念，找了许多资料和官方文档，花了好久才算基本理解清楚。本文记录了多篇文章中的内容和自己的一些理解，便于自己和他人查漏补缺。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Field of Hope</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="https://hacknical.com/cxyfreedom/resume?locale=zh">
+        <li class="mobile-menu-item">简历</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Field of Hope</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://hacknical.com/cxyfreedom/resume?locale=zh">简历</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">深入理解 Python 中的元类（metaclass）</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-24 17:03 </span>
+        
+          <span class="more-meta"> 约 3295 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#类也是对象">类也是对象</a></li>
+    <li><a href="#动态地创建类">动态地创建类</a>
+      <ul>
+        <li><a href="#type-和-type__new__-的区别">type 和 <code>type.__new__</code> 的区别</a></li>
+        <li><a href="#type-和-object-的关系">type 和 object 的关系</a></li>
+      </ul>
+    </li>
+    <li><a href="#元类metaclass是什么">元类（metaclass）是什么？</a>
+      <ul>
+        <li><a href="#six-模块的-with_metaclass-函数">six 模块的 with_metaclass 函数</a></li>
+        <li><a href="#元类的-__prepare__-方法">元类的 <code>__prepare__</code> 方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#metaclass-属性">metaclass 属性</a></li>
+    <li><a href="#自定义元类">自定义元类</a></li>
+    <li><a href="#为什么要使用元类">为什么要使用元类？</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-24T17:03:19" title="April 24, 2019">April 24, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>元类（metaclass）是 Python 中一个比较难理解的概念，找了许多资料和官方文档，花了好久才算基本理解清楚。本文记录了多篇文章中的内容和自己的一些理解，便于自己和他人查漏补缺。</p>
+<h2 id="类也是对象">类也是对象</h2>
+<p>只要使用关键字 <code>class</code>，Python 解释器就会在执行的时候创建一个对象。类的本质也是一个对象，可以对其作如下操作：</p>
+<ul>
+<li>赋值给一个变量</li>
+<li>拷贝它</li>
+<li>增加一个属性</li>
+<li>将它作为函数参数进行传递</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">ObjectCreator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>     <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span><span class="s1">&#39;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="o">...</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">echo</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span><span class="s1">&#39;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ObjectCreator</span><span class="p">,</span> <span class="s1">&#39;new_attribute&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">ObjectCreator</span><span class="o">.</span><span class="n">new_attribute</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">ObjectCreator</span><span class="o">.</span><span class="n">new_attribute</span>
+</span></span><span class="line"><span class="cl"><span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="s1">&#39;foo&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">ObjectCreatorMirror</span> <span class="o">=</span> <span class="n">ObjectCreator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">ObjectCreatorMirror</span>
+</span></span><span class="line"><span class="cl"><span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">ObjectCreator</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="动态地创建类">动态地创建类</h2>
+<p>type 可以动态创建类。接受一个类的描述作为参数，然后返回一个类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type(类名, 父类的元组（针对继承的情况，可以为空），包含属性的字典（名称和值）)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>手动创建例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">MyShinyClass</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;MyShinyClass&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">MyShinyClass</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">MyShinyClass</span><span class="s1">&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">MyShinyClass</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">MyShinyClass</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10bfcb358</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接受一个字典来为类定义属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bar</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 等同于</span>
+</span></span><span class="line"><span class="cl"><span class="n">Foo</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;Foo&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{</span><span class="s1">&#39;bar&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 继承</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FooChild</span><span class="p">(</span><span class="n">Foo</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">FooChild</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;FooChild&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,),{})</span>
+</span></span><span class="line"><span class="cl"><span class="n">FooChild</span><span class="o">.</span><span class="n">bar</span> <span class="c1"># True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果希望为类增加一个方法，只需要创建一个函数并将其作为属性赋值给类对象即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">echo_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">FooChild</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;FooChild&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="p">),</span> <span class="p">{</span><span class="s1">&#39;echo_bar&#39;</span><span class="p">:</span> <span class="n">echo_bar</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;echo_bar&#39;</span><span class="p">)</span>  <span class="c1"># False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">hasattr</span><span class="p">(</span><span class="n">FooChild</span><span class="p">,</span> <span class="s1">&#39;echo_bar&#39;</span><span class="p">)</span>  <span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="n">my_foo</span> <span class="o">=</span> <span class="n">FooChild</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">my_foo</span><span class="o">.</span><span class="n">echo_bar</span><span class="p">()</span>  <span class="c1"># True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><!-- raw HTML omitted -->
+<h3 id="type-和-type__new__-的区别">type 和 <code>type.__new__</code> 的区别</h3>
+<p>为了说明这个问题，我们直接从代码来看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MetaA</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MetaA.__new__&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MetaA.__init__&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MetaA</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># output: MetaA.__new__</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MetaB</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MetaB.__new__&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MetaB.__init__&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MetaB</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># output: </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># MetaB.__new__</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># MetaB.__init__</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从代码中可以看出，在 MetaA 中通过 <code>__new__</code> 方法返回了一个新的类，但是这个类和 MetaA 没有任何关系，因此，MetaA 的 <code>__init__</code> 也就不会调用，因为 <code>__init__</code> 是用来控制 MetaA 实例的初始化的。</p>
+<p>而在 MetaB 中通过 <code>__new__</code> 方法返回了一个 MetaB 的实例对象 B，B 是一个类，因此下一步就会调用 <code>__init__</code> 来初始化这个实例对象。</p>
+<p>官方文档说明：</p>
+<!-- raw HTML omitted -->
+<p>If <strong>new</strong>() does not return an instance of cls, then the new instance’s <strong>init</strong>() method will not be invoked.<!-- raw HTML omitted --></p>
+<h3 id="type-和-object-的关系">type 和 object 的关系</h3>
+<p>在 Python 中，查看一个类型的父类，可以通过 <code>__bases__</code> 属性来查看。要查看一个实例的类型，可以通过 <code>__class__</code> 属性查看，或者使用 <code>type()</code> 函数查看。</p>
+<p>type 和 object 都是 type 的实例。在 Python 中，object 是父子关系的顶端，也就是说所有数据类型的父类都是 object；type 是类型实例关系的顶端，也就是说所有对象都是 type 的实例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">type</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>  <span class="c1"># type</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>    <span class="c1"># type</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># object 是 type 的一个实例</span>
+</span></span><span class="line"><span class="cl"><span class="nb">object</span><span class="o">.</span><span class="vm">__class__</span>  <span class="c1"># type</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># type 也是 type 的一个实例</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="o">.</span><span class="vm">__class__</span>  <span class="c1"># type</span>
+</span></span><span class="line"><span class="cl"><span class="nb">object</span><span class="o">.</span><span class="vm">__bases__</span> <span class="c1"># ()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># type 是 object 的子类</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="o">.</span><span class="vm">__bases__</span>  <span class="c1"># (object,)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用一张图概括：</p>
+<!-- raw HTML omitted -->
+<p>白板虚线表示源是目标的实例，实线表示源是目标的子类。即，左边的是右边的类型，而上面的是下面的父亲。</p>
+<p>虚线是跨列产生关系，而实线只能在一列内产生关系。除了 type 和 object。</p>
+<p>图中的第一列，我们将其称为 Type。
+图中的第二列，既是第三列的类型，也是第一列的实例，我们将其称为 TypeObject。
+图中的第三列，是第二列的实例，没有父类，即没有 <code>__bases__</code> 属性，我们将其称为 Instance。</p>
+<p>我们希望在第一列添加新的东西，那么必须是 type 的子类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">M</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="o">.</span><span class="vm">__class__</span>  <span class="c1"># type</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="o">.</span><span class="vm">__bases__</span>  <span class="c1"># type</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>M 的类型和父类都是 type，因此 M 属于第一列，M 也就是我们所说的<strong>元类</strong>！type 也是所有元类的父类。</p>
+<p>如果我们想要实例化元类，我们还需要定义一个类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># python3 方式</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TM</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">M</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="o">.</span><span class="vm">__class__</span>  <span class="c1"># M</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="o">.</span><span class="vm">__bases__</span>  <span class="c1"># (object,)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个时候 TM 类的类型就不再是 type，而是 M 了，TM 属于第二列。</p>
+<p>Q: <strong>type 和 object 同时存在的原因？</strong></p>
+<p>A: 如果 type 和 object 只存在一个，肯定是保留 object。那么这就和大部分的静态语言类型架构类似，但是这样就失去了<strong>动态创建类型</strong>的特性。本来 TypeObject 是一个对象，对象可以在运行时去动态地修改，因此我们定义一个类之后可以去修改它的属性或者行为。如果去掉了 type，那么类就变成了一个纯类型，运行的时候就无法变动。</p>
+<h2 id="元类metaclass是什么">元类（metaclass）是什么？</h2>
+<p>元类就是创造类的类。type 实际上就是一个元类，type 就是 Python 在背后用来创建所有类的元类。</p>
+<p>元类在 Python2 和 Python3 中的定义方法不同：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Python2</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">MyMeta</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Python3</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">MyMeta</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果我们希望能够同时兼容 2 和 3，就需要另外使用一种方法。元类有两个基本的特性：</p>
+<ul>
+<li>元类实例化后得到类</li>
+<li>元类能够被子类继承</li>
+</ul>
+<p>基于这两个特性，我们不难得出解决方案：首先使用元类创建出一个临时类，然后用定义类来继承这个临时类。我们根据这个方案可以写入如下的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">with_metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="o">*</span><span class="n">bases</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param meta: metaclass
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param bases: base class
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return:
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">meta</span><span class="p">(</span><span class="s1">&#39;temp_class&#39;</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="p">{})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">TestMeta</span><span class="p">,</span> <span class="n">Foo</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Bar</span><span class="o">.</span><span class="n">mro</span><span class="p">())</span>  <span class="c1"># [&lt;class &#39;__main__.Bar&#39;&gt;, &lt;class &#39;__main__.temp_class&#39;&gt;, &lt;class &#39;__main__.Foo&#39;&gt;, &lt;class &#39;object&#39;&gt;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们创建了一个以 TestMeta 为元类，继承 Foo 的 Bar 类。但是在 mro 中混入了一个 <code>temp_class</code> 的临时类，我们希望这个最好可以过滤掉。</p>
+<p>在 six 模块中，就很好的解决了这个临时类的问题。</p>
+<h3 id="six-模块的-with_metaclass-函数">six 模块的 with_metaclass 函数</h3>
+<p>six 模块是专门解决 Python2 和 Python3 的兼容问题，模块中有一个 <code>with_metaclass</code> 函数，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">with_metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="o">*</span><span class="n">bases</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Create a base class with a metaclass.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># This requires a bit of explanation: the basic idea is to make a dummy</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># metaclass for one level of class instantiation that replaces itself with</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># the actual metaclass.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">metaclass</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">this_bases</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">meta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="fm">__prepare__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">this_bases</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">meta</span><span class="o">.</span><span class="fm">__prepare__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">metaclass</span><span class="p">,</span> <span class="s1">&#39;temporary_class&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结合我们代码来分析一下这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s1"> __new__ is called.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Tmp</span> <span class="o">=</span> <span class="n">with_metaclass</span><span class="p">(</span><span class="n">TestMeta</span><span class="p">,</span> <span class="n">Foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行到这里无输出</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="n">Tmp</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行到这里输出：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;class &#39;__main__.with_metaclass.&lt;locals&gt;.metaclass&#39;&gt; __new__ is called.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;class &#39;__main__.TestMeta&#39;&gt; __new__ is called.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行 <code>with_metaclass(TestMeta, Foo)</code> 的时候，内部通过 <code>type.__new__(metaclass, 'temporary_class', (), {})</code> 创建了一个临时类，它是 metaclass 类的实例，它的元类是 metaclass，创建的时候仅仅调用了 type 的 <code>__new__</code> 方法。</p>
+<p>然后定义 Bar 类的时候，Bar 得到了继承的 metaclass，然后调用 metaclass 的 <code>__new__</code> 方法实例化，返回 <code>meta(name, bases, d)</code>，meta 是 <code>TestMeta</code>， bases 是 <code>(Foo,)</code>,最后调用 <code>TestMeta.__new__</code> 实例化得到 Bar。</p>
+<h3 id="元类的-__prepare__-方法">元类的 <code>__prepare__</code> 方法</h3>
+<p>这里提一下元类中的 <code>__prepare__</code> 特殊方法，这个方法是 <a href="https://www.python.org/dev/peps/pep-3115">PEP 3115</a> 中引入的，作用是用来获取类的命名空间。这个方法只能在元类中使用，而且必须声明为类方法。</p>
+<p>参数：第一个参数为元类，第二个参数是要构建类的名称，第三个参数是基类组成的元组，返回值必须是<strong>映射</strong>。</p>
+<p>原理：使用元类构建新类时（使用 class 关键字），解释器首先会调用 <code>__prepare__</code> 方法，使用类定义体中的属性创建映射，然后将返回的映射传递给 <code>__new__</code> 方法的最后一个参数，最后在传递给 <code>__init__</code> 方法。</p>
+<h2 id="metaclass-属性">metaclass 属性</h2>
+<p>在写一个类的时候，可以为其添加 <code>__metaclass__</code> 属性。</p>
+<p>当我们创建一个类时，Python 首先会在类的定义中寻找 <code>__metaclass__</code> 属性或者查看是否使用 <code>metaclass=xxx</code>，如果找到了，Python 就会用它来创建类，如果没有找到，就会在其任何父类中进行寻找 <code>__class__</code>，如果都找不到该属性，就会用内建的 <code>type</code> 来创建这个类。</p>
+<p>Q: 该属性中存放什么代码？
+A: 可以创建一个类的东西。type 或者任何使用到 type 或者子类化 type 的东西都可以。</p>
+<h2 id="自定义元类">自定义元类</h2>
+<p><code>__metaclass__</code> 并不一定要在类中定义，如果它在模块中定义，那么这个模块中的所有类都会通过这个元类来创建。例如我们希望模块中的类的属性都是大写属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">upper_attr</span><span class="p">(</span><span class="n">future_class_name</span><span class="p">,</span> <span class="n">future_class_parents</span><span class="p">,</span> <span class="n">future_class_attr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;返回一个类对象，将属性都转换为大写&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">attrs</span> <span class="o">=</span> <span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">future_class_attr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span>
+</span></span><span class="line"><span class="cl">             <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 将它们转换为大写形式</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uppercase_attr</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 通过 type 来做类对象的创建</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">future_class_name</span><span class="p">,</span> <span class="n">future_class_parents</span><span class="p">,</span> <span class="n">uppercase_attr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># python2 使用 __metaclass__，python3 中使用 metaclass</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">upper_attr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bar</span> <span class="o">=</span> <span class="s1">&#39;bip&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;BAR&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">BAR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;type&#39;&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们还可以通过真正的 class 来当作元类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">UpperAttrMetaClass</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">class_parents</span><span class="p">,</span> <span class="n">class_attr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">attrs</span> <span class="o">=</span> <span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">class_attr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">uppercase_attr</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">class_parents</span><span class="p">,</span> <span class="n">uppercase_attr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">UpperAttrMetaClass</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bar</span> <span class="o">=</span> <span class="s1">&#39;bip&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">))</span>  <span class="c1"># False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="s1">&#39;BAR&#39;</span><span class="p">))</span>  <span class="c1"># True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">BAR</span><span class="p">)</span>  <span class="c1"># bip</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;__main__.UpperAttrMetaClass&#39;&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外在 Python3 中，如果想要调用关键字参数，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">Thing</span><span class="p">,</span> <span class="n">kwarg1</span><span class="o">=</span><span class="n">value1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么在 metaclass 中应该写入如下格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Thing</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">clsname</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="n">kwargs1</span><span class="o">=</span><span class="n">default</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="o">...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>元类本身并不复杂，它主要负责拦截类的创建、修改类和返回修改之后的类。</p>
+<h2 id="为什么要使用元类">为什么要使用元类？</h2>
+<blockquote>
+<p>“元类就是深度的魔法，99%的用户应该根本不必为此操心。如果你想搞清楚究竟是否需要用到元类，那么你就不需要它。那些实际用到元类的人都非常清楚地知道他们需要做什么，而且根本不需要解释为什么要用元类。” —— Python 界的领袖 Tim Peters</p>
+</blockquote>
+<p>元类的主要用途是创建API。一个典型的例子就是 Django ORM。</p>
+<h2 id="总结">总结</h2>
+<p>Python 中的一些都是对象，要么是类的实例，要么是元类的实例，除了 type。type 是它自己的元类。</p>
+<p>大多数情况我们可以通过 <code>monkey patching</code> 和 <code>class decorators</code> 来修改类，也是比较推荐的。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python">What are metaclasses in Python?</a></li>
+<li><a href="https://stackoverflow.com/questions/2608708/what-is-the-difference-between-type-and-type-new-in-python">What is the difference between type and type.<strong>new</strong> in python?</a></li>
+<li><a href="https://www.the5fire.com/django-metaclass-compatibility.html">Django源码中的metaclass使用是如何兼容Python2和Python3的</a></li>
+<li><a href="https://www.zhihu.com/question/38791962/answer/78172929">Python 的 type 和 object 之间是怎么一种关系？</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">CxyFreedom</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-24 17:03
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a target="_blank" rel="license noopener" href="https://github.com/cxyfreedom/blog/blob/master/LICENSE">MIT</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/Python/">Python</a>
+          <a href="/tags/metaclass/">metaclass</a>
+          <a href="/tags/%E5%85%83%E7%B1%BB/">元类</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/python-redis-pool/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python 中 Redis 连接池原理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/python-design-pattern/">
+            <span class="next-text nav-default">Python 设计模式实现</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cxyfreedom/blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:cxydfreedom@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/cxyfreedom" class="iconfont icon-github" title="github"></a>
+      <a href="http://weibo.com/207071991" class="iconfont icon-weibo" title="weibo"></a>
+  <a href="https://reishin.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CxyFreedom</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-83044258-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
